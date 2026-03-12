@@ -1,406 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cheata | Portfolio</title>
-  <style>
-    :root {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #111827;
-      --muted: #6b7280;
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --border: #e5e7eb;
-    }
-
-    body.dark {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --text: #f8fafc;
-      --muted: #cbd5e1;
-      --primary: #60a5fa;
-      --primary-dark: #3b82f6;
-      --border: #334155;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    body.dark header {
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .nav {
-      max-width: 1100px;
-      margin: auto;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .logo-text {
-      font-size: 24px;
-      font-weight: bold;
-      color: var(--primary);
-    }
-
-    nav ul {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      color: var(--primary);
-    }
-
-    .theme-btn {
-      border: none;
-      background: var(--primary);
-      color: white;
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .theme-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .hero {
-      min-height: 85vh;
-      display: grid;
-      align-items: center;
-      text-align: center;
-    }
-
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid var(--primary);
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
-    }
-
-    .hero p {
-      max-width: 760px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .hero-buttons {
-      margin-top: 28px;
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 22px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.2s;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .btn-outline {
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    section {
-      padding: 50px 0;
-    }
-
-    .section-title {
-      font-size: 32px;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .section-desc {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 36px;
-      color: var(--muted);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
-
-    .card p {
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .project-link {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: bold;
-    }
-
-    .about-box,
-    .contact-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-    }
-
-    .about-box p,
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .info-list {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .info-item {
-      padding: 14px 18px;
-      border-radius: 14px;
-      background: rgba(37, 99, 235, 0.08);
-      color: var(--text);
-    }
-
-    .footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-    }
-
-    @media (max-width: 700px) {
-      .hero h1 {
-        font-size: 34px;
-      }
-
-      .nav {
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      nav ul {
-        justify-content: center;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cheata.Dev portfolio website">
+  <title>Cheata.Dev | Portfolio</title>
+  <link rel="icon" type="image/webp" href="images/logo.webp">
+  <link rel="shortcut icon" type="image/webp" href="images/logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <div class="nav">
-      <div class="logo-text">Cheata.Dev</div>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><button class="theme-btn" onclick="toggleTheme()">Toggle Theme</button></li>
+  <div class="bg-icons" aria-hidden="true">
+    <span class="float-icon fi-1">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v10H4V5Zm0 12h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="float-icon fi-2">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m13 3-8 10h6l-1 8 9-12h-6l0-6Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="float-icon fi-3">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19c4-1 7-4 8-8l1-6 5 5-6 1c-4 1-7 4-8 8Zm0 0 3-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="float-icon fi-4">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.5 8A4.5 4.5 0 1 1 14 12.5c-1 0-2 .7-2 1.7v.3m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="float-icon fi-5">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M7 4v6m10-6v6M4 17h16M7 14v6m10-6v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </span>
+    <span class="float-icon fi-6">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m14.8 6.4 2.8-2.8 2.8 2.8-2.8 2.8-2.8-2.8ZM3 21l5.8-1.3L19 9.5 14.5 5 4.3 15.2 3 21Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </div>
+
+  <header class="header">
+    <div class="container nav-wrap">
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <a href="#home" class="logo">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v5c0 5.2 3.5 8.2 8 9 4.5-.8 8-3.8 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12.5 11 14l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span id="logo-text">Cheata.Dev</span>
+      </a>
+
+      <nav id="site-nav" class="site-nav">
+        <ul class="nav-list">
+          <li><a id="nav-home" href="#home">Home</a></li>
+          <li><a id="nav-projects" href="#projects">Projects</a></li>
+          <li><a id="nav-about" href="#about">About</a></li>
+          <li>
+            <button id="language-toggle" class="theme-btn language-toggle" type="button" aria-label="Change language">
+              <span id="language-toggle-text" class="language-toggle-text">ខ្មែរ</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero" id="home">
-      <div>
-        <img src="logo.webp" alt="Cheata Profile" class="profile-img">
-        <h1>Hi There, I'm <span>Cheata</span></h1>
-        <p>
-          Welcome to my portfolio. I'm a passionate web developer from Cambodia.
-          I enjoy building modern websites and exploring new technologies.
-        </p>
-        <p style="margin-top: 14px;">
-          My journey in web development started with curiosity, and now it has become my passion.
-          I love bringing ideas to life through both front-end and back-end development.
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">Contact Me</a>
-          <a href="#about" class="btn btn-outline">About Me</a>
+  <button id="nav-overlay" class="nav-overlay" type="button" aria-label="Close menu"></button>
+
+  <main>
+    <section id="home" class="hero container section">
+      <div class="profile-box">
+        <img src="images/cheata.jpg" alt="Cheata Profile" class="profile-img" id="hero-image-alt">
+        <button id="language-toggle-mobile" class="mobile-lang-btn language-toggle" type="button" aria-label="Change language">
+          <span id="language-toggle-mobile-text" class="language-toggle-text">ភាសាខ្មែរ</span>
+        </button>
+      </div>
+
+      <div class="hero-content">
+        <h1 id="hero-title"></h1>
+        <p id="hero-intro-1"></p>
+        <p id="hero-intro-2"></p>
+
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-primary" id="btn-contact"></a>
+          <a href="#about" class="btn btn-outline" id="btn-about"></a>
         </div>
       </div>
     </section>
 
-    <section id="projects">
-      <h2 class="section-title">Here is My Project</h2>
-      <p class="section-desc">
-        Some of the projects I have worked on and explored during my learning journey.
-      </p>
+    <section id="projects" class="container section">
+      <h2 id="projects-title"></h2>
+      <p class="section-desc" id="projects-desc"></p>
 
-      <div class="projects-grid">
-        <div class="card">
-          <h3>E-Commerce Furniture Store</h3>
-          <p>This project focuses on an E-Commerce platform for a Furniture Store.</p>
-          <a href="#" class="project-link">Explore Project</a>
-        </div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </section>
 
-        <div class="card">
-          <h3>Blockchain Landing Page Template</h3>
-          <p>Explore this template website that provides information about Blockchain technology.</p>
-          <a href="#" class="project-link">Explore Project</a>
-        </div>
+    <section id="about" class="container section">
+      <h2 id="about-title"></h2>
+      <div class="info-box">
+        <p id="about-p1"></p>
+        <p id="about-p2"></p>
+        <p id="about-p3"></p>
 
-        <div class="card">
-          <h3>Coffee Store Landing Page</h3>
-          <p>Created for a university midterm exam, this project showcases a landing page for a coffee store.</p>
-          <a href="#" class="project-link">Explore Project</a>
-        </div>
-
-        <div class="card">
-          <h3>Online Pizza Delivery Platform</h3>
-          <p>A pizza delivery platform enabling customers to conveniently order online.</p>
-          <a href="#" class="project-link">Explore Project</a>
-        </div>
-
-        <div class="card">
-          <h3>CMS Dashboard with Next.js</h3>
-          <p>This project explores Next.js for building a modern CMS dashboard.</p>
-          <a href="#" class="project-link">Explore Project</a>
-        </div>
-
-        <div class="card">
-          <h3>Personal Portfolio</h3>
-          <p>Learn more about me and discover parts of my personal and professional journey.</p>
-          <a href="#about" class="project-link">Explore Project</a>
-        </div>
+        <ul class="profile-info" id="profile-info"></ul>
       </div>
     </section>
 
-    <section id="about">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-box">
-        <p>
-          Hi, I'm <strong>Socheata Thai</strong> 👋 I am from Cambodia and passionate about web development,
-          design, and technology.
-        </p>
-        <p>
-          I enjoy learning new tools, improving my development skills, and creating useful digital experiences.
-          Whether it is a landing page, admin dashboard, or e-commerce site, I like the full process of building.
-        </p>
-        <p>
-          My goal is to keep growing as a developer and create projects that are clean, practical, and meaningful.
-        </p>
-
-        <div class="info-list">
-          <div class="info-item"><strong>Name:</strong> Socheata Thai</div>
-          <div class="info-item"><strong>Country:</strong> Cambodia</div>
-          <div class="info-item"><strong>Role:</strong> Web Developer</div>
-          <div class="info-item"><strong>Focus:</strong> Front-end and Back-end Development</div>
-          <div class="info-item"><strong>University:</strong> RUPP</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2 class="section-title">Contact</h2>
-      <div class="contact-box">
-        <p>Feel free to update this section with your real links later.</p>
-        <p><strong>Name:</strong> Socheata Thai</p>
-        <p><strong>GitHub:</strong> socheatathai</p>
-        <p><strong>Website:</strong> socheatathai.github.io</p>
-        <p><strong>Message:</strong> Thank you for visiting my portfolio.</p>
+    <section id="contact" class="container section">
+      <h2 id="contact-title"></h2>
+      <div class="info-box">
+        <p id="contact-desc"></p>
+        <ul class="contact-details" id="contact-details"></ul>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    © 2026 Cheata.Dev All rights reserved.
+    <p id="footer-text"></p>
   </footer>
 
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

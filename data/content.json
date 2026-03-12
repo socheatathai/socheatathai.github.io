@@ -1,0 +1,183 @@
+{
+  "en": {
+    "metaDescription": "Socheata Thai portfolio website",
+    "logo": "Socheata Thai",
+    "nav": {
+      "home": "Home",
+      "projects": "Projects",
+      "about": "About"
+    },
+    "buttons": {
+      "language": "ភាសាខ្មែរ",
+      "contact": "Contact Me",
+      "about": "About Me",
+      "projectLink": "Explore Project"
+    },
+    "hero": {
+      "badge": "Cheata Profile",
+      "title": "Hi There, I'm Cheata",
+      "intro1": "Welcome to my portfolio. I'm a passionate web developer from Cambodia. I enjoy building modern websites and exploring new technologies.",
+      "intro2": "My journey in web development started with curiosity, and now it has become my passion. I love bringing ideas to life through both front-end and back-end development.",
+      "imageAlt": "Cheata Profile"
+    },
+    "projects": {
+      "title": "Here is My Project",
+      "description": "Some of the projects I have worked on and explored during my learning journey.",
+      "items": [
+        {
+          "icon": "furniture",
+          "title": "E-Commerce Furniture Store",
+          "description": "This project focuses on an E-Commerce platform for a Furniture Store.",
+          "href": "#"
+        },
+        {
+          "icon": "blockchain",
+          "title": "Blockchain Landing Page Template",
+          "description": "Explore this template website that provides information about Blockchain technology.",
+          "href": "#"
+        },
+        {
+          "icon": "coffee",
+          "title": "Coffee Store Landing Page",
+          "description": "Created for a university midterm exam, this project showcases a landing page for a coffee store.",
+          "href": "#"
+        },
+        {
+          "icon": "pizza",
+          "title": "Online Pizza Delivery Platform",
+          "description": "A pizza delivery platform enabling customers to conveniently order online.",
+          "href": "#"
+        },
+        {
+          "icon": "dashboard",
+          "title": "CMS Dashboard with Next.js",
+          "description": "This project explores Next.js for building a modern CMS dashboard.",
+          "href": "#"
+        },
+        {
+          "icon": "portfolio",
+          "title": "Personal Portfolio",
+          "description": "Learn more about me and discover parts of my personal and professional journey.",
+          "href": "#about"
+        }
+      ]
+    },
+    "about": {
+      "title": "About Me",
+      "paragraphs": [
+        "Hi, I'm Socheata Thai 👋 I am from Cambodia and passionate about web development, design, and technology.",
+        "I enjoy learning new tools, improving my development skills, and creating useful digital experiences. Whether it is a landing page, admin dashboard, or e-commerce site, I like the full process of building.",
+        "My goal is to keep growing as a developer and create projects that are clean, practical, and meaningful."
+      ],
+      "facts": [
+        { "label": "Name", "value": "Socheata Thai" },
+        { "label": "Country", "value": "Cambodia" },
+        { "label": "Role", "value": "Web Developer" },
+        { "label": "Focus", "value": "Front-end and Back-end Development" },
+        { "label": "University", "value": "RUPP" }
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Feel free to update this section with your real links later.",
+      "fields": [
+        { "label": "Name", "value": "Socheata Thai" },
+        { "label": "GitHub", "value": "socheatathai" },
+        { "label": "Website", "value": "socheatathai.github.io" },
+        { "label": "Message", "value": "Thank you for visiting my portfolio." }
+      ]
+    },
+    "footer": "© 2026 Socheata Thai All rights reserve"
+  },
+  "km": {
+    "metaDescription": "គេហទំព័រ Portfolio របស់ Socheata Thai",
+    "logo": "Socheata Thai",
+    "nav": {
+      "home": "ទំព័រដើម",
+      "projects": "គម្រោង",
+      "about": "អំពីខ្ញុំ"
+    },
+    "buttons": {
+      "theme": "",
+      "language": "English",
+      "contact": "ទាក់ទងខ្ញុំ",
+      "about": "អំពីខ្ញុំ",
+      "projectLink": "មើលគម្រោង"
+    },
+    "hero": {
+      "badge": "ប្រវត្តិ Cheata",
+      "title": "សួស្តី! ខ្ញុំឈ្មោះ Cheata",
+      "intro1": "សូមស្វាគមន៍មកកាន់ Portfolio របស់ខ្ញុំ។ ខ្ញុំជាអ្នកអភិវឌ្ឍវេបដែលមានចំណង់ចំណូលចិត្តមកពីប្រទេសកម្ពុជា។ ខ្ញុំចូលចិត្តបង្កើតគេហទំព័រទំនើប និងស្វែងយល់បច្ចេកវិទ្យាថ្មីៗ។",
+      "intro2": "ដំណើររបស់ខ្ញុំក្នុងការអភិវឌ្ឍន៍វេបបានចាប់ផ្តើមពីការចង់ដឹង ហើយឥឡូវនេះវាក្លាយជាចំណង់ចំណូលចិត្តរបស់ខ្ញុំ។ ខ្ញុំចូលចិត្តនាំគំនិតឲ្យក្លាយជាការពិតទាំងផ្នែក Front-end និង Back-end។",
+      "imageAlt": "រូបប្រវត្តិ Cheata"
+    },
+    "projects": {
+      "title": "នេះគឺជាគម្រោងរបស់ខ្ញុំ",
+      "description": "ខាងក្រោមជាគម្រោងខ្លះៗដែលខ្ញុំបានអនុវត្ត និងសិក្សាក្នុងដំណើររៀនសូត្រ។",
+      "items": [
+        {
+          "icon": "furniture",
+          "title": "ហាងគ្រឿងសង្ហារឹម E-Commerce",
+          "description": "គម្រោងនេះផ្តោតលើវេទិកា E-Commerce សម្រាប់ហាងគ្រឿងសង្ហារឹម។",
+          "href": "#"
+        },
+        {
+          "icon": "blockchain",
+          "title": "Template វេប Blockchain Landing Page",
+          "description": "Template វេបសាយសម្រាប់បង្ហាញព័ត៌មានអំពីបច្ចេកវិទ្យា Blockchain។",
+          "href": "#"
+        },
+        {
+          "icon": "coffee",
+          "title": "Landing Page សម្រាប់ហាងកាហ្វេ",
+          "description": "គម្រោងសម្រាប់ការប្រឡងមធ្យមឆមាស បង្ហាញ Landing Page សម្រាប់ហាងកាហ្វេ។",
+          "href": "#"
+        },
+        {
+          "icon": "pizza",
+          "title": "វេទិកាដឹកភីហ្សាអនឡាញ",
+          "description": "វេទិកាដឹកជញ្ជូនភីហ្សាអនឡាញ ដែលអនុញ្ញាតឱ្យអតិថិជនបញ្ជាទិញបានងាយស្រួល។",
+          "href": "#"
+        },
+        {
+          "icon": "dashboard",
+          "title": "CMS Dashboard ជាមួយ Next.js",
+          "description": "គម្រោងនេះសិក្សាអំពីការបង្កើត Dashboard ទំនើបដោយប្រើ Next.js។",
+          "href": "#"
+        },
+        {
+          "icon": "portfolio",
+          "title": "Portfolio ផ្ទាល់ខ្លួន",
+          "description": "ស្វែងយល់បន្ថែមអំពីខ្ញុំ និងដំណើរផ្ទាល់ខ្លួន/អាជីពរបស់ខ្ញុំ។",
+          "href": "#about"
+        }
+      ]
+    },
+    "about": {
+      "title": "អំពីខ្ញុំ",
+      "paragraphs": [
+        "សួស្តី ខ្ញុំឈ្មោះ Socheata Thai 👋 ខ្ញុំមកពីប្រទេសកម្ពុជា ហើយចូលចិត្ត Web Development, Design និងបច្ចេកវិទ្យា។",
+        "ខ្ញុំចូលចិត្តស្វែងយល់ឧបករណ៍ថ្មីៗ កែលម្អជំនាញអភិវឌ្ឍន៍ និងបង្កើតបទពិសោធន៍ឌីជីថលដែលមានប្រយោជន៍។ មិនថា Landing Page, Admin Dashboard ឬ E-Commerce ខ្ញុំចូលចិត្តដំណើរការបង្កើតគ្រប់ដំណាក់កាល។",
+        "គោលបំណងរបស់ខ្ញុំគឺបន្តអភិវឌ្ឍខ្លួនជាអ្នកអភិវឌ្ឍន៍ និងបង្កើតគម្រោងដែលស្អាត អាចប្រើប្រាស់បាន និងមានន័យ។"
+      ],
+      "facts": [
+        { "label": "ឈ្មោះ", "value": "Socheata Thai" },
+        { "label": "ប្រទេស", "value": "កម្ពុជា" },
+        { "label": "តួនាទី", "value": "Web Developer" },
+        { "label": "ផ្តោតលើ", "value": "Front-end និង Back-end Development" },
+        { "label": "សាកលវិទ្យាល័យ", "value": "RUPP" }
+      ]
+    },
+    "contact": {
+      "title": "ទំនាក់ទំនង",
+      "description": "អ្នកអាចកែប្រែផ្នែកនេះដោយបន្ថែមតំណភ្ជាប់ពិតប្រាកដរបស់អ្នកនៅពេលក្រោយ។",
+      "fields": [
+        { "label": "ឈ្មោះ", "value": "Socheata Thai" },
+        { "label": "GitHub", "value": "socheatathai" },
+        { "label": "Website", "value": "socheatathai.github.io" },
+        { "label": "សារ", "value": "សូមអរគុណសម្រាប់ការមកទស្សនា Portfolio របស់ខ្ញុំ។" }
+      ]
+    },
+    "footer": "© 2026 Socheata Thai រក្សាសិទ្ធិគ្រប់យ៉ាង"
+  }
+}

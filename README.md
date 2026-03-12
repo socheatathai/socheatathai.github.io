@@ -1,1 +1,0 @@
-# socheatathai.github.io
