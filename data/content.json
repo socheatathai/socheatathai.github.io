@@ -5,7 +5,9 @@
     "nav": {
       "home": "Home",
       "projects": "Projects",
-      "about": "About"
+      "experience": "Experience",
+      "about": "About",
+      "education": "Education"
     },
     "buttons": {
       "language": "ភាសាខ្មែរ",
@@ -28,63 +30,164 @@
           "icon": "furniture",
           "title": "E-Commerce Furniture Store",
           "description": "This project focuses on an E-Commerce platform for a Furniture Store.",
-          "href": "#"
+          "href": "https://e-piccq47u4-socheatathai.vercel.app/"
         },
         {
           "icon": "blockchain",
           "title": "Blockchain Landing Page Template",
           "description": "Explore this template website that provides information about Blockchain technology.",
-          "href": "#"
+          "href": "https://template-block-chain.vercel.app/"
         },
         {
           "icon": "coffee",
           "title": "Coffee Store Landing Page",
           "description": "Created for a university midterm exam, this project showcases a landing page for a coffee store.",
-          "href": "#"
+          "href": "https://preview-web-coral.vercel.app/"
         },
         {
           "icon": "pizza",
           "title": "Online Pizza Delivery Platform",
           "description": "A pizza delivery platform enabling customers to conveniently order online.",
-          "href": "#"
+          "href": "https://pizzahouse-xi.vercel.app/"
         },
         {
           "icon": "dashboard",
           "title": "CMS Dashboard with Next.js",
           "description": "This project explores Next.js for building a modern CMS dashboard.",
-          "href": "#"
+          "href": "https://next-dashboard-ten-jet.vercel.app/"
         },
         {
           "icon": "portfolio",
           "title": "Personal Portfolio",
           "description": "Learn more about me and discover parts of my personal and professional journey.",
-          "href": "#about"
+          "href": "https://cheata.vercel.app/"
         }
+      ]
+    },
+    "experience": {
+      "title": "Work Experience",
+      "description": "My professional experience and key responsibilities.",
+      "items": [
+        {
+          "company": "Everlast Information & Apps Dev Co., Ltd.",
+          "role": "Frontend Developer",
+          "period": "Oct 2025 - Present · On-site",
+          "details": [
+            "Developed and maintained frontend features using Vue.js, Nuxt.js, Pinia, and Element UI to build responsive and scalable user interfaces.",
+            "Collaborated with backend developers and designers to implement new features and improve system usability.",
+            "Optimized frontend performance and ensured consistency across the platform."
+          ]
+        },
+        {
+          "company": "Phillip General Insurance (Cambodia) Plc.",
+          "role": "Full Stack Developer",
+          "period": "Jan 2025 - Oct 2025 · Phnom Penh, Cambodia · On-site",
+          "details": [
+            "Developed a company website showcasing insurance products using Nuxt.js, working with business analysts to gather requirements and implement UI designs.",
+            "Built an admin platform to manage customer registration and internal data using Next.js.",
+            "Developed a mini web service integrated with mobile banking to sell insurance products using Next.js, MobX, and Shadcn UI.",
+            "Worked closely with backend developers, QA engineers, and business analysts to deliver and deploy the product to customers."
+          ]
+        },
+        {
+          "company": "dreamsLAB",
+          "role": "Junior Backend Developer",
+          "period": "Jan 2024 - Dec 2024 · On-site",
+          "details": [
+            "Developed a crowdfunding web application, including API integration and frontend implementation.",
+            "Collaborated with mobile and frontend teams on business workflows, analytics systems, and database design.",
+            "Built a web dashboard to manage a mobile application using Next.js, React Query, Shadcn UI, Tailwind CSS, and Jotai.",
+            "Worked with UX/UI designers and the project owner to improve system functionality and user experience."
+          ]
+        }
+      ]
+    },
+    "technologies": {
+      "title": "Languages & Tools",
+      "items": [
+        { "name": "Visual Studio Code", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+        { "name": "HTML5", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+        { "name": "CSS3", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+        { "name": "JavaScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+        { "name": "TypeScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+        { "name": "React", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { "name": "Vue", "icon": "https://v2.vuejs.org/images/logo.svg" },
+        { "name": "Next.js", "icon": "https://cdn.simpleicons.org/nextdotjs/ffffff" },
+        { "name": "Nuxt.js", "icon": "https://raw.githubusercontent.com/nuxt/modules/main/icons/nuxt.svg" },
+        { "name": "NestJS", "icon": "https://nestjs.com/logo-small-gradient.0ed287ce.svg" },
+        { "name": "PostgreSQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+        { "name": "Git", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        { "name": "GitHub", "icon": "https://user-images.githubusercontent.com/3369400/139447912-e0f43f33-6d9f-45f8-be46-2df5bbc91289.png" },
+        { "name": "GitLab", "icon": "https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png" }
       ]
     },
     "about": {
       "title": "About Me",
       "paragraphs": [
-        "Hi, I'm Socheata Thai 👋 I am from Cambodia and passionate about web development, design, and technology.",
-        "I enjoy learning new tools, improving my development skills, and creating useful digital experiences. Whether it is a landing page, admin dashboard, or e-commerce site, I like the full process of building.",
-        "My goal is to keep growing as a developer and create projects that are clean, practical, and meaningful."
+        "Hi, I'm Socheata Thai! 👋 I was born in Kampong Cham Province, Cambodia, and I am currently 22 years old. I am now pursuing a Bachelor's degree in Computer Science at the Royal University of Phnom Penh (RUPP).",
+        "From a young age, I have always been fascinated by technology. My childhood was filled with curiosity and a strong desire to learn new things. The first time I saw a computer, it inspired me and sparked my dream to understand how powerful technologies work.",
+        "As I explored software engineering further, my passion continued to grow. I enjoy learning new technologies, improving my development skills, and building useful digital products. My studies at RUPP have helped me gain both technical knowledge and practical experience.",
+        "Today, I focus on web development, including both front-end and back-end development. I enjoy building landing pages, admin dashboards, and web applications, and my goal is to create clean, practical, and meaningful solutions that make a positive impact through technology."
       ],
       "facts": [
         { "label": "Name", "value": "Socheata Thai" },
-        { "label": "Country", "value": "Cambodia" },
-        { "label": "Role", "value": "Web Developer" },
+        { "label": "Birthplace", "value": "Kampong Cham, Cambodia" },
+        { "label": "Age", "value": "22" },
         { "label": "Focus", "value": "Front-end and Back-end Development" },
-        { "label": "University", "value": "RUPP" }
+        { "label": "University", "value": "Royal University of Phnom Penh (RUPP)" }
+      ]
+    },
+    "education": {
+      "title": "Education",
+      "description": "My academic background.",
+      "items": [
+        {
+          "degree": "Bachelor of Science in Computer Science",
+          "school": "Royal University of Phnom Penh (RUPP)",
+          "period": "2022 - 2024",
+          "href": "https://www.rupp.edu.kh",
+          "logo": "images/rupp_logo.png",
+          "logoAlt": "RUPP logo",
+          "summary": "I recently graduated with a Bachelor of Science in Computer Science from the Royal University of Phnom Penh."
+        },
+        {
+          "degree": "Foundation Year of Computer Science",
+          "school": "Royal University of Phnom Penh (RUPP)",
+          "period": "2020 - 2021",
+          "href": "https://www.rupp.edu.kh",
+          "logo": "images/rupp_logo.png",
+          "logoAlt": "RUPP logo",
+          "summary": "Completed foundational courses in Computer Science, providing a solid base in programming and technology concepts."
+        },
+        {
+          "degree": "High School Certificate",
+          "school": "Chea Sim Kan Dol Chrom High School",
+          "period": "2019 - 2020",
+          "logo": "images/high-school-logo.jpg",
+          "logoAlt": "Chea Sim Kan Dol Chrom High School logo",
+          "summary": "Graduated with a high school certificate, with strong performance in science and technology subjects."
+        }
       ]
     },
     "contact": {
-      "title": "Contact",
-      "description": "Feel free to update this section with your real links later.",
+      "title": "Contact Me By",
+      "description": "Let's connect on social media.",
       "fields": [
-        { "label": "Name", "value": "Socheata Thai" },
-        { "label": "GitHub", "value": "socheatathai" },
-        { "label": "Website", "value": "socheatathai.github.io" },
-        { "label": "Message", "value": "Thank you for visiting my portfolio." }
+        {
+          "label": "Telegram",
+          "href": "https://t.me/socheata_thai",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+        },
+        {
+          "label": "Facebook",
+          "href": "https://www.facebook.com/socheata.thai.007",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/socheata-thai-586182289",
+          "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+        }
       ]
     },
     "footer": "© 2026 Socheata Thai All rights reserve"
@@ -95,7 +198,9 @@
     "nav": {
       "home": "ទំព័រដើម",
       "projects": "គម្រោង",
-      "about": "អំពីខ្ញុំ"
+      "experience": "បទពិសោធន៍",
+      "about": "អំពីខ្ញុំ",
+      "education": "ការសិក្សា"
     },
     "buttons": {
       "theme": "",
@@ -119,63 +224,164 @@
           "icon": "furniture",
           "title": "ហាងគ្រឿងសង្ហារឹម E-Commerce",
           "description": "គម្រោងនេះផ្តោតលើវេទិកា E-Commerce សម្រាប់ហាងគ្រឿងសង្ហារឹម។",
-          "href": "#"
+          "href": "https://e-piccq47u4-socheatathai.vercel.app/"
         },
         {
           "icon": "blockchain",
           "title": "Template វេប Blockchain Landing Page",
           "description": "Template វេបសាយសម្រាប់បង្ហាញព័ត៌មានអំពីបច្ចេកវិទ្យា Blockchain។",
-          "href": "#"
+          "href": "https://template-block-chain.vercel.app/"
         },
         {
           "icon": "coffee",
           "title": "Landing Page សម្រាប់ហាងកាហ្វេ",
           "description": "គម្រោងសម្រាប់ការប្រឡងមធ្យមឆមាស បង្ហាញ Landing Page សម្រាប់ហាងកាហ្វេ។",
-          "href": "#"
+          "href": "https://preview-web-coral.vercel.app/"
         },
         {
           "icon": "pizza",
           "title": "វេទិកាដឹកភីហ្សាអនឡាញ",
           "description": "វេទិកាដឹកជញ្ជូនភីហ្សាអនឡាញ ដែលអនុញ្ញាតឱ្យអតិថិជនបញ្ជាទិញបានងាយស្រួល។",
-          "href": "#"
+          "href": "https://pizzahouse-xi.vercel.app/"
         },
         {
           "icon": "dashboard",
           "title": "CMS Dashboard ជាមួយ Next.js",
           "description": "គម្រោងនេះសិក្សាអំពីការបង្កើត Dashboard ទំនើបដោយប្រើ Next.js។",
-          "href": "#"
+          "href": "https://next-dashboard-ten-jet.vercel.app/"
         },
         {
           "icon": "portfolio",
           "title": "Portfolio ផ្ទាល់ខ្លួន",
           "description": "ស្វែងយល់បន្ថែមអំពីខ្ញុំ និងដំណើរផ្ទាល់ខ្លួន/អាជីពរបស់ខ្ញុំ។",
-          "href": "#about"
+          "href": "https://cheata.vercel.app/"
         }
+      ]
+    },
+    "experience": {
+      "title": "បទពិសោធន៍ការងារ",
+      "description": "បទពិសោធន៍ការងារ និងតួនាទីសំខាន់ៗរបស់ខ្ញុំ។",
+      "items": [
+        {
+          "company": "Everlast Information & Apps Dev Co., Ltd.",
+          "role": "អ្នកអភិវឌ្ឍន៍ Frontend",
+          "period": "តុលា 2025 - បច្ចុប្បន្ន · ធ្វើការនៅក្រុមហ៊ុន",
+          "details": [
+            "អភិវឌ្ឍ និងថែទាំមុខងារ Frontend ដោយប្រើ Vue.js, Nuxt.js, Pinia និង Element UI ដើម្បីបង្កើត UI ដែលឆ្លើយតបល្អ និងអាចពង្រីកបាន។",
+            "សហការជាមួយអ្នកអភិវឌ្ឍន៍ Backend និងអ្នករចនា ដើម្បីអនុវត្តមុខងារថ្មីៗ និងកែលម្អភាពងាយស្រួលប្រើប្រាស់ប្រព័ន្ធ។",
+            "បង្កើនប្រសិទ្ធភាពផ្នែក Frontend និងធានាភាពស្របគ្នានៃប្រព័ន្ធទាំងមូល។"
+          ]
+        },
+        {
+          "company": "Phillip General Insurance (Cambodia) Plc.",
+          "role": "អ្នកអភិវឌ្ឍន៍ Full Stack",
+          "period": "មករា 2025 - តុលា 2025 · ភ្នំពេញ កម្ពុជា · ធ្វើការនៅក្រុមហ៊ុន",
+          "details": [
+            "អភិវឌ្ឍគេហទំព័រក្រុមហ៊ុនសម្រាប់បង្ហាញផលិតផលធានារ៉ាប់រងដោយប្រើ Nuxt.js ដោយសហការជាមួយអ្នកវិភាគអាជីវកម្មក្នុងការប្រមូលតម្រូវការ និងអនុវត្តការរចនា UI។",
+            "បង្កើតប្រព័ន្ធគ្រប់គ្រង (Admin Platform) ដើម្បីគ្រប់គ្រងការចុះឈ្មោះអតិថិជន និងទិន្នន័យផ្ទៃក្នុងដោយប្រើ Next.js។",
+            "អភិវឌ្ឍ Mini Web Service ដែលភ្ជាប់ជាមួយ Mobile Banking សម្រាប់លក់ផលិតផលធានារ៉ាប់រងដោយប្រើ Next.js, MobX និង Shadcn UI។",
+            "ធ្វើការសហការយ៉ាងជិតស្និទ្ធជាមួយអ្នកអភិវឌ្ឍន៍ Backend, វិស្វករ QA និងអ្នកវិភាគអាជីវកម្ម ដើម្បីប្រគល់ និងដាក់ឲ្យប្រើប្រាស់ផលិតផលដល់អតិថិជន។"
+          ]
+        },
+        {
+          "company": "dreamsLAB",
+          "role": "អ្នកអភិវឌ្ឍន៍ Backend កម្រិត Junior",
+          "period": "មករា 2024 - ធ្នូ 2024 · ធ្វើការនៅក្រុមហ៊ុន",
+          "details": [
+            "អភិវឌ្ឍ Web Application សម្រាប់ Crowdfunding រួមទាំងការភ្ជាប់ API និងការអនុវត្តផ្នែក Frontend។",
+            "សហការជាមួយក្រុម Mobile និង Frontend លើលំហូរការងារអាជីវកម្ម ប្រព័ន្ធវិភាគទិន្នន័យ និងការរចនាមូលដ្ឋានទិន្នន័យ។",
+            "បង្កើត Web Dashboard សម្រាប់គ្រប់គ្រង Mobile Application ដោយប្រើ Next.js, React Query, Shadcn UI, Tailwind CSS និង Jotai។",
+            "ធ្វើការជាមួយអ្នករចនា UX/UI និងម្ចាស់គម្រោង ដើម្បីកែលម្អមុខងារប្រព័ន្ធ និងបទពិសោធន៍អ្នកប្រើប្រាស់។"
+          ]
+        }
+      ]
+    },
+    "technologies": {
+      "title": "ភាសា និងឧបករណ៍",
+      "items": [
+        { "name": "Visual Studio Code", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+        { "name": "HTML5", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+        { "name": "CSS3", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+        { "name": "JavaScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+        { "name": "TypeScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+        { "name": "React", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { "name": "Vue", "icon": "https://v2.vuejs.org/images/logo.svg" },
+        { "name": "Next.js", "icon": "https://cdn.simpleicons.org/nextdotjs/ffffff" },
+        { "name": "Nuxt.js", "icon": "https://raw.githubusercontent.com/nuxt/modules/main/icons/nuxt.svg" },
+        { "name": "NestJS", "icon": "https://nestjs.com/logo-small-gradient.0ed287ce.svg" },
+        { "name": "PostgreSQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+        { "name": "Git", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        { "name": "GitHub", "icon": "https://user-images.githubusercontent.com/3369400/139447912-e0f43f33-6d9f-45f8-be46-2df5bbc91289.png" },
+        { "name": "GitLab", "icon": "https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png" }
       ]
     },
     "about": {
       "title": "អំពីខ្ញុំ",
       "paragraphs": [
-        "សួស្តី ខ្ញុំឈ្មោះ Socheata Thai 👋 ខ្ញុំមកពីប្រទេសកម្ពុជា ហើយចូលចិត្ត Web Development, Design និងបច្ចេកវិទ្យា។",
-        "ខ្ញុំចូលចិត្តស្វែងយល់ឧបករណ៍ថ្មីៗ កែលម្អជំនាញអភិវឌ្ឍន៍ និងបង្កើតបទពិសោធន៍ឌីជីថលដែលមានប្រយោជន៍។ មិនថា Landing Page, Admin Dashboard ឬ E-Commerce ខ្ញុំចូលចិត្តដំណើរការបង្កើតគ្រប់ដំណាក់កាល។",
-        "គោលបំណងរបស់ខ្ញុំគឺបន្តអភិវឌ្ឍខ្លួនជាអ្នកអភិវឌ្ឍន៍ និងបង្កើតគម្រោងដែលស្អាត អាចប្រើប្រាស់បាន និងមានន័យ។"
+        "សួស្តី ខ្ញុំឈ្មោះ Socheata Thai! 👋 ខ្ញុំកើតនៅខេត្តកំពង់ចាម ប្រទេសកម្ពុជា ហើយបច្ចុប្បន្នខ្ញុំមានអាយុ 22 ឆ្នាំ។ ឥឡូវនេះខ្ញុំកំពុងសិក្សាថ្នាក់បរិញ្ញាបត្រ វិទ្យាសាស្ត្រកុំព្យូទ័រ នៅសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)។",
+        "តាំងពីក្មេងមក ខ្ញុំតែងតែចាប់អារម្មណ៍ខ្លាំងចំពោះបច្ចេកវិទ្យា។ កុមារភាពរបស់ខ្ញុំពេញទៅដោយការចង់ដឹង និងចង់រៀនអ្វីថ្មីៗជានិច្ច។ ពេលដែលខ្ញុំបានឃើញកុំព្យូទ័រជាលើកដំបូង វាបានជំរុញឱ្យខ្ញុំមានក្តីសុបិនចង់យល់ពីរបៀបដំណើរការរបស់បច្ចេកវិទ្យាដ៏មានថាមពលទាំងនេះ។",
+        "ពេលខ្ញុំសិក្សាលើផ្នែកវិស្វកម្មសូហ្វវែរបន្ថែម ចំណង់ចំណូលចិត្តរបស់ខ្ញុំកាន់តែរីកចម្រើន។ ខ្ញុំចូលចិត្តរៀនបច្ចេកវិទ្យាថ្មីៗ កែលម្អជំនាញអភិវឌ្ឍន៍ និងបង្កើតផលិតផលឌីជីថលដែលមានប្រយោជន៍។ ការសិក្សានៅ RUPP បានជួយឱ្យខ្ញុំទទួលបានទាំងចំណេះដឹងបច្ចេកទេស និងបទពិសោធន៍អនុវត្តជាក់ស្តែង។",
+        "បច្ចុប្បន្ន ខ្ញុំផ្តោតលើការអភិវឌ្ឍវេបសាយទាំង Front-end និង Back-end។ ខ្ញុំចូលចិត្តបង្កើត Landing Page, Admin Dashboard និង Web Application ហើយគោលដៅរបស់ខ្ញុំគឺបង្កើតដំណោះស្រាយដែលស្អាត អនុវត្តបាន និងមានន័យ ដើម្បីបង្កើតឥទ្ធិពលវិជ្ជមានតាមរយៈបច្ចេកវិទ្យា។"
       ],
       "facts": [
         { "label": "ឈ្មោះ", "value": "Socheata Thai" },
-        { "label": "ប្រទេស", "value": "កម្ពុជា" },
-        { "label": "តួនាទី", "value": "Web Developer" },
+        { "label": "ទីកន្លែងកំណើត", "value": "កំពង់ចាម, កម្ពុជា" },
+        { "label": "អាយុ", "value": "22" },
         { "label": "ផ្តោតលើ", "value": "Front-end និង Back-end Development" },
-        { "label": "សាកលវិទ្យាល័យ", "value": "RUPP" }
+        { "label": "សាកលវិទ្យាល័យ", "value": "Royal University of Phnom Penh (RUPP)" }
+      ]
+    },
+    "education": {
+      "title": "ការសិក្សា",
+      "description": "ប្រវត្តិការសិក្សារបស់ខ្ញុំ។",
+      "items": [
+        {
+          "degree": "បរិញ្ញាបត្រ វិទ្យាសាស្ត្រកុំព្យូទ័រ",
+          "school": "Royal University of Phnom Penh (RUPP)",
+          "period": "2022 - 2024",
+          "href": "https://www.rupp.edu.kh",
+          "logo": "images/rupp_logo.png",
+          "logoAlt": "RUPP logo",
+          "summary": "ខ្ញុំបានបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រ វិទ្យាសាស្ត្រកុំព្យូទ័រ ពីសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)។"
+        },
+        {
+          "degree": "ឆ្នាំមូលដ្ឋាន វិទ្យាសាស្ត្រកុំព្យូទ័រ",
+          "school": "Royal University of Phnom Penh (RUPP)",
+          "period": "2020 - 2021",
+          "href": "https://www.rupp.edu.kh",
+          "logo": "images/rupp_logo.png",
+          "logoAlt": "RUPP logo",
+          "summary": "បានបញ្ចប់មុខវិជ្ជាមូលដ្ឋានផ្នែកវិទ្យាសាស្ត្រកុំព្យូទ័រ ដែលផ្តល់គ្រឹះរឹងមាំលើកម្មវិធី និងគំនិតបច្ចេកវិទ្យា។"
+        },
+        {
+          "degree": "វិញ្ញាបនបត្រមធ្យមសិក្សា",
+          "school": "Chea Sim Kan Dol Chrom High School",
+          "period": "2019 - 2020",
+          "logo": "images/high-school-logo.jpg",
+          "logoAlt": "Chea Sim Kan Dol Chrom High School logo",
+          "summary": "បានបញ្ចប់ថ្នាក់មធ្យមសិក្សា ដោយមានលទ្ធផលល្អនៅមុខវិជ្ជាវិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា។"
+        }
       ]
     },
     "contact": {
-      "title": "ទំនាក់ទំនង",
-      "description": "អ្នកអាចកែប្រែផ្នែកនេះដោយបន្ថែមតំណភ្ជាប់ពិតប្រាកដរបស់អ្នកនៅពេលក្រោយ។",
+      "title": "ទាក់ទងខ្ញុំតាម",
+      "description": "សូមភ្ជាប់ទំនាក់ទំនងតាមបណ្ដាញសង្គមខាងក្រោម។",
       "fields": [
-        { "label": "ឈ្មោះ", "value": "Socheata Thai" },
-        { "label": "GitHub", "value": "socheatathai" },
-        { "label": "Website", "value": "socheatathai.github.io" },
-        { "label": "សារ", "value": "សូមអរគុណសម្រាប់ការមកទស្សនា Portfolio របស់ខ្ញុំ។" }
+        {
+          "label": "Telegram",
+          "href": "https://t.me/socheata_thai",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+        },
+        {
+          "label": "Facebook",
+          "href": "https://www.facebook.com/socheata.thai.007",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/socheata-thai-586182289",
+          "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+        }
       ]
     },
     "footer": "© 2026 Socheata Thai រក្សាសិទ្ធិគ្រប់យ៉ាង"
