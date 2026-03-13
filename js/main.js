@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  setupCopyProtection();
   setupMobileMenu();
   setupNavScrollSpy();
   const contentByLang = await loadContent();
@@ -7,6 +8,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 let revealObserver;
 let isNavSpyInitialized = false;
+
+function setupCopyProtection() {
+  const blockedEvents = ["copy", "cut", "contextmenu", "selectstart", "dragstart"];
+
+  blockedEvents.forEach((eventName) => {
+    document.addEventListener(eventName, (event) => {
+      event.preventDefault();
+    });
+  });
+}
 
 function setupMobileMenu() {
   const menuToggle = document.getElementById("menu-toggle");
@@ -147,8 +158,8 @@ async function loadContent() {
   } catch (error) {
     return {
       en: {
-        metaDescription: "Cheata.Dev portfolio website",
-        logo: "Cheata.Dev",
+        metaDescription: "Socheata portfolio website",
+        logo: "Socheata",
         nav: {
           home: "Home",
           projects: "Projects",
@@ -158,17 +169,17 @@ async function loadContent() {
         },
         buttons: {
           theme: "Toggle Theme",
-          language: "ខ្មែរ",
+          language: "ភាសាខ្មែរ",
           contact: "Contact Me",
           about: "About Me",
           projectLink: "Explore Project"
         },
         hero: {
-          badge: "Cheata Profile",
-          title: "Hi There, I'm Cheata",
+          badge: "Socheata Profile",
+          title: "Hi There, I'm Socheata",
           intro1: "Welcome to my portfolio.",
           intro2: "I love building modern web products.",
-          imageAlt: "Cheata Profile"
+          imageAlt: "Socheata Profile"
         },
         projects: {
           title: "Here is My Project",
@@ -177,7 +188,7 @@ async function loadContent() {
         },
         about: { title: "About Me", paragraphs: [], facts: [] },
         contact: { title: "Contact", description: "", fields: [] },
-        footer: "© 2026 Cheata.Dev All rights reserve"
+        footer: "© 2026 Socheata Thai All rights reserved"
       },
       km: null
     };
