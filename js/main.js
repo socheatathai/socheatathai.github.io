@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
   setupMobileMenu();
+  setupNavScrollSpy();
   const contentByLang = await loadContent();
   setupLanguage(contentByLang);
 });
+
+let revealObserver;
+let isNavSpyInitialized = false;
 
 function setupMobileMenu() {
   const menuToggle = document.getElementById("menu-toggle");
@@ -45,6 +49,91 @@ function setupMobileMenu() {
   });
 
   closeMenu();
+}
+
+function setupNavScrollSpy() {
+  if (isNavSpyInitialized) {
+    return;
+  }
+
+  const navLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
+  if (!navLinks.length) {
+    return;
+  }
+
+  const linkEntries = navLinks
+    .map((link) => {
+      const href = link.getAttribute("href") || "";
+      const section = href ? document.querySelector(href) : null;
+      if (!section) {
+        return null;
+      }
+
+      return {
+        link,
+        section
+      };
+    })
+    .filter(Boolean);
+
+  if (!linkEntries.length) {
+    return;
+  }
+
+  const setActiveLink = (activeId) => {
+    linkEntries.forEach(({ link, section }) => {
+      const isActive = section.id === activeId;
+      link.classList.toggle("active", isActive);
+
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+        return;
+      }
+
+      link.removeAttribute("aria-current");
+    });
+  };
+
+  const updateActiveLink = () => {
+    const header = document.querySelector(".header");
+    const offset = (header ? header.offsetHeight : 0) + 40;
+    const currentPosition = window.scrollY + offset;
+
+    let activeId = linkEntries[0].section.id;
+    linkEntries.forEach(({ section }) => {
+      if (currentPosition >= section.offsetTop) {
+        activeId = section.id;
+      }
+    });
+
+    setActiveLink(activeId);
+  };
+
+  let isTicking = false;
+  const onScrollOrResize = () => {
+    if (isTicking) {
+      return;
+    }
+
+    isTicking = true;
+    window.requestAnimationFrame(() => {
+      updateActiveLink();
+      isTicking = false;
+    });
+  };
+
+  window.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize);
+  window.addEventListener("hashchange", onScrollOrResize);
+
+  linkEntries.forEach(({ link, section }) => {
+    link.addEventListener("click", () => {
+      setActiveLink(section.id);
+    });
+  });
+
+  isNavSpyInitialized = true;
+  onScrollOrResize();
 }
 
 async function loadContent() {
@@ -97,7 +186,6 @@ async function loadContent() {
 
 function setupLanguage(contentByLang) {
   const languageToggles = Array.from(document.querySelectorAll(".language-toggle"));
-  const languageToggleTexts = Array.from(document.querySelectorAll(".language-toggle-text"));
   const hasKhmer = Boolean(contentByLang.km);
   const savedLang = localStorage.getItem("lang");
   let currentLang = savedLang && contentByLang[savedLang] ? savedLang : "en";
@@ -122,16 +210,17 @@ function setupLanguage(contentByLang) {
       renderContent(contentByLang[currentLang], currentLang);
     });
   });
-
-  if (!languageToggleTexts.length) {
-    return;
-  }
 }
 
 function renderContent(content, lang) {
   if (!content) {
     return;
   }
+
+  const dynamicAge = getDynamicAge(2002);
+  const dynamicAboutParagraphs = getDynamicAboutParagraphs(content.about?.paragraphs || [], lang, dynamicAge);
+  const dynamicAboutFacts = getDynamicAboutFacts(content.about?.facts || [], dynamicAge);
+  const dynamicFooter = getFooterWithCurrentYear(content.footer);
 
   document.documentElement.lang = lang;
   setText("logo-text", content.logo);
@@ -162,11 +251,11 @@ function renderContent(content, lang) {
   renderExperience(content.experience?.items || []);
 
   setText("about-title", content.about.title);
-  setText("about-p1", content.about.paragraphs[0]);
-  setText("about-p2", content.about.paragraphs[1]);
-  setText("about-p3", content.about.paragraphs[2]);
-  setText("about-p4", content.about.paragraphs[3]);
-  renderProfileFacts(content.about.facts);
+  setText("about-p1", dynamicAboutParagraphs[0]);
+  setText("about-p2", dynamicAboutParagraphs[1]);
+  setText("about-p3", dynamicAboutParagraphs[2]);
+  setText("about-p4", dynamicAboutParagraphs[3]);
+  renderProfileFacts(dynamicAboutFacts);
 
   setText("education-title", content.education?.title || "Education");
   setText("education-desc", content.education?.description || "");
@@ -176,12 +265,124 @@ function renderContent(content, lang) {
   setText("contact-desc", content.contact.description);
   renderContactDetails(content.contact.fields);
 
-  setText("footer-text", content.footer);
+  setText("footer-text", dynamicFooter);
 
   const descriptionTag = document.querySelector('meta[name="description"]');
   if (descriptionTag) {
     descriptionTag.setAttribute("content", content.metaDescription);
   }
+
+  setupScrollRevealAnimations();
+}
+
+function setupScrollRevealAnimations() {
+  const selectors = [
+    ".hero-content h1",
+    ".hero-content p",
+    ".hero-tools",
+    "#projects h2",
+    "#projects .section-desc",
+    ".project-card",
+    "#experience h2",
+    "#experience .section-desc",
+    ".experience-card",
+    "#about h2",
+    "#about .info-box",
+    "#education h2",
+    "#education .section-desc",
+    ".education-card",
+    "#contact h2",
+    "#contact .info-box"
+  ];
+
+  const targets = Array.from(document.querySelectorAll(selectors.join(", ")));
+  if (!targets.length) {
+    return;
+  }
+
+  if (revealObserver) {
+    revealObserver.disconnect();
+  }
+
+  targets.forEach((element, index) => {
+    element.setAttribute("data-animate", "");
+    element.classList.remove("in-view");
+    element.style.setProperty("--delay", `${Math.min(index * 40, 320)}ms`);
+  });
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) {
+    targets.forEach((element) => {
+      element.classList.add("in-view");
+    });
+    return;
+  }
+
+  revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add("in-view");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.14,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
+  targets.forEach((element) => {
+    revealObserver.observe(element);
+  });
+}
+
+function getDynamicAge(birthYear) {
+  const currentYear = new Date().getFullYear();
+  return Math.max(0, currentYear - birthYear);
+}
+
+function getFooterWithCurrentYear(footerText) {
+  if (typeof footerText !== "string") {
+    return "";
+  }
+
+  return footerText.replace(/(©\s*)\d{4}/, (_, prefix) => `${prefix}${new Date().getFullYear()}`);
+}
+
+function getDynamicAboutFacts(facts, age) {
+  return facts.map((fact) => {
+    const label = String(fact?.label || "").trim();
+    if (label === "Age" || label === "អាយុ") {
+      return {
+        ...fact,
+        value: String(age)
+      };
+    }
+
+    return fact;
+  });
+}
+
+function getDynamicAboutParagraphs(paragraphs, lang, age) {
+  return paragraphs.map((paragraph) => {
+    if (typeof paragraph !== "string") {
+      return paragraph;
+    }
+
+    if (lang === "en") {
+      return paragraph.replace(/(I am currently\s+)\d+(\s+years old)/i, `$1${age}$2`);
+    }
+
+    if (lang === "km") {
+      return paragraph.replace(/(បច្ចុប្បន្នខ្ញុំមានអាយុ\s*)\d+(\s*ឆ្នាំ)/, `$1${age}$2`);
+    }
+
+    return paragraph;
+  });
 }
 
 function renderProjects(projects, projectLinkText) {
@@ -236,7 +437,7 @@ function renderProfileFacts(facts) {
 
   facts.forEach((fact) => {
     const item = document.createElement("li");
-    item.innerHTML = `<strong>${escapeHtml(fact.label)}:</strong> ${escapeHtml(fact.value)}`;
+    item.innerHTML = `<strong>${escapeHtml(localizeNumbers(fact.label))}:</strong> ${escapeHtml(localizeNumbers(fact.value))}`;
     profileInfo.appendChild(item);
   });
 }
@@ -258,11 +459,11 @@ function renderExperience(items) {
 
     const company = document.createElement("h3");
     company.className = "experience-company";
-    company.textContent = item.company || "";
+    company.textContent = localizeNumbers(item.company || "");
 
     const meta = document.createElement("p");
     meta.className = "experience-meta";
-    meta.textContent = `${item.role || ""} • ${item.period || ""}`;
+    meta.textContent = localizeNumbers(`${item.role || ""} • ${item.period || ""}`);
 
     head.append(company, meta);
 
@@ -271,7 +472,7 @@ function renderExperience(items) {
 
     (item.details || []).forEach((detail) => {
       const point = document.createElement("li");
-      point.textContent = detail;
+      point.textContent = localizeNumbers(detail);
       details.appendChild(point);
     });
 
@@ -294,7 +495,7 @@ function renderEducation(items) {
 
     const degree = document.createElement("h3");
     degree.className = "education-degree";
-    degree.textContent = item.degree || "";
+    degree.textContent = localizeNumbers(item.degree || "");
 
     const schoolRow = document.createElement("div");
     schoolRow.className = "education-school-row";
@@ -325,16 +526,16 @@ function renderEducation(items) {
 
     const school = document.createElement("p");
     school.className = "education-school";
-    school.textContent = item.school || "";
+    school.textContent = localizeNumbers(item.school || "");
     schoolRow.appendChild(school);
 
     const period = document.createElement("p");
     period.className = "education-period";
-    period.textContent = item.period || "";
+    period.textContent = localizeNumbers(item.period || "");
 
     const summary = document.createElement("p");
     summary.className = "education-summary";
-    summary.textContent = item.summary || "";
+    summary.textContent = localizeNumbers(item.summary || "");
 
     card.append(degree, schoolRow, period, summary);
     educationList.appendChild(card);
@@ -352,8 +553,8 @@ function renderTechnologies(items) {
   items.forEach((item) => {
     const tool = document.createElement("span");
     tool.className = "tool-item";
-    tool.title = item.name || "";
-    tool.setAttribute("aria-label", item.name || "Technology");
+    tool.title = localizeNumbers(item.name || "");
+    tool.setAttribute("aria-label", localizeNumbers(item.name || "Technology"));
 
     const icon = document.createElement("img");
     icon.className = "tool-icon";
@@ -416,8 +617,21 @@ function renderContactDetails(fields) {
 function setText(elementId, value) {
   const element = document.getElementById(elementId);
   if (element && typeof value === "string") {
-    element.textContent = value;
+    element.textContent = localizeNumbers(value);
   }
+}
+
+function localizeNumbers(value) {
+  if (typeof value !== "string") {
+    return String(value ?? "");
+  }
+
+  if (document.documentElement.lang !== "km") {
+    return value;
+  }
+
+  const khmerDigits = ["០", "១", "២", "៣", "៤", "៥", "៦", "៧", "៨", "៩"];
+  return value.replace(/\d/g, (digit) => khmerDigits[Number(digit)]);
 }
 
 function getProjectIconSvg(iconName) {
