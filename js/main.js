@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  setupCopyProtection();
+  if (isProductionEnvironment()) {
+    document.body.classList.add("prod-lock");
+    setupCopyProtection();
+    setupInspectProtection();
+  }
+
   setupMobileMenu();
   setupNavScrollSpy();
   const contentByLang = await loadContent();
@@ -8,6 +13,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 let revealObserver;
 let isNavSpyInitialized = false;
+let currentRenderedContent = null;
+let isHeroTitleResizeBound = false;
+
+function isProductionEnvironment() {
+  const { protocol, hostname } = window.location;
+  const isLocalHost = hostname === "localhost" || hostname === "127.0.0.1" || hostname === "0.0.0.0";
+  const isLocalNetwork = /^192\.168\.|^10\.|^172\.(1[6-9]|2\d|3[0-1])\./.test(hostname);
+
+  if (protocol === "file:") {
+    return false;
+  }
+
+  if (isLocalHost || isLocalNetwork || hostname.endsWith(".local")) {
+    return false;
+  }
+
+  return true;
+}
 
 function setupCopyProtection() {
   const blockedEvents = ["copy", "cut", "contextmenu", "selectstart", "dragstart"];
@@ -17,6 +40,36 @@ function setupCopyProtection() {
       event.preventDefault();
     });
   });
+}
+
+function setupInspectProtection() {
+  document.addEventListener("keydown", (event) => {
+    const key = (event.key || "").toLowerCase();
+    const isF12 = key === "f12";
+    const isInspectCombo = (event.ctrlKey || event.metaKey) && event.shiftKey && ["i", "j", "c"].includes(key);
+    const isViewSourceCombo = (event.ctrlKey || event.metaKey) && key === "u";
+
+    if (isF12 || isInspectCombo || isViewSourceCombo) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  });
+}
+
+function getHeroTitleForViewport(content) {
+  const desktopTitle = content?.hero?.title || "";
+  const mobileTitle = (content?.hero?.mobileTitle || content?.logo || desktopTitle).trim();
+  const isMobileViewport = window.matchMedia("(max-width: 900px)").matches;
+
+  return isMobileViewport ? mobileTitle : desktopTitle;
+}
+
+function updateHeroTitle(content) {
+  if (!content) {
+    return;
+  }
+
+  setText("hero-title", getHeroTitleForViewport(content));
 }
 
 function setupMobileMenu() {
@@ -176,7 +229,8 @@ async function loadContent() {
         },
         hero: {
           badge: "Socheata Profile",
-          title: "Hi There, I'm Socheata",
+          title: "Hi There, I'm Socheata Thai",
+          mobileTitle: "Socheata Thai",
           intro1: "Welcome to my portfolio.",
           intro2: "I love building modern web products.",
           imageAlt: "Socheata Profile"
@@ -228,6 +282,15 @@ function renderContent(content, lang) {
     return;
   }
 
+  currentRenderedContent = content;
+
+  if (!isHeroTitleResizeBound) {
+    window.addEventListener("resize", () => {
+      updateHeroTitle(currentRenderedContent);
+    });
+    isHeroTitleResizeBound = true;
+  }
+
   const dynamicAge = getDynamicAge(2002);
   const dynamicAboutParagraphs = getDynamicAboutParagraphs(content.about?.paragraphs || [], lang, dynamicAge);
   const dynamicAboutFacts = getDynamicAboutFacts(content.about?.facts || [], dynamicAge);
@@ -242,7 +305,7 @@ function renderContent(content, lang) {
   setText("nav-education", content.nav.education);
   setText("language-toggle-text", content.buttons.language);
   setText("language-toggle-mobile-text", content.buttons.language);
-  setText("hero-title", content.hero.title);
+  updateHeroTitle(content);
   setText("hero-intro-1", content.hero.intro1);
   setText("hero-intro-2", content.hero.intro2);
   setText("tools-title", content.technologies?.title || "Languages & Tools");
