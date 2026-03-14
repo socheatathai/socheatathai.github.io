@@ -60,8 +60,9 @@ function getHeroTitleForViewport(content) {
   const desktopTitle = content?.hero?.title || "";
   const mobileTitle = (content?.hero?.mobileTitle || content?.logo || desktopTitle).trim();
   const isMobileViewport = window.matchMedia("(max-width: 900px)").matches;
+  const isTouchLandscapeViewport = window.matchMedia("(max-width: 1024px) and (hover: none) and (pointer: coarse)").matches;
 
-  return isMobileViewport ? mobileTitle : desktopTitle;
+  return (isMobileViewport || isTouchLandscapeViewport) ? mobileTitle : desktopTitle;
 }
 
 function updateHeroTitle(content) {
