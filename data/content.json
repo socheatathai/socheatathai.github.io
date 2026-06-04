@@ -59,9 +59,9 @@
         },
         {
           "icon": "portfolio",
-          "title": "Personal Portfolio",
-          "description": "Learn more about me and discover parts of my personal and professional journey.",
-          "href": "https://cheata.vercel.app/"
+          "title": "API KMRS Tech Documentation",
+          "description": "This project is for creating API documentation for KMRS Tech, helping other developers understand how to use the API and its structure.",
+          "href": "https://uat-api.kmrs.tech/docs#/"
         }
       ]
     },
@@ -256,9 +256,9 @@
         },
         {
           "icon": "portfolio",
-          "title": "ស្នាដៃរបស់ខ្ញុំ",
-          "description": "ស្វែងយល់បន្ថែមអំពីខ្ញុំ និងដំណើរផ្ទាល់ខ្លួន/អាជីពរបស់ខ្ញុំ។",
-          "href": "https://cheata.vercel.app/"
+          "title": "API KMRS Tech Documentation",
+          "description": "នេះគឺជាគម្រោងសម្រាប់បង្កើតឯកសារបច្ចេកទេស API សម្រាប់ KMRS Tech ដែលអាចជួយអ្នកអភិវឌ្ឍន៍ផ្សេងទៀតយល់ពីរបៀបប្រើប្រាស់ API និងរចនាសម្ព័ន្ធរបស់វា។",
+          "href": "https://uat-api.kmrs.tech/docs#/"
         }
       ]
     },
