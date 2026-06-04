@@ -59,9 +59,9 @@
         },
         {
           "icon": "portfolio",
-          "title": "Personal Portfolio",
-          "description": "Learn more about me and discover parts of my personal and professional journey.",
-          "href": "https://cheata.vercel.app/"
+          "title": "KMRS Tech API Documentation",
+          "description": "This project involved building an API documentation website for KMRS Tech, a company that provides software development services.",
+          "href": "https://api.kmrs.tech/docs#/"
         }
       ]
     },

@@ -1,0 +1,20 @@
+node_modules/
+.nuxt/
+.output/
+.data/
+.cache/
+dist/
+
+.env
+.env.*
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# npm lockfile (project uses Bun)
+package-lock.json
+
+.DS_Store
+Thumbs.db
