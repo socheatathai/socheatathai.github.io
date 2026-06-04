@@ -60,7 +60,7 @@
         {
           "icon": "portfolio",
           "title": "KMRS Tech API Documentation",
-          "description": "This project involved building an API documentation website for KMRS Tech, a company that provides software development services.",
+          "description": "This project involved building an API documentation website for KMRS Tech.",
           "href": "https://api.kmrs.tech/docs#/"
         }
       ]
@@ -256,9 +256,9 @@
         },
         {
           "icon": "portfolio",
-          "title": "ស្នាដៃរបស់ខ្ញុំ",
-          "description": "ស្វែងយល់បន្ថែមអំពីខ្ញុំ និងដំណើរផ្ទាល់ខ្លួន/អាជីពរបស់ខ្ញុំ។",
-          "href": "https://cheata.vercel.app/"
+          "title": "KMRS Tech API Documentation",
+          "description": "គម្រោងនេះពាក់ព័ន្ធនឹងការបង្កើតវេបសាយឯកសារអំពី API សម្រាប់ KMRS Tech។",
+          "href": "https://api.kmrs.tech/docs#/"
         }
       ]
     },
