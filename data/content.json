@@ -61,7 +61,7 @@
           "icon": "portfolio",
           "title": "API KMRS Tech Documentation",
           "description": "This project is for creating API documentation for KMRS Tech.",
-          "href": "https://uat-api.kmrs.tech/docs#/"
+          "href": "https://api.kmrs.tech/docs#/"
         }
       ]
     },
@@ -267,7 +267,7 @@
           "icon": "portfolio",
           "title": "API KMRS Tech Documentation",
           "description": "នេះគឺជាគម្រោងសម្រាប់បង្កើតឯកសារបច្ចេកទេស API សម្រាប់ KMRS Tech។",
-          "href": "https://uat-api.kmrs.tech/docs#/"
+          "href": "https://api.kmrs.tech/docs#/"
         }
       ]
     },
