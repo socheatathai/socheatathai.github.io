@@ -716,6 +716,9 @@ function getProjectIconSvg(iconName) {
     coffee: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9h11v4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V9Zm11 1h2a2 2 0 0 1 0 4h-2M7 5c0 1-1 1.5-1 2.5S7 9 7 10m3-5c0 1-1 1.5-1 2.5S10 9 10 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     pizza: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4c4 0 7.5 1.2 9 3L12 20 3 7c1.5-1.8 5-3 9-3Zm-2.5 6.5h.01M14 9h.01M12 12h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     dashboard: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h7v7H4V4Zm9 0h7v4h-7V4ZM4 13h4v7H4v-7Zm6 4h10v3H10v-3Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    apiDocs: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h7l4 4v12H7V4Zm7 0v4h4M9.5 12h5M9.5 15h5M5 8H4v12h10v-1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    landingPage: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v14H4V5Zm0 4h16M7 7h.01M10 7h.01M7 13h6M7 16h4m6-3h1.5v3H17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    javascriptBlog: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v14H4V5Zm4 5v5a2 2 0 0 1-2 2m8-7h-2a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2m5-6h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     portfolio: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8h18v11H3V8Zm5-3h8l1 3H7l1-3Zm1 7h6m-6 3h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   };
 

@@ -1,0 +1,13 @@
+.nuxt/
+.output/
+
+node_modules/
+
+.DS_Store
+Thumbs.db
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json

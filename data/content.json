@@ -28,6 +28,24 @@
       "description": "Some of the projects I have worked on and explored during my learning journey.",
       "items": [
         {
+          "icon": "apiDocs",
+          "title": "API KMRS Tech Documentation",
+          "description": "This project is for creating API documentation for KMRS Tech.",
+          "href": "https://api.kmrs.tech/docs#/"
+        },
+        {
+          "icon": "landingPage",
+          "title": "KMRS Tech Product Landing Page",
+          "description": "This project is for landing page for product of KMRS Tech.",
+          "href": "https://uat.kmrs.tech"
+        },
+        {
+          "icon": "javascriptBlog",
+          "title": "js coder that talking about JavaScript",
+          "description": "Personal JavaScript blog · Tutorials · Tips",
+          "href": "https://jscoderofficial.vercel.app"
+        },
+        {
           "icon": "furniture",
           "title": "E-Commerce Furniture Store",
           "description": "This project focuses on an E-Commerce platform for a Furniture Store.",
@@ -56,12 +74,6 @@
           "title": "CMS Dashboard with Next.js",
           "description": "This project explores Next.js for building a modern CMS dashboard.",
           "href": "https://next-dashboard-ten-jet.vercel.app/"
-        },
-        {
-          "icon": "portfolio",
-          "title": "API KMRS Tech Documentation",
-          "description": "This project is for creating API documentation for KMRS Tech.",
-          "href": "https://api.kmrs.tech/docs#/"
         }
       ]
     },
@@ -264,7 +276,7 @@
           "href": "https://next-dashboard-ten-jet.vercel.app/"
         },
         {
-          "icon": "portfolio",
+          "icon": "apiDocs",
           "title": "API KMRS Tech Documentation",
           "description": "នេះគឺជាគម្រោងសម្រាប់បង្កើតឯកសារបច្ចេកទេស API សម្រាប់ KMRS Tech។",
           "href": "https://api.kmrs.tech/docs#/"
