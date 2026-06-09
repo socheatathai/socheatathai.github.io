@@ -37,7 +37,7 @@
           "icon": "landingPage",
           "title": "KMRS Tech Product Landing Page",
           "description": "This project is for landing page for product of KMRS Tech.",
-          "href": "https://uat.kmrs.tech"
+          "href": "https://kmrs.tech"
         },
         {
           "icon": "javascriptBlog",
@@ -203,9 +203,9 @@
           "icon": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
         },
         {
-          "label": "Facebook",
-          "href": "https://www.facebook.com/socheata.thai.007",
-          "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+          "label": "GitHub",
+          "href": "https://www.github.com/socheatathai",
+          "icon": "https://cdn.simpleicons.org/github/4f8cff"
         },
         {
           "label": "LinkedIn",
@@ -401,7 +401,7 @@
       },
       "contact": {
         "title": "ទាក់ទងខ្ញុំតាមរយៈ",
-        "description": "សូមបង្កើតការទំនាក់ទំនងជាមួយខ្ញុំតាមរយៈបណ្តាញសង្គមខាងក្រោម៖",
+        "description": "សូមទំនាក់ទំនងមកខ្ញុំតាមរយៈបណ្តាញសង្គមខាងក្រោម៖",
         "fields": [
           {
             "label": "តេឡេក្រាម",
@@ -409,12 +409,12 @@
             "icon": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
           },
           {
-            "label": "ហ្គីតហាប់ (GitHub)",
+            "label": "ហ្គីតហាប់",
             "href": "https://www.github.com/socheatathai",
             "icon": "https://cdn.simpleicons.org/github/4f8cff"
           },
           {
-            "label": "លីងអ៊ិន (LinkedIn)",
+            "label": "លីងអ៊ិន",
             "href": "https://www.linkedin.com/in/socheata-thai-586182289",
             "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
           }
