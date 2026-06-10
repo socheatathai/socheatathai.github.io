@@ -246,6 +246,24 @@
         "description": "ខាងក្រោមនេះជាគម្រោងមួយចំនួនដែលខ្ញុំបានអនុវត្ត និងសិក្សាស្រាវជ្រាវ អំឡុងពេលសិក្សានៅសាកលវិទ្យាល័យ៖",
         "items": [
           {
+            "icon": "apiDocs",
+            "title": "នេះជា API សម្រាប់ KMRS Tech។",
+            "description": "គម្រោងនេះសម្រាប់បង្កើតឯកសារបច្ចេកទេស API សម្រាប់ KMRS Tech។",
+            "href": "https://api.kmrs.tech/docs#/"
+          },
+          {
+            "icon": "landingPage",
+            "title": "ទំព័រ Landing Page ផលិតផល KMRS Tech",
+            "description": "គម្រោងនេះសម្រាប់បង្កើតទំព័រ Landing Page សម្រាប់ផលិតផលរបស់ KMRS Tech។",
+            "href": "https://kmrs.tech"
+          },
+          {
+          "icon": "javascriptBlog",
+          "title": "JS Coder Blog",
+          "description": "ប្លុកផ្ទាល់ខ្លួនសម្រាប់ចែករំលែកចំណេះដឹង មេរៀន និងគន្លឹះអំពី JavaScript។",
+          "href": "https://jscoderofficial.vercel.app"
+          },
+          {
             "icon": "furniture",
             "title": "ហាងគ្រឿងសង្ហារឹម E-Commerce",
             "description": "គម្រោងនេះផ្តោតលើការបង្កើតវេទិកា E-Commerce សម្រាប់លក់គ្រឿងសង្ហារឹមអនឡាញ។",
@@ -274,12 +292,6 @@
             "title": "ផ្ទាំងគ្រប់គ្រង CMS ជាមួយ Next.js",
             "description": "គម្រោងសិក្សា និងការបង្កើតផ្ទាំងគ្រប់គ្រង (Admin Dashboard) ដ៏ទំនើបដោយប្រើប្រាស់ Next.js។",
             "href": "https://next-dashboard-ten-jet.vercel.app/"
-          },
-          {
-            "icon": "apiDocs",
-            "title": "API KMRS Tech Documentation",
-            "description": "គម្រោងបង្កើតឯកសារបច្ចេកទេស API (API Documentation) សម្រាប់ KMRS Tech។",
-            "href": "https://api.kmrs.tech/docs#/"
           }
         ]
       },
