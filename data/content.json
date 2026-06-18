@@ -1,7 +1,7 @@
 {
   "en": {
-    "metaDescription": "Socheata Thai portfolio website",
-    "logo": "Socheata Thai",
+    "metaDescription": "Portfolio of Thai Socheata, a full-stack developer from Cambodia.",
+    "logo": "Thai Socheata",
     "nav": {
       "home": "Home",
       "projects": "Projects",
@@ -17,62 +17,94 @@
     },
     "hero": {
       "badge": "Cheata Profile",
-      "title": "Hi There, I'm Socheata Thai",
-      "mobileTitle": "Socheata Thai",
+      "title": "Hi there, I'm Thai Socheata",
+      "mobileTitle": "Thai Socheata",
       "intro1": "Welcome to my portfolio. I'm a passionate web developer from Cambodia. I enjoy building modern websites and exploring new technologies.",
       "intro2": "My journey in web development started with curiosity, and now it has become my passion. I love bringing ideas to life through both front-end and back-end development.",
       "imageAlt": "Cheata Profile"
     },
     "projects": {
-      "title": "Here is My Project",
-      "description": "Some of the projects I have worked on and explored during my learning journey.",
+      "title": "My Projects",
+      "description": "A selection of projects I have built and explored throughout my development journey.",
       "items": [
         {
           "icon": "apiDocs",
           "title": "API KMRS Tech Documentation",
-          "description": "This project is for creating API documentation for KMRS Tech.",
+          "description": "Interactive API documentation for KMRS Tech, designed to make Frontend clear, testable, and easy for developers to integrate.",
+          "tags": [
+            "REST API",
+            "Swagger"
+          ],
           "href": "https://api.kmrs.tech/docs#/"
         },
         {
           "icon": "landingPage",
           "title": "KMRS Tech Product Landing Page",
-          "description": "This project is for landing page for product of KMRS Tech.",
+          "description": "A responsive product landing page for KMRS Tech with clear content hierarchy, modern visuals, and a focused user journey.",
+          "tags": [
+            "Landing Page",
+            "Responsive"
+          ],
           "href": "https://kmrs.tech"
         },
         {
           "icon": "javascriptBlog",
-          "title": "js coder that talking about JavaScript",
-          "description": "Personal JavaScript blog · Tutorials · Tips",
+          "title": "JS Coder JavaScript Blog",
+          "description": "A personal JavaScript blog sharing practical tutorials, development tips, and modern frontend best practices.",
+          "tags": [
+            "JavaScript",
+            "Blog"
+          ],
           "href": "https://jscoderofficial.vercel.app"
         },
         {
           "icon": "furniture",
           "title": "E-Commerce Furniture Store",
-          "description": "This project focuses on an E-Commerce platform for a Furniture Store.",
+          "description": "A responsive furniture shopping experience focused on clear product discovery, clean presentation, and simple online ordering.",
+          "tags": [
+            "E-Commerce",
+            "Frontend"
+          ],
           "href": "https://e-piccq47u4-socheatathai.vercel.app/"
         },
         {
           "icon": "blockchain",
           "title": "Blockchain Landing Page Template",
-          "description": "Explore this template website that provides information about Blockchain technology.",
+          "description": "A modern blockchain landing page template with polished visuals, responsive sections, and clear technology-focused content.",
+          "tags": [
+            "Blockchain",
+            "Template"
+          ],
           "href": "https://template-block-chain.vercel.app/"
         },
         {
           "icon": "coffee",
           "title": "Coffee Store Landing Page",
-          "description": "Created for a university midterm exam, this project showcases a landing page for a coffee store.",
+          "description": "A responsive coffee store landing page created for a university project, featuring a warm visual style and clear product sections.",
+          "tags": [
+            "Landing Page",
+            "Responsive"
+          ],
           "href": "https://preview-web-coral.vercel.app/"
         },
         {
           "icon": "pizza",
           "title": "Online Pizza Delivery Platform",
-          "description": "A pizza delivery platform enabling customers to conveniently order online.",
+          "description": "An online pizza delivery platform that helps customers browse products and place orders quickly and conveniently.",
+          "tags": [
+            "Full Stack",
+            "Ordering"
+          ],
           "href": "https://pizzahouse-xi.vercel.app/"
         },
         {
           "icon": "dashboard",
           "title": "CMS Dashboard with Next.js",
-          "description": "This project explores Next.js for building a modern CMS dashboard.",
+          "description": "A modern CMS dashboard built with Next.js for managing content through a clear, responsive, and efficient interface.",
+          "tags": [
+            "Next.js",
+            "TypeScript"
+          ],
           "href": "https://next-dashboard-ten-jet.vercel.app/"
         }
       ]
@@ -96,30 +128,22 @@
           "role": "Full Stack Developer",
           "period": "Oct 2024 - Sep 2025 | Phnom Penh, Cambodia | On-site",
           "details": [
-            "Developed a company website showcasing insurance products using Nuxt.js, working with business analysts to gather requirements and implement UI designs.",
-            "Built an admin platform to manage customer registration and internal data using Next.js.",
-            "Developed a mini web service integrated with mobile banking to sell insurance products using Next.js, MobX, and Shadcn UI.",
-            "Worked closely with backend developers, QA engineers, and business analysts to deliver and deploy the product to customers."
+            "Developed backend APIs using NestJS, Prisma ORM, and PostgreSQL.",
+            "Built a mini web service integrated with mobile banking for selling insurance products.",
+            "Implemented authentication, request validation, and REST API integrations following development best practices.",
+            "Designed API flows with business analysts to align technical solutions with business requirements.",
+            "Collaborated with business analysts, QA engineers, and frontend developers throughout the development lifecycle."
           ]
         },
         {
           "company": "dreamsLAB",
           "role": "Junior Backend Developer",
-          "period": "Nov 2023 - Oct 2024 | On-site",
+          "period": "Jun 2023 - Oct 2024 | On-site",
           "details": [
-            "Developed a crowdfunding web application, including API integration and frontend implementation.",
-            "Collaborated with mobile and frontend teams on business workflows, analytics systems, and database design.",
-            "Built a web dashboard to manage a mobile application using Next.js, React Query, Shadcn UI, Tailwind CSS, and Jotai.",
-            "Worked with UX/UI designers and the project owner to improve system functionality and user experience."
-          ]
-        },
-        {
-          "company": "dreamsLAB",
-          "role": "Intern",
-          "period": "Jun 2023 - Nov 2023 | On-site",
-          "details": [
-            "Supported the team during the internship period while building foundational backend and web development skills.",
-            "Contributed to ongoing product work and learned collaborative development practices in a production environment."
+            "Developed RESTful APIs for a crowdfunding platform using Java, Spring Boot, Spring Data JPA, and PostgreSQL.",
+            "Collaborated with mobile and frontend teams to define API contracts and ensure seamless system integration.",
+            "Built and maintained internal dashboards and administration tools using Next.js and TypeScript.",
+            "Worked with product owners on business workflows, reporting, and analytics requirements."
           ]
         }
       ]
@@ -127,38 +151,105 @@
     "technologies": {
       "title": "Languages & Tools",
       "items": [
-        { "name": "Visual Studio Code", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
-        { "name": "HTML5", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-        { "name": "CSS3", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-        { "name": "JavaScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-        { "name": "TypeScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-        { "name": "React", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-        { "name": "Vue", "icon": "https://v2.vuejs.org/images/logo.svg" },
-        { "name": "Next.js", "icon": "https://cdn.simpleicons.org/nextdotjs/ffffff" },
-        { "name": "Nuxt.js", "icon": "https://raw.githubusercontent.com/nuxt/modules/main/icons/nuxt.svg" },
-        { "name": "NestJS", "icon": "https://nestjs.com/logo-small-gradient.0ed287ce.svg" },
-        { "name": "PostgreSQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-        { "name": "DigitalOcean", "icon": "https://cdn.simpleicons.org/digitalocean/0080FF" },
-        { "name": "cPanel", "icon": "https://cdn.simpleicons.org/cpanel/FF6C2C" },
-        { "name": "Git", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-        { "name": "GitHub", "icon": "https://user-images.githubusercontent.com/3369400/139447912-e0f43f33-6d9f-45f8-be46-2df5bbc91289.png" },
-        { "name": "GitLab", "icon": "https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png" }
+        {
+          "name": "Visual Studio Code",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+        },
+        {
+          "name": "HTML5",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+        },
+        {
+          "name": "CSS3",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+        },
+        {
+          "name": "React",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+        },
+        {
+          "name": "Vue",
+          "icon": "https://v2.vuejs.org/images/logo.svg"
+        },
+        {
+          "name": "Next.js",
+          "icon": "https://cdn.simpleicons.org/nextdotjs/ffffff"
+        },
+        {
+          "name": "Nuxt.js",
+          "icon": "https://raw.githubusercontent.com/nuxt/modules/main/icons/nuxt.svg"
+        },
+        {
+          "name": "NestJS",
+          "icon": "https://nestjs.com/logo-small-gradient.0ed287ce.svg"
+        },
+        {
+          "name": "Spring Boot",
+          "icon": "https://cdn.simpleicons.org/springboot/6DB33F"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+        },
+        {
+          "name": "DigitalOcean",
+          "icon": "https://cdn.simpleicons.org/digitalocean/0080FF"
+        },
+        {
+          "name": "cPanel",
+          "icon": "https://cdn.simpleicons.org/cpanel/FF6C2C"
+        },
+        {
+          "name": "Git",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+        },
+        {
+          "name": "GitHub",
+          "icon": "https://user-images.githubusercontent.com/3369400/139447912-e0f43f33-6d9f-45f8-be46-2df5bbc91289.png"
+        },
+        {
+          "name": "GitLab",
+          "icon": "https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png"
+        }
       ]
     },
     "about": {
       "title": "About Me",
       "paragraphs": [
-        "Hi, I'm Socheata Thai! 👋 I was born in Kampong Cham Province, Cambodia, and I am currently 24 years old. I am now pursuing a Bachelor's degree in Computer Science at the Royal University of Phnom Penh (RUPP).",
-        "From a young age, I have always been fascinated by technology. My childhood was filled with curiosity and a strong desire to learn new things. The first time I saw a computer, it inspired me and sparked my dream to understand how powerful technologies work.",
-        "As I explored software engineering further, my passion continued to grow. I enjoy learning new technologies, improving my development skills, and building useful digital products. My studies at RUPP have helped me gain both technical knowledge and practical experience.",
-        "Today, I focus on web development, including both front-end and back-end development. I enjoy building landing pages, admin dashboards, and web applications, and my goal is to create clean, practical, and meaningful solutions that make a positive impact through technology."
+        "Hi, I'm Thai Socheata, a 24-year-old Full Stack Developer from Cambodia with a Bachelor's degree in Computer Science from the Royal University of Phnom Penh (RUPP).",
+        "I have over three years of professional experience across frontend, backend, and full-stack development, building reliable web applications and digital products.",
+        "My core technologies include Java, Spring Boot, JavaScript, TypeScript, PostgreSQL, and RESTful APIs. I also work with modern frontend frameworks such as Vue.js, Nuxt.js, and Next.js.",
+        "I enjoy collaborating with cross-functional teams, translating business requirements into practical technical solutions, and continuously improving the quality and usability of the products I build."
       ],
       "facts": [
-        { "label": "Name", "value": "Socheata Thai" },
-        { "label": "Birthplace", "value": "Kampong Cham, Cambodia" },
-        { "label": "Age", "value": "24" },
-        { "label": "Focus", "value": "Front-end and Back-end Development" },
-        { "label": "University", "value": "Royal University of Phnom Penh (RUPP)" }
+        {
+          "label": "Name",
+          "value": "Thai Socheata"
+        },
+        {
+          "label": "Birthplace",
+          "value": "Kampong Cham, Cambodia"
+        },
+        {
+          "label": "Age",
+          "value": "24"
+        },
+        {
+          "label": "Focus",
+          "value": "Front-end and Back-end Development"
+        },
+        {
+          "label": "University",
+          "value": "Royal University of Phnom Penh (RUPP)"
+        }
       ]
     },
     "education": {
@@ -194,7 +285,7 @@
       ]
     },
     "contact": {
-      "title": "Contact Me By",
+      "title": "Contact Me",
       "description": "Let's connect on social media.",
       "fields": [
         {
@@ -214,224 +305,314 @@
         }
       ]
     },
-    "footer": "© 2026 Socheata Thai All rights reserve"
+    "footer": "© 2026 Thai Socheata. All rights reserved."
   },
   "km": {
-      "metaDescription": "គេហទំព័រផ្ទាល់ខ្លួន និងស្នាដៃរបស់ ថៃ សុជាតិតា",
-      "logo": "ថៃ សុជាតិតា",
-      "nav": {
-        "home": "ទំព័រដើម",
-        "projects": "គម្រោងដែរបានធ្វើ",
-        "experience": "បទពិសោធន៍ការងារ",
-        "about": "និយាយអំពីខ្ញុំ",
-        "education": "ការសិក្សារបស់ខ្ញុំ"
-      },
-      "buttons": {
-        "theme": "",
-        "language": "English",
-        "contact": "ទាក់ទងមកខ្ញុំ",
-        "about": "អំពីខ្ញុំ",
-        "projectLink": "មើលគម្រោងតាមលីង"
-      },
-      "hero": {
-        "badge": "រូបថត សុជាតិតា",
-        "title": "សួស្តី! ខ្ញុំឈ្មោះ ថៃ សុជាតិតា",
-        "mobileTitle": "ថៃ សុជាតិតា",
-        "intro1": "សូមស្វាគមន៍មកកាន់គេហទំព័រផ្ទាល់ខ្លួនរបស់ខ្ញុំ។ ខ្ញុំជាអ្នកអភិវឌ្ឍន៍គេហទំព័រ (Web Developer) ម្នាក់នៅប្រទេសកម្ពុជា ដែលមានចំណង់ចំណូលចិត្តខ្ពស់លើការសរសេរកូដ។ ខ្ញុំចូលចិត្តស្វែងយល់អ្វីដែរថ្មីនៅក្នុងវិស័យបច្ចេកវិទ្យា និងស្វែងយល់ពីបច្ចេកវិទ្យាទំនើបៗ។",
-        "intro2": "ដំណើរដើមទុនក្នុងការឈានជើងចូលក្នុងវិស័យ Web Development របស់ខ្ញុំបានចាប់ផ្តើមឡើងពីការចង់ដឹងចង់ឃើញ រហូតក្លាយជាក្តីស្រលាញ់ និងចំណង់ចំណូលចិត្តយ៉ាងពិតប្រាកដ។ ខ្ញុំចូលចិត្តប្រែក្លាយគំនិតច្នៃប្រឌិតឱ្យលេចចេញជា រូបរាងពិតប្រាកដ ទាំងផ្នែក Frontend និង Backend។",
-        "imageAlt": "រូបថត សុជាតិតា"
-      },
-      "projects": {
-        "title": "គម្រោងបញ្ចប់ការសិក្សារបស់ខ្ញុំ",
-        "description": "ខាងក្រោមនេះជាគម្រោងមួយចំនួនដែលខ្ញុំបានអនុវត្ត និងសិក្សាស្រាវជ្រាវ អំឡុងពេលសិក្សានៅសាកលវិទ្យាល័យ៖",
-        "items": [
-          {
-            "icon": "apiDocs",
-            "title": "នេះជា API សម្រាប់ KMRS Tech។",
-            "description": "គម្រោងនេះសម្រាប់បង្កើតឯកសារបច្ចេកទេស API សម្រាប់ KMRS Tech។",
-            "href": "https://api.kmrs.tech/docs#/"
-          },
-          {
-            "icon": "landingPage",
-            "title": "ទំព័រ Landing Page ផលិតផល KMRS Tech",
-            "description": "គម្រោងនេះសម្រាប់បង្កើតទំព័រ Landing Page សម្រាប់ផលិតផលរបស់ KMRS Tech។",
-            "href": "https://kmrs.tech"
-          },
-          {
+    "metaDescription": "គេហទំព័រប្រវត្តិរូប និងស្នាដៃរបស់ ថៃ សុជាតិតា អ្នកអភិវឌ្ឍកម្មវិធី Full Stack មកពីកម្ពុជា។",
+    "logo": "ថៃ សុជាតិតា",
+    "nav": {
+      "home": "ទំព័រដើម",
+      "projects": "គម្រោង",
+      "experience": "បទពិសោធន៍",
+      "about": "អំពីខ្ញុំ",
+      "education": "ការសិក្សា"
+    },
+    "buttons": {
+      "language": "English",
+      "contact": "ទាក់ទងខ្ញុំ",
+      "about": "អំពីខ្ញុំ",
+      "projectLink": "មើលគម្រោង"
+    },
+    "hero": {
+      "badge": "រូបថត សុជាតិតា",
+      "title": "សួស្តី! ខ្ញុំឈ្មោះ ថៃ សុជាតិតា",
+      "mobileTitle": "ថៃ សុជាតិតា",
+      "intro1": "សូមស្វាគមន៍មកកាន់គេហទំព័រប្រវត្តិរូបរបស់ខ្ញុំ។ ខ្ញុំជាអ្នកអភិវឌ្ឍគេហទំព័រម្នាក់មកពីប្រទេសកម្ពុជា។ ខ្ញុំចូលចិត្តបង្កើតគេហទំព័រទំនើប និងស្វែងយល់ពីបច្ចេកវិទ្យាថ្មីៗ។",
+      "intro2": "ដំណើររបស់ខ្ញុំក្នុងការអភិវឌ្ឍគេហទំព័របានចាប់ផ្តើមពីការចង់ដឹងចង់ឃើញ ហើយឥឡូវនេះវាបានក្លាយជាចំណង់ចំណូលចិត្តរបស់ខ្ញុំ។ ខ្ញុំចូលចិត្តប្រែក្លាយគំនិតឱ្យទៅជាការពិត តាមរយៈការអភិវឌ្ឍទាំង Frontend និង Backend។",
+      "imageAlt": "រូបថត សុជាតិតា"
+    },
+    "projects": {
+      "title": "គម្រោងរបស់ខ្ញុំ",
+      "description": "គម្រោងមួយចំនួនដែលខ្ញុំបានបង្កើត និងសិក្សាស្រាវជ្រាវក្នុងដំណើរអភិវឌ្ឍជំនាញរបស់ខ្ញុំ។",
+      "items": [
+        {
+          "icon": "apiDocs",
+          "title": "ឯកសារ API របស់ KMRS Tech",
+          "description": "ឯកសារ API អន្តរកម្មសម្រាប់ KMRS Tech ដែលជួយឱ្យ Frontend មានភាពច្បាស់លាស់ អាចសាកល្បងបាន និងងាយស្រួលសម្រាប់អ្នកអភិវឌ្ឍក្នុងការភ្ជាប់ប្រើប្រាស់។",
+          "tags": [
+            "REST API",
+            "Swagger"
+          ],
+          "href": "https://api.kmrs.tech/docs#/"
+        },
+        {
+          "icon": "landingPage",
+          "title": "ទំព័រផលិតផល KMRS Tech",
+          "description": "ទំព័រផលិតផលដែលអាចបត់បែនតាមទំហំអេក្រង់ មានលំដាប់មាតិកាច្បាស់លាស់ រូបរាងទំនើប និងផ្តោតលើបទពិសោធន៍អ្នកប្រើប្រាស់។",
+          "tags": [
+            "Landing Page",
+            "Responsive"
+          ],
+          "href": "https://kmrs.tech"
+        },
+        {
           "icon": "javascriptBlog",
-          "title": "JS Coder Blog",
-          "description": "ប្លុកផ្ទាល់ខ្លួនសម្រាប់ចែករំលែកចំណេះដឹង មេរៀន និងគន្លឹះអំពី JavaScript។",
+          "title": "ប្លុក JavaScript របស់ JS Coder",
+          "description": "ប្លុក JavaScript ផ្ទាល់ខ្លួនសម្រាប់ចែករំលែកមេរៀនអនុវត្ត គន្លឹះអភិវឌ្ឍកម្មវិធី និងវិធីសាស្ត្រ Frontend ទំនើបៗ។",
+          "tags": [
+            "JavaScript",
+            "Blog"
+          ],
           "href": "https://jscoderofficial.vercel.app"
-          },
-          {
-            "icon": "furniture",
-            "title": "ហាងគ្រឿងសង្ហារឹម E-Commerce",
-            "description": "គម្រោងនេះផ្តោតលើការបង្កើតវេទិកា E-Commerce សម្រាប់លក់គ្រឿងសង្ហារឹមអនឡាញ។",
-            "href": "https://e-piccq47u4-socheatathai.vercel.app/"
-          },
-          {
-            "icon": "blockchain",
-            "title": "គំរូវេប Blockchain Landing Page",
-            "description": "ទំព័រ Landing Page សម្រាប់បង្ហាញព័ត៌មាន និងចំណេះដឹងអំពីបច្ចេកវិទ្យា Blockchain។",
-            "href": "https://template-block-chain.vercel.app/"
-          },
-          {
-            "icon": "coffee",
-            "title": "ទំព័រ Landing Page សម្រាប់ហាងកាហ្វេ",
-            "description": "គម្រោងសម្រាប់ការប្រឡងពាក់កណ្តាលឆមាស ដោយរចនាឡើងជាទំព័រ Landing Page សម្រាប់ហាងកាហ្វេ។",
-            "href": "https://preview-web-coral.vercel.app/"
-          },
-          {
-            "icon": "pizza",
-            "title": "វេទិកាបញ្ជាទិញភីហ្សាអនឡាញ",
-            "description": "ប្រព័ន្ធកុម្ម៉ង់ និងដឹកជញ្ជូនភីហ្សាអនឡាញ ដែលជួយឱ្យអតិថិជនបញ្ជាទិញបានយ៉ាងងាយស្រួល និងរហ័ស។",
-            "href": "https://pizzahouse-xi.vercel.app/"
-          },
-          {
-            "icon": "dashboard",
-            "title": "ផ្ទាំងគ្រប់គ្រង CMS ជាមួយ Next.js",
-            "description": "គម្រោងសិក្សា និងការបង្កើតផ្ទាំងគ្រប់គ្រង (Admin Dashboard) ដ៏ទំនើបដោយប្រើប្រាស់ Next.js។",
-            "href": "https://next-dashboard-ten-jet.vercel.app/"
-          }
-        ]
-      },
-      "experience": {
-        "title": "បទពិសោធន៍ការងាររបស់ខ្ញុំ",
-        "description": "ប្រវត្តិការងារ និងតួនាទីសំខាន់ៗដែលខ្ញុំធ្លាប់បានឆ្លងកាត់៖",
-        "items": [
-          {
-            "company": "Everlast Information & Apps Dev Co., Ltd.",
-            "role": "Frontend Developer",
-            "period": "តុលា 2025 - បច្ចុប្បន្ន | ពេញម៉ោង (On-site)",
-            "details": [
-              "អភិវឌ្ឍ និងថែទាំមុខងារផ្នែក Frontend ដោយប្រើប្រាស់ Vue.js, Nuxt.js, Pinia និង Element UI ដើម្បីបង្កើត UI ដែលមានភាពរហ័សទាន់ចិត្ត (Responsive) នឹងងអាចបង្កើតបាននៅគុណភាពខ្ពស់។",
-              "ធ្វើការជាមួយ Backend Developer Teams និង UI/UX Designers Teams ដើម្បីបង្កើតមុខងារថ្មីៗ និងកែលម្អបទពិសោធន៍អ្នកប្រើប្រាស់ប្រព័ន្ធឱ្យកាន់តែប្រសើរ។",
-              "បង្កើនប្រសិទ្ធភាពដំណើរការប្រព័ន្ធផ្នែក Frontend និងធានាឱ្យមានភាពស៊ីសង្វាក់គ្នានៃកូដទូទាំងប្រព័ន្ធទាំងមូល។"
-            ]
-          },
-          {
-            "company": "Phillip General Insurance (Cambodia) Plc.",
-            "role": "Full Stack Developer",
-            "period": "តុលា 2024 - កញ្ញា 2025 | ភ្នំពេញ, កម្ពុជា | ពេញម៉ោង (On-site)",
-            "details": [
-              "អភិវឌ្ឍគេហទំព័រក្រុមហ៊ុនសម្រាប់បង្ហាញផលិតផលធានារ៉ាប់រងដោយប្រើ Nuxt.js ព្រមទាំងធ្វើការជាមួយ Business Analysts (BA) ដើម្បីប្រមូលពត៌មាន និងរៀបចំពត៌មានទៅជា UI។",
-              "បង្កើតផ្ទាំងគ្រប់គ្រង (Admin Platform) សម្រាប់គ្រប់គ្រងការចុះឈ្មោះរបស់អតិថិជន និងទិន្នន័យផ្ទៃក្នុងរបស់ក្រុមហ៊ុនដោយប្រើ Next.js។",
-              "អភិវឌ្ឍសេវាកម្ម Mini Web Service ភ្ជាប់ទៅកាន់កម្មវិធី Mobile Banking សម្រាប់ការលក់ផលិតផលធានារ៉ាប់រង ដោយប្រើប្រាស់ Next.js, MobX និង Shadcn UI។",
-              "សហការការងារជាមួយ Backend Developers, QA Engineers និង Business Analysts ដើម្បីផ្ទៀងផ្ទាត់ និងដាក់ឱ្យដំណើរការផលិតផលជាផ្លូវការជូនអតិថិជន។"
-            ]
-          },
-          {
-            "company": "dreamsLAB",
-            "role": "Junior Backend Developer",
-            "period": "វិច្ឆិកា 2023 - តុលា 2024 | ពេញម៉ោង (On-site)",
-            "details": [
-              "អភិវឌ្ឍកម្មវិធី Web Application សម្រាប់ប្រព័ន្ធរៃអង្គាសប្រាក់ (Crowdfunding) រួមទាំងការបង្កើត API integration និងការអភិវឌ្ឍមុខងារប្រព័ន្ធ។",
-              "សហការជាមួយក្រុមការងារ Mobile App និង Frontend លើដំណើរការអាជីវកម្ម (Business Logic) ប្រព័ន្ធវិភាគទិន្នន័យ និងការរចនាទម្រង់ទិន្នន័យ (Database Schema)។",
-              "បង្កើតផ្ទាំងគ្រប់គ្រង (Admin Dashboard) សម្រាប់គ្រប់គ្រងកម្មវិធីទូរស័ព្ទដៃ ដោយប្រើប្រាស់ Next.js, React Query, Shadcn UI, Tailwind CSS និង Jotai។",
-              "ធ្វើការជាមួយ UI/UX Designers និង Project Owners ដើម្បីកែលម្អមុខងារប្រព័ន្ធ និងលើកកម្ពស់បទពិសោធន៍អ្នកប្រើប្រាស់ (UX)។"
-            ]
-          },
-          {
-            "company": "dreamsLAB",
-            "role": "Intern (បុគ្គលិកហាត់ការ)",
-            "period": "មិថុនា 2023 - វិច្ឆិកា 2023 | ពេញម៉ោង (On-site)",
-            "details": [
-              "គាំទ្រការងារក្នុងក្រុមអំឡុងពេលហាត់ការ ព្រមទាំងពង្រឹងជំនាញគ្រឹះផ្នែក Backend និង Web Development។",
-              "ចូលរួមចំណែកក្នុងដំណើរការអភិវឌ្ឍផលិតផលជាក់ស្តែង និងរៀនសូត្រពីរបៀបសហការការងារក្នុងបរិយាកាសការងារអាជីពពិតប្រាកដ។"
-            ]
-          }
-        ]
-      },
-      "technologies": {
-        "title": "ភាសាកូដ និងឧបករណ៍បច្ចេកវិទ្យា",
-        "items": [
-          { "name": "Visual Studio Code", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
-          { "name": "HTML5", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-          { "name": "CSS3", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-          { "name": "JavaScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-          { "name": "TypeScript", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-          { "name": "React", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-          { "name": "Vue", "icon": "https://v2.vuejs.org/images/logo.svg" },
-          { "name": "Next.js", "icon": "https://cdn.simpleicons.org/nextdotjs/ffffff" },
-          { "name": "Nuxt.js", "icon": "https://raw.githubusercontent.com/nuxt/modules/main/icons/nuxt.svg" },
-          { "name": "NestJS", "icon": "https://nestjs.com/logo-small-gradient.0ed287ce.svg" },
-          { "name": "PostgreSQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-          { "name": "DigitalOcean", "icon": "https://cdn.simpleicons.org/digitalocean/0080FF" },
-          { "name": "cPanel", "icon": "https://cdn.simpleicons.org/cpanel/FF6C2C" },
-          { "name": "Git", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-          { "name": "GitHub", "icon": "https://user-images.githubusercontent.com/3369400/139447912-e0f43f33-6d9f-45f8-be46-2df5bbc91289.png" },
-          { "name": "GitLab", "icon": "https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png" }
-        ]
-      },
-      "about": {
-        "title": "អំពីខ្ញុំ",
-        "paragraphs": [
-          "សួស្តី! ខ្ញុំឈ្មោះ ថៃ សុជាតិតា។ ខ្ញុំមកពីខេត្តកំពង់ចាម ប្រទេសកម្ពុជា ហើយបច្ចុប្បន្នមានអាយុ ២៤ឆ្នាំ។ ខ្ញុំបានបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រផ្នែក វិទ្យាសាស្ត្រកុំព្យូទ័រ នៅសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)។",
-          "តាំងពីតូចមក ខ្ញុំតែងតែមានការចាប់អារម្មណ៍យ៉ាងខ្លាំងចំពោះពិភពបច្ចេកវិទ្យា។ កុមារភាពរបស់ខ្ញុំពោរពេញទៅដោយការចង់ដឹងចង់ឃើញ និងការរៀនសូត្ររឿងរ៉ាវថ្មីៗជានិច្ច។ នៅពេលដែលខ្ញុំបានឃើញ និងប៉ះកុំព្យូទ័រជាលើកដំបូង វាបានជម្រុញឱ្យខ្ញុំមានក្តីសុបិនចង់ស្វែងយល់ និងដឹងឱ្យច្បាស់ពីរបៀបដែលបច្ចេកវិទ្យាដ៏មានឥទ្ធិពលទាំងនេះដំណើរការ។",
-          "នៅពេលដែលខ្ញុំបានឈានជើងចូលសិក្សាស៊ីជម្រៅលើផ្នែកវិស្វកម្មសូហ្វវែរ (Software Engineering) ចំណង់ចំណូលចិត្តរបស់ខ្ញុំកាន់តែរីកចម្រើនខ្លាំងឡើង។ ខ្ញុំចូលចិត្តរៀនសូត្រពីបច្ចេកវិទ្យាថ្មីៗ កែលម្អជំនាញអភិវឌ្ឍន៍ប្រព័ន្ធ និងបង្កើតផលិតផលឌីជីថលដែលមានប្រយោជន៍។ ការសិក្សានៅ RUPP បានផ្តល់ឱ្យខ្ញុំនូវទាំងចំណេះដឹងទ្រឹស្តីបច្ចេកទេស និងបទពិសោធន៍អនុវត្តជាក់ស្តែងយ៉ាងរឹងមាំ។",
-          "បច្ចុប្បន្ន ខ្ញុំផ្តោតសំខាន់លើការអភិវឌ្ឍគេហទំព័រទាំងផ្នែក Frontend និង Backend។ ខ្ញុំចូលចិត្តបង្កើតទំព័រ Landing Pages, ផ្ទាំងគ្រប់គ្រង (Dashboards) និង Web Applications ផ្សេងៗ។ គោលដៅរបស់ខ្ញុំគឺការបង្កើតដំណោះស្រាយបច្ចេកវិទ្យាដ៏មានន័យ ស្អាតស្អំ មានប្រសិទ្ធភាពខ្ពស់ និងអាចបង្កើតផលវិជ្ជមានដល់សង្គមតាមរយៈបច្ចេកវិទ្យា។"
-        ],
-        "facts": [
-          { "label": "ឈ្មោះ", "value": "ថៃ សុជាតិតា" },
-          { "label": "ស្រុកកំណើត", "value": "កំពង់ចាម, កម្ពុជា" },
-          { "label": "អាយុ", "value": "២៤ ឆ្នាំ" },
-          { "label": "ជំនាញផ្តោត", "value": "ការអភិវឌ្ឍន៍ Frontend និង Backend" },
-          { "label": "សាកលវិទ្យាល័យ", "value": "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)" }
-        ]
-      },
-      "education": {
-        "title": "ការសិក្សា",
-        "description": "ប្រវត្តិ និងកម្រិតវប្បធម៌នៃការសិក្សារបស់ខ្ញុំ៖",
-        "items": [
-          {
-            "degree": "បរិញ្ញាបត្រ វិទ្យាសាស្ត្រកុំព្យូទ័រ",
-            "school": "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",
-            "period": "2022 - 2024",
-            "href": "https://www.rupp.edu.kh",
-            "logo": "images/rupp_logo.png",
-            "logoAlt": "ឡូហ្គោ RUPP",
-            "summary": "បានបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រជំនាញ វិទ្យាសាស្ត្រកុំព្យូទ័រ ដោយជោគជ័យពីសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ។"
-          },
-          {
-            "degree": "ឆ្នាំមូលដ្ឋាន វិទ្យាសាស្ត្រកុំព្យូទ័រ",
-            "school": "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",
-            "period": "2020 - 2021",
-            "href": "https://www.rupp.edu.kh",
-            "logo": "images/rupp_logo.png",
-            "logoAlt": "ឡូហ្គោ RUPP",
-            "summary": "បានបញ្ចប់ឆ្នាំសិក្សាមូលដ្ឋាន ដែលផ្ដល់នូវគ្រឹះយ៉ាងរឹងមាំលើការសរសេរកម្មវិធីកុំព្យូទ័រ និងទស្សនទានបច្ចេកវិទ្យាផ្សេងៗ។"
-          },
-          {
-            "degree": "សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប)",
-            "school": "វិទ្យាល័យ ជា ស៊ីម កណ្ដោលជ្រុំ",
-            "period": "2019 - 2020",
-            "logo": "images/high-school-logo.jpg",
-            "logoAlt": "ឡូហ្គោវិទ្យាល័យ ជា ស៊ីម កណ្ដោលជ្រុំ",
-            "summary": "បានបញ្ចប់ការសិក្សាថ្នាក់មធ្យមសិក្សាទុតិយភូមិ ដោយទទួលបានលទ្ធផលល្អប្រសើរលើមុខវិជ្ជាវិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា។"
-          }
-        ]
-      },
-      "contact": {
-        "title": "ទាក់ទងខ្ញុំតាមរយៈ",
-        "description": "សូមទំនាក់ទំនងមកខ្ញុំតាមរយៈបណ្តាញសង្គមខាងក្រោម៖",
-        "fields": [
-          {
-            "label": "តេឡេក្រាម",
-            "href": "https://t.me/cheata49",
-            "icon": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
-          },
-          {
-            "label": "ហ្គីតហាប់",
-            "href": "https://www.github.com/socheatathai",
-            "icon": "https://cdn.simpleicons.org/github/4f8cff"
-          },
-          {
-            "label": "លីងអ៊ិន",
-            "href": "https://www.linkedin.com/in/socheata-thai-586182289",
-            "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
-          }
-        ]
-      },
-      "footer": "© 2026 ថៃ សុជាតិតា រក្សាសិទ្ធិគ្រប់យ៉ាង"
-    }
+        },
+        {
+          "icon": "furniture",
+          "title": "ហាងលក់គ្រឿងសង្ហារឹម E-Commerce",
+          "description": "បទពិសោធន៍ទិញគ្រឿងសង្ហារឹមតាមអនឡាញដែលអាចបត់បែនតាមទំហំអេក្រង់ ផ្តោតលើការស្វែងរកផលិតផល ការបង្ហាញស្អាត និងការបញ្ជាទិញងាយស្រួល។",
+          "tags": [
+            "E-Commerce",
+            "Frontend"
+          ],
+          "href": "https://e-piccq47u4-socheatathai.vercel.app/"
+        },
+        {
+          "icon": "blockchain",
+          "title": "គំរូទំព័រ Blockchain",
+          "description": "គំរូទំព័រ Blockchain ទំនើបដែលមានរូបរាងស្អាត ផ្នែកមាតិកាអាចបត់បែនតាមទំហំអេក្រង់ និងព័ត៌មានបច្ចេកវិទ្យាច្បាស់លាស់។",
+          "tags": [
+            "Blockchain",
+            "Template"
+          ],
+          "href": "https://template-block-chain.vercel.app/"
+        },
+        {
+          "icon": "coffee",
+          "title": "ទំព័រហាងកាហ្វេ",
+          "description": "ទំព័រហាងកាហ្វេដែលអាចបត់បែនតាមទំហំអេក្រង់ បង្កើតឡើងសម្រាប់គម្រោងសាកលវិទ្យាល័យ ដោយមានរចនាប័ទ្មកក់ក្តៅ និងផ្នែកផលិតផលច្បាស់លាស់។",
+          "tags": [
+            "Landing Page",
+            "Responsive"
+          ],
+          "href": "https://preview-web-coral.vercel.app/"
+        },
+        {
+          "icon": "pizza",
+          "title": "ប្រព័ន្ធដឹកជញ្ជូនភីហ្សាតាមអនឡាញ",
+          "description": "ប្រព័ន្ធដឹកជញ្ជូនភីហ្សាតាមអនឡាញដែលជួយឱ្យអតិថិជនមើលផលិតផល និងបញ្ជាទិញបានយ៉ាងរហ័ស និងងាយស្រួល។",
+          "tags": [
+            "Full Stack",
+            "Ordering"
+          ],
+          "href": "https://pizzahouse-xi.vercel.app/"
+        },
+        {
+          "icon": "dashboard",
+          "title": "ផ្ទាំងគ្រប់គ្រង CMS ជាមួយ Next.js",
+          "description": "ផ្ទាំងគ្រប់គ្រង CMS ទំនើបដែលបង្កើតដោយ Next.js សម្រាប់គ្រប់គ្រងមាតិកាតាមរយៈផ្ទៃប្រើប្រាស់ច្បាស់លាស់ បត់បែន និងមានប្រសិទ្ធភាព។",
+          "tags": [
+            "Next.js",
+            "TypeScript"
+          ],
+          "href": "https://next-dashboard-ten-jet.vercel.app/"
+        }
+      ]
+    },
+    "experience": {
+      "title": "បទពិសោធន៍ការងារ",
+      "description": "បទពិសោធន៍វិជ្ជាជីវៈ និងភារកិច្ចសំខាន់ៗរបស់ខ្ញុំ។",
+      "items": [
+        {
+          "company": "Everlast Information & Apps Dev Co., Ltd.",
+          "role": "អ្នកអភិវឌ្ឍ Frontend",
+          "period": "តុលា ២០២៥ - បច្ចុប្បន្ន | ធ្វើការនៅការិយាល័យ",
+          "details": [
+            "បានអភិវឌ្ឍ និងថែទាំមុខងារ Frontend ដោយប្រើ Vue.js, Nuxt.js, Pinia និង Element UI ដើម្បីបង្កើតផ្ទៃប្រើប្រាស់ដែលបត់បែន និងអាចពង្រីកបាន។",
+            "បានសហការជាមួយអ្នកអភិវឌ្ឍ Backend និងអ្នករចនា ដើម្បីបង្កើតមុខងារថ្មី និងកែលម្អភាពងាយស្រួលប្រើប្រាស់របស់ប្រព័ន្ធ។",
+            "បានបង្កើនប្រសិទ្ធភាព Frontend និងធានាភាពស៊ីសង្វាក់គ្នានៅទូទាំងប្រព័ន្ធ។"
+          ]
+        },
+        {
+          "company": "Phillip General Insurance (Cambodia) Plc.",
+          "role": "អ្នកអភិវឌ្ឍ Full Stack",
+          "period": "តុលា ២០២៤ - កញ្ញា ២០២៥ | ភ្នំពេញ, កម្ពុជា | ធ្វើការនៅការិយាល័យ",
+          "details": [
+            "បានអភិវឌ្ឍ Backend API ដោយប្រើ NestJS, Prisma ORM និង PostgreSQL។",
+            "បានបង្កើតសេវាកម្មគេហទំព័រខ្នាតតូចដែលភ្ជាប់ជាមួយ Mobile Banking សម្រាប់លក់ផលិតផលធានារ៉ាប់រង។",
+            "បានអនុវត្តប្រព័ន្ធផ្ទៀងផ្ទាត់អត្តសញ្ញាណ ការត្រួតពិនិត្យ Request និងការភ្ជាប់ REST API តាមស្តង់ដារអភិវឌ្ឍល្អ។",
+            "បានរចនាលំហូរ API ជាមួយអ្នកវិភាគអាជីវកម្ម ដើម្បីឱ្យដំណោះស្រាយបច្ចេកទេសស្របតាមតម្រូវការអាជីវកម្ម។",
+            "បានសហការជាមួយអ្នកវិភាគអាជីវកម្ម វិស្វករ QA និងអ្នកអភិវឌ្ឍ Frontend ពេញមួយវដ្តនៃការអភិវឌ្ឍ។"
+          ]
+        },
+        {
+          "company": "dreamsLAB",
+          "role": "អ្នកអភិវឌ្ឍ Backend កម្រិតដំបូង",
+          "period": "មិថុនា ២០២៣ - តុលា ២០២៤ | ធ្វើការនៅការិយាល័យ",
+          "details": [
+            "បានអភិវឌ្ឍ RESTful API សម្រាប់ប្រព័ន្ធ Crowdfunding ដោយប្រើ Java, Spring Boot, Spring Data JPA និង PostgreSQL។",
+            "បានសហការជាមួយក្រុម Mobile និង Frontend ដើម្បីកំណត់ API Contract និងធានាការភ្ជាប់ប្រព័ន្ធដោយរលូន។",
+            "បានបង្កើត និងថែទាំផ្ទាំងគ្រប់គ្រង និងឧបករណ៍រដ្ឋបាលផ្ទៃក្នុងដោយប្រើ Next.js និង TypeScript។",
+            "បានធ្វើការជាមួយម្ចាស់ផលិតផលលើលំហូរអាជីវកម្ម របាយការណ៍ និងតម្រូវការវិភាគទិន្នន័យ។"
+          ]
+        }
+      ]
+    },
+    "technologies": {
+      "title": "ភាសាកូដ និងឧបករណ៍",
+      "items": [
+        {
+          "name": "Visual Studio Code",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+        },
+        {
+          "name": "HTML5",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+        },
+        {
+          "name": "CSS3",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+        },
+        {
+          "name": "React",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+        },
+        {
+          "name": "Vue",
+          "icon": "https://v2.vuejs.org/images/logo.svg"
+        },
+        {
+          "name": "Next.js",
+          "icon": "https://cdn.simpleicons.org/nextdotjs/ffffff"
+        },
+        {
+          "name": "Nuxt.js",
+          "icon": "https://raw.githubusercontent.com/nuxt/modules/main/icons/nuxt.svg"
+        },
+        {
+          "name": "NestJS",
+          "icon": "https://nestjs.com/logo-small-gradient.0ed287ce.svg"
+        },
+        {
+          "name": "Spring Boot",
+          "icon": "https://cdn.simpleicons.org/springboot/6DB33F"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+        },
+        {
+          "name": "DigitalOcean",
+          "icon": "https://cdn.simpleicons.org/digitalocean/0080FF"
+        },
+        {
+          "name": "cPanel",
+          "icon": "https://cdn.simpleicons.org/cpanel/FF6C2C"
+        },
+        {
+          "name": "Git",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+        },
+        {
+          "name": "GitHub",
+          "icon": "https://user-images.githubusercontent.com/3369400/139447912-e0f43f33-6d9f-45f8-be46-2df5bbc91289.png"
+        },
+        {
+          "name": "GitLab",
+          "icon": "https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png"
+        }
+      ]
+    },
+    "about": {
+      "title": "អំពីខ្ញុំ",
+      "paragraphs": [
+        "សួស្តី! ខ្ញុំឈ្មោះ ថៃ សុជាតិតា ជាអ្នកអភិវឌ្ឍ Full Stack អាយុ ២៤ ឆ្នាំ មកពីប្រទេសកម្ពុជា និងបានបញ្ចប់ថ្នាក់បរិញ្ញាបត្រវិទ្យាសាស្ត្រកុំព្យូទ័រពីសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)។",
+        "ខ្ញុំមានបទពិសោធន៍វិជ្ជាជីវៈជាងបីឆ្នាំក្នុងការអភិវឌ្ឍ Frontend, Backend និង Full Stack ដោយបានបង្កើតកម្មវិធីគេហទំព័រ និងផលិតផលឌីជីថលដែលមានភាពជឿជាក់។",
+        "បច្ចេកវិទ្យាស្នូលរបស់ខ្ញុំរួមមាន Java, Spring Boot, JavaScript, TypeScript, PostgreSQL និង RESTful API។ ខ្ញុំក៏ធ្វើការជាមួយ Framework Frontend ទំនើបៗដូចជា Vue.js, Nuxt.js និង Next.js ផងដែរ។",
+        "ខ្ញុំចូលចិត្តសហការជាមួយក្រុមការងារចម្រុះជំនាញ បម្លែងតម្រូវការអាជីវកម្មទៅជាដំណោះស្រាយបច្ចេកទេសដែលអាចអនុវត្តបាន និងបន្តកែលម្អគុណភាព និងភាពងាយស្រួលប្រើប្រាស់នៃផលិតផលដែលខ្ញុំបង្កើត។"
+      ],
+      "facts": [
+        {
+          "label": "ឈ្មោះ",
+          "value": "ថៃ សុជាតិតា"
+        },
+        {
+          "label": "ទីកន្លែងកំណើត",
+          "value": "កំពង់ចាម, កម្ពុជា"
+        },
+        {
+          "label": "អាយុ",
+          "value": "២៤"
+        },
+        {
+          "label": "ជំនាញផ្តោត",
+          "value": "ការអភិវឌ្ឍ Frontend និង Backend"
+        },
+        {
+          "label": "សាកលវិទ្យាល័យ",
+          "value": "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)"
+        }
+      ]
+    },
+    "education": {
+      "title": "ការសិក្សា",
+      "description": "ប្រវត្តិការសិក្សារបស់ខ្ញុំ។",
+      "items": [
+        {
+          "degree": "បរិញ្ញាបត្រវិទ្យាសាស្ត្រកុំព្យូទ័រ",
+          "school": "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",
+          "period": "២០២២ - ២០២៤",
+          "href": "https://www.rupp.edu.kh",
+          "logo": "images/rupp_logo.png",
+          "logoAlt": "និមិត្តសញ្ញា RUPP",
+          "summary": "បានបញ្ចប់ថ្នាក់បរិញ្ញាបត្រវិទ្យាសាស្ត្រកុំព្យូទ័រពីសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ។"
+        },
+        {
+          "degree": "ឆ្នាំមូលដ្ឋានវិទ្យាសាស្ត្រកុំព្យូទ័រ",
+          "school": "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",
+          "period": "២០២០ - ២០២១",
+          "href": "https://www.rupp.edu.kh",
+          "logo": "images/rupp_logo.png",
+          "logoAlt": "និមិត្តសញ្ញា RUPP",
+          "summary": "បានបញ្ចប់មុខវិជ្ជាមូលដ្ឋានផ្នែកវិទ្យាសាស្ត្រកុំព្យូទ័រ ដែលផ្តល់គ្រឹះរឹងមាំក្នុងការសរសេរកម្មវិធី និងគោលគំនិតបច្ចេកវិទ្យា។"
+        },
+        {
+          "degree": "សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ",
+          "school": "វិទ្យាល័យ ជា ស៊ីម កណ្តោលជ្រំ",
+          "period": "២០១៩ - ២០២០",
+          "logo": "images/high-school-logo.jpg",
+          "logoAlt": "និមិត្តសញ្ញាវិទ្យាល័យ ជា ស៊ីម កណ្តោលជ្រំ",
+          "summary": "បានបញ្ចប់ថ្នាក់មធ្យមសិក្សាទុតិយភូមិ ដោយទទួលបានលទ្ធផលល្អក្នុងមុខវិជ្ជាវិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា។"
+        }
+      ]
+    },
+    "contact": {
+      "title": "ទាក់ទងខ្ញុំ",
+      "description": "សូមភ្ជាប់ទំនាក់ទំនងជាមួយខ្ញុំតាមបណ្តាញសង្គម។",
+      "fields": [
+        {
+          "label": "តេឡេក្រាម",
+          "href": "https://t.me/cheata49",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+        },
+        {
+          "label": "ហ្គីតហាប់",
+          "href": "https://www.github.com/socheatathai",
+          "icon": "https://cdn.simpleicons.org/github/4f8cff"
+        },
+        {
+          "label": "លីងឌីន",          
+          "href": "https://www.linkedin.com/in/socheata-thai-586182289",
+          "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
+        }
+      ]
+    },
+    "footer": "© ២០២៦ ថៃ សុជាតិតា។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+  }
 }

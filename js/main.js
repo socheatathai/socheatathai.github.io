@@ -449,11 +449,13 @@ function getDynamicAboutParagraphs(paragraphs, lang, age) {
     }
 
     if (lang === "en") {
-      return paragraph.replace(/(I am currently\s+)\d+(\s+years old)/i, `$1${age}$2`);
+      return paragraph
+        .replace(/(I am currently\s+)\d+(\s+years old)/i, `$1${age}$2`)
+        .replace(/\d+(-year-old)/i, `${age}$1`);
     }
 
     if (lang === "km") {
-      return paragraph.replace(/(បច្ចុប្បន្នខ្ញុំមានអាយុ\s*)\d+(\s*ឆ្នាំ)/, `$1${age}$2`);
+      return paragraph.replace(/(អាយុ\s*)\d+(\s*ឆ្នាំ)/, `$1${age}$2`);
     }
 
     return paragraph;
@@ -487,6 +489,18 @@ function renderProjects(projects, projectLinkText) {
     const description = document.createElement("p");
     description.textContent = project.description;
 
+    const footer = document.createElement("div");
+    footer.className = "project-footer";
+
+    const tags = document.createElement("div");
+    tags.className = "project-tags";
+    (project.tags || []).forEach((tag) => {
+      const badge = document.createElement("span");
+      badge.className = "project-tag";
+      badge.textContent = localizeNumbers(tag);
+      tags.appendChild(badge);
+    });
+
     const link = document.createElement("a");
     link.className = "project-link";
     const href = project.href || "#";
@@ -495,9 +509,12 @@ function renderProjects(projects, projectLinkText) {
       link.target = "_blank";
       link.rel = "noopener noreferrer";
     }
-    link.textContent = projectLinkText;
+    link.textContent = "↗";
+    link.setAttribute("aria-label", `${projectLinkText}: ${project.title}`);
+    link.title = projectLinkText;
 
-    card.append(head, description, link);
+    footer.append(tags, link);
+    card.append(head, description, footer);
     projectsGrid.appendChild(card);
   });
 }
@@ -625,11 +642,17 @@ function renderTechnologies(items) {
 
   toolsGrid.innerHTML = "";
 
-  items.forEach((item) => {
+  const track = document.createElement("div");
+  track.className = "tools-track";
+
+  const createTool = (item, isDuplicate = false) => {
     const tool = document.createElement("span");
     tool.className = "tool-item";
     tool.title = localizeNumbers(item.name || "");
     tool.setAttribute("aria-label", localizeNumbers(item.name || "Technology"));
+    if (isDuplicate) {
+      tool.setAttribute("aria-hidden", "true");
+    }
 
     const icon = document.createElement("img");
     icon.className = "tool-icon";
@@ -638,9 +661,17 @@ function renderTechnologies(items) {
     icon.loading = "lazy";
     icon.decoding = "async";
 
-    tool.appendChild(icon);
-    toolsGrid.appendChild(tool);
-  });
+    const label = document.createElement("span");
+    label.className = "tool-label";
+    label.textContent = localizeNumbers(item.name || "");
+
+    tool.append(icon, label);
+    return tool;
+  };
+
+  items.forEach((item) => track.appendChild(createTool(item)));
+  items.forEach((item) => track.appendChild(createTool(item, true)));
+  toolsGrid.appendChild(track);
 }
 
 function renderContactDetails(fields) {
