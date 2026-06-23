@@ -118,9 +118,11 @@
           "role": "Frontend Developer",
           "period": "Oct 2025 - Present | On-site",
           "details": [
-            "Developed and maintained frontend features using Vue.js, Nuxt.js, Pinia, and Element UI to build responsive and scalable user interfaces.",
-            "Collaborated with backend developers and designers to implement new features and improve system usability.",
-            "Optimized frontend performance and ensured consistency across the platform."
+            "Developed and maintained enterprise web applications using Next.js, Vue.js, Nuxt.js, and TypeScript within an npm and Turborepo monorepo architecture.",
+            "Built responsive and reusable user interfaces using Tailwind CSS, Bootstrap, AdminLTE, Element Plus, and modern UI development practices.",
+            "Managed application state using Redux for Next.js applications and Vuex for Nuxt.js applications.",
+            "Collaborated with backend developers and QA teams to deliver business requirements.",
+            "Participated in bug fixing, UAT testing, code review, and production deployment activities."
           ]
         },
         {
@@ -128,22 +130,22 @@
           "role": "Full Stack Developer",
           "period": "Oct 2024 - Sep 2025 | Phnom Penh, Cambodia | On-site",
           "details": [
-            "Developed backend APIs using NestJS, Prisma ORM, and PostgreSQL.",
-            "Built a mini web service integrated with mobile banking for selling insurance products.",
-            "Implemented authentication, request validation, and REST API integrations following development best practices.",
-            "Designed API flows with business analysts to align technical solutions with business requirements.",
-            "Collaborated with business analysts, QA engineers, and frontend developers throughout the development lifecycle."
+            "Developed and maintained insurance management systems and customer-facing digital services, including a mini web service integrated with mobile banking channels for insurance product sales.",
+            "Built REST APIs using NestJS, Prisma, and PostgreSQL, and developed responsive web applications using Next.js, React, Vue.js, TypeScript, Tailwind CSS, Shadcn UI, PrimeVue, MobX, and Pinia.",
+            "Collaborated with business analysts to analyze insurance products, customer journeys, business rules, and operational workflows.",
+            "Supported UAT, deployment, production maintenance, troubleshooting, and continuous improvement across frontend and backend services."
           ]
         },
         {
-          "company": "dreamsLAB",
-          "role": "Junior Backend Developer",
+          "company": "DREAMSLAB Company",
+          "role": "Backend Developer",
           "period": "Jun 2023 - Oct 2024 | On-site",
           "details": [
-            "Developed RESTful APIs for a crowdfunding platform using Java, Spring Boot, Spring Data JPA, and PostgreSQL.",
-            "Collaborated with mobile and frontend teams to define API contracts and ensure seamless system integration.",
-            "Built and maintained internal dashboards and administration tools using Next.js and TypeScript.",
-            "Worked with product owners on business workflows, reporting, and analytics requirements."
+            "Developed RESTful APIs for a crowdfunding platform using Java, Spring Boot, NestJS, Spring Data JPA, Prisma ORM, and PostgreSQL.",
+            "Designed database models, business logic, JWT authentication, and RBAC while improving API performance and reliability.",
+            "Collaborated with mobile and frontend teams on API contracts and system integration.",
+            "Built internal dashboard and administration tools using Next.js and TypeScript.",
+            "Worked with product owners, UX/UI designers, and QA teams to deliver business workflows, reporting features, UAT support, and production fixes."
           ]
         }
       ]
@@ -426,9 +428,11 @@
           "role": "អ្នកអភិវឌ្ឍ Frontend",
           "period": "តុលា ២០២៥ - បច្ចុប្បន្ន | ធ្វើការនៅការិយាល័យ",
           "details": [
-            "បានអភិវឌ្ឍ និងថែទាំមុខងារ Frontend ដោយប្រើ Vue.js, Nuxt.js, Pinia និង Element UI ដើម្បីបង្កើតផ្ទៃប្រើប្រាស់ដែលបត់បែន និងអាចពង្រីកបាន។",
-            "បានសហការជាមួយអ្នកអភិវឌ្ឍ Backend និងអ្នករចនា ដើម្បីបង្កើតមុខងារថ្មី និងកែលម្អភាពងាយស្រួលប្រើប្រាស់របស់ប្រព័ន្ធ។",
-            "បានបង្កើនប្រសិទ្ធភាព Frontend និងធានាភាពស៊ីសង្វាក់គ្នានៅទូទាំងប្រព័ន្ធ។"
+            "បានអភិវឌ្ឍ និងថែទាំ enterprise web applications ដោយប្រើ Next.js, Vue.js, Nuxt.js និង TypeScript នៅក្នុងស្ថាបត្យកម្ម monorepo ដោយប្រើ npm និង Turborepo។",
+            "បានបង្កើតផ្ទៃប្រើប្រាស់ដែលបត់បែនតាមទំហំអេក្រង់ និងអាចប្រើឡើងវិញបាន ដោយប្រើ Tailwind CSS, Bootstrap, AdminLTE, Element Plus និងអនុវត្តតាមវិធីសាស្រ្តអភិវឌ្ឍ UI ទំនើប។",
+            "បានគ្រប់គ្រងស្ថានភាពកម្មវិធីដោយប្រើ Redux សម្រាប់កម្មវិធី Next.js និង Vuex សម្រាប់កម្មវិធី Nuxt.js។",
+            "បានសហការជាមួយអ្នកអភិវឌ្ឍ Backend និងក្រុម QA ដើម្បីបំពេញតម្រូវការអាជីវកម្ម។",
+            "បានចូលរួមក្នុងការជួសជុលកំហុស ការធ្វើតេស្ត UAT ការពិនិត្យកូដ និងសកម្មភាពដាក់ប្រើប្រាស់ទៅ production។"
           ]
         },
         {
@@ -436,22 +440,22 @@
           "role": "អ្នកអភិវឌ្ឍ Full Stack",
           "period": "តុលា ២០២៤ - កញ្ញា ២០២៥ | ភ្នំពេញ, កម្ពុជា | ធ្វើការនៅការិយាល័យ",
           "details": [
-            "បានអភិវឌ្ឍ Backend API ដោយប្រើ NestJS, Prisma ORM និង PostgreSQL។",
-            "បានបង្កើតសេវាកម្មគេហទំព័រខ្នាតតូចដែលភ្ជាប់ជាមួយ Mobile Banking សម្រាប់លក់ផលិតផលធានារ៉ាប់រង។",
-            "បានអនុវត្តប្រព័ន្ធផ្ទៀងផ្ទាត់អត្តសញ្ញាណ ការត្រួតពិនិត្យ Request និងការភ្ជាប់ REST API តាមស្តង់ដារអភិវឌ្ឍល្អ។",
-            "បានរចនាលំហូរ API ជាមួយអ្នកវិភាគអាជីវកម្ម ដើម្បីឱ្យដំណោះស្រាយបច្ចេកទេសស្របតាមតម្រូវការអាជីវកម្ម។",
-            "បានសហការជាមួយអ្នកវិភាគអាជីវកម្ម វិស្វករ QA និងអ្នកអភិវឌ្ឍ Frontend ពេញមួយវដ្តនៃការអភិវឌ្ឍ។"
+            "បានអភិវឌ្ឍ និងថែទាំប្រព័ន្ធគ្រប់គ្រងធានារ៉ាប់រង និងសេវាឌីជីថលសម្រាប់អតិថិជន រួមទាំងសេវាគេហទំព័រខ្នាតតូចដែលភ្ជាប់ជាមួយបណ្តាញ mobile banking សម្រាប់លក់ផលិតផលធានារ៉ាប់រង។",
+            "បានបង្កើត REST API ដោយប្រើ NestJS, Prisma និង PostgreSQL ហើយបានអភិវឌ្ឍកម្មវិធីគេហទំព័រដែលបត់បែនតាមទំហំអេក្រង់ដោយប្រើ Next.js, React, Vue.js, TypeScript, Tailwind CSS, Shadcn UI, PrimeVue, MobX និង Pinia។",
+            "បានសហការជាមួយអ្នកវិភាគអាជីវកម្ម ដើម្បីវិភាគផលិតផលធានារ៉ាប់រង ដំណើរអតិថិជន ច្បាប់អាជីវកម្ម និងលំហូរការងារប្រតិបត្តិការ។",
+            "បានគាំទ្រការធ្វើតេស្ត UAT ការដាក់ប្រើប្រាស់ ការថែទាំ production ការដោះស្រាយបញ្ហា និងការកែលម្អបន្តលើសេវា Frontend និង Backend។"
           ]
         },
         {
-          "company": "dreamsLAB",
-          "role": "អ្នកអភិវឌ្ឍ Backend កម្រិតដំបូង",
+          "company": "DREAMSLAB Company",
+          "role": "អ្នកអភិវឌ្ឍ Backend",
           "period": "មិថុនា ២០២៣ - តុលា ២០២៤ | ធ្វើការនៅការិយាល័យ",
           "details": [
-            "បានអភិវឌ្ឍ RESTful API សម្រាប់ប្រព័ន្ធ Crowdfunding ដោយប្រើ Java, Spring Boot, Spring Data JPA និង PostgreSQL។",
-            "បានសហការជាមួយក្រុម Mobile និង Frontend ដើម្បីកំណត់ API Contract និងធានាការភ្ជាប់ប្រព័ន្ធដោយរលូន។",
-            "បានបង្កើត និងថែទាំផ្ទាំងគ្រប់គ្រង និងឧបករណ៍រដ្ឋបាលផ្ទៃក្នុងដោយប្រើ Next.js និង TypeScript។",
-            "បានធ្វើការជាមួយម្ចាស់ផលិតផលលើលំហូរអាជីវកម្ម របាយការណ៍ និងតម្រូវការវិភាគទិន្នន័យ។"
+            "បានអភិវឌ្ឍ RESTful API សម្រាប់ប្រព័ន្ធ crowdfunding ដោយប្រើ Java, Spring Boot, NestJS, Spring Data JPA, Prisma ORM និង PostgreSQL។",
+            "បានរចនាម៉ូឌែលមូលដ្ឋានទិន្នន័យ business logic ប្រព័ន្ធផ្ទៀងផ្ទាត់ JWT និង RBAC ព្រមទាំងកែលម្អប្រសិទ្ធភាព និងភាពជឿជាក់របស់ API។",
+            "បានសហការជាមួយក្រុម Mobile និង Frontend លើ API contracts និងការភ្ជាប់ប្រព័ន្ធ។",
+            "បានបង្កើតផ្ទាំងគ្រប់គ្រង និងឧបករណ៍រដ្ឋបាលផ្ទៃក្នុងដោយប្រើ Next.js និង TypeScript។",
+            "បានធ្វើការជាមួយម្ចាស់ផលិតផល អ្នករចនា UX/UI និងក្រុម QA ដើម្បីបញ្ជូនលំហូរអាជីវកម្ម មុខងាររបាយការណ៍ ការគាំទ្រ UAT និងការជួសជុលបញ្ហា production។"
           ]
         }
       ]
