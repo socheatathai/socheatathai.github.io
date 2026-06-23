@@ -1,0 +1,11 @@
+/* TEAM */
+Name: Thai Socheata
+Role: Full Stack Developer
+Location: Cambodia
+GitHub: https://www.github.com/socheatathai
+LinkedIn: https://www.linkedin.com/in/socheata-thai-586182289
+
+/* SITE */
+URL: https://socheatathai.github.io/
+Language: English, Khmer
+Standards: HTML, CSS, JavaScript, JSON-LD, Open Graph

@@ -1,0 +1,19 @@
+{
+  "name": "Thai Socheata Portfolio",
+  "short_name": "Socheata",
+  "description": "Portfolio of Thai Socheata, a full-stack developer from Cambodia.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "images/cheata.jpg",
+      "sizes": "200x200",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
