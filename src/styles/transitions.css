@@ -1,0 +1,80 @@
+.page-transition { min-width: 0; background: var(--background); }
+
+/* Keep navigation usable while the browser renders page snapshots. */
+::view-transition { pointer-events: none; }
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .main-column { overflow-x: clip; }
+
+  ::view-transition-group(.page-enter-forward),
+  ::view-transition-group(.page-exit-forward),
+  ::view-transition-group(.page-enter-back),
+  ::view-transition-group(.page-exit-back) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(.22, .7, .3, 1);
+    overflow: clip;
+  }
+
+  ::view-transition-old(.page-exit-forward),
+  ::view-transition-new(.page-enter-forward),
+  ::view-transition-old(.page-exit-back),
+  ::view-transition-new(.page-enter-back) {
+    height: 100%;
+    object-fit: none;
+    object-position: top left;
+    mix-blend-mode: normal;
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(.22, .7, .3, 1);
+    animation-fill-mode: both;
+  }
+
+  ::view-transition-group(.page-enter-forward),
+  ::view-transition-group(.page-exit-back) { z-index: 2; }
+  ::view-transition-group(.page-exit-forward),
+  ::view-transition-group(.page-enter-back) { z-index: 1; }
+
+  ::view-transition-old(.page-exit-forward) { animation-name: page-out-left; }
+  ::view-transition-new(.page-enter-forward) { animation-name: page-in-right; }
+  ::view-transition-old(.page-exit-back) { animation-name: page-out-right; }
+  ::view-transition-new(.page-enter-back) { animation-name: page-in-left; }
+
+  /* Older browsers still get a light entrance without delaying navigation. */
+  @supports not (view-transition-class: page-forward) {
+    .page-transition { animation: page-enter 280ms cubic-bezier(.22, .7, .3, 1) both; }
+  }
+}
+
+@keyframes page-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes page-out-left {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-25%); opacity: .3; }
+}
+
+@keyframes page-in-left {
+  from { transform: translateX(-25%); opacity: .3; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes page-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes page-enter {
+  from { transform: translateX(28px); opacity: .5; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+  .page-transition { animation: none; }
+}

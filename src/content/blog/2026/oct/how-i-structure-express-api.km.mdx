@@ -1,0 +1,299 @@
+---
+title: "របៀបដែលខ្ញុំរៀបចំ Express.js API ជាមួយ TypeScript, Prisma និង PostgreSQL"
+description: "ចែករំលែកបទពិសោធន៍របស់ខ្ញុំក្នុងការរៀបចំ Express.js API ឱ្យមានរចនាសម្ព័ន្ធស្អាត ងាយស្រួលថែទាំ និងអាចពង្រីកមុខងារនៅពេលអនាគត។"
+date: "2026-10-16"
+tags:
+  - Express.js
+  - TypeScript
+  - Node.js
+  - PostgreSQL
+  - Prisma
+  - Backend
+---
+
+នៅពេលដែលខ្ញុំចាប់ផ្តើមអភិវឌ្ឍ Backend Application មួយ រឿងដំបូងដែលខ្ញុំតែងតែគិតគឺ តើគួររៀបចំ Project Structure បែបណា ដើម្បីឱ្យ Code ងាយស្រួលអាន ងាយស្រួលថែទាំ និងអាចពង្រីកបាននៅពេលក្រោយ?
+
+សម្រាប់ API តូចៗ ការសរសេរ និងគ្រប់គ្រង Code អាចមានភាពងាយស្រួលនៅដំណាក់កាលដំបូង។ ប៉ុន្តែនៅពេល Project ចាប់ផ្តើមមាន Features កាន់តែច្រើន Codebase ក៏អាចកាន់តែស្មុគស្មាញ ប្រសិនបើយើងមិនបានរៀបចំវាឱ្យបានល្អ។
+
+ផ្អែកលើបទពិសោធន៍របស់ខ្ញុំក្នុងការអភិវឌ្ឍ Backend Applications ខ្ញុំចូលចិត្តចាប់ផ្តើមពី Structure ដែលសាមញ្ញ មានការបែងចែកតួនាទីច្បាស់លាស់ និងងាយស្រួលពង្រីកនៅពេលក្រោយ។
+
+ថ្មីៗនេះ ខ្ញុំបានធ្វើការ និងសាកល្បងលើ Project មួយឈ្មោះ [Express API](https://github.com/socheatathai/express-api) ដើម្បីអនុវត្ត និងចែករំលែកវិធីសាស្ត្រមួយចំនួនដែលខ្ញុំតែងតែប្រើនៅពេលអភិវឌ្ឍ Backend Applications។
+
+នៅក្នុងអត្ថបទនេះ ខ្ញុំនឹងចែករំលែកអំពី Technologies ដែលខ្ញុំប្រើ របៀបរៀបចំ Project Structure និងមូលហេតុដែលខ្ញុំជ្រើសរើសវិធីសាស្ត្រនេះ។
+
+## 1. Technologies ដែលខ្ញុំប្រើ
+
+សម្រាប់ Project នេះ ខ្ញុំប្រើប្រាស់ Technologies ដូចខាងក្រោម៖
+
+- **Express.js + TypeScript** — សម្រាប់អភិវឌ្ឍ REST APIs និងជួយគ្រប់គ្រង Type Safety។
+- **PostgreSQL** — សម្រាប់រក្សាទុក និងគ្រប់គ្រងទិន្នន័យ។
+- **Prisma ORM** — សម្រាប់ទំនាក់ទំនងជាមួយ Database និងគ្រប់គ្រង Migrations។
+- **Docker Compose** — សម្រាប់ដំណើរការ PostgreSQL នៅក្នុង Local Development។
+- **Swagger / OpenAPI** — សម្រាប់រៀបចំ API Documentation។
+- **API Testing** — សម្រាប់ធ្វើតេស្តដំណើរការរបស់ API Endpoints។
+- **Centralized Error Handling** — សម្រាប់គ្រប់គ្រង Errors នៅកន្លែងតែមួយ។
+- **API Versioning** — សម្រាប់គ្រប់គ្រងកំណែ API នៅពេលមានការផ្លាស់ប្តូរ។
+
+ខ្ញុំជ្រើសរើស Stack នេះ ព្រោះវាសមស្របសម្រាប់ការចាប់ផ្តើម Project ថ្មី និងមិនចាំបាច់បន្ថែមភាពស្មុគស្មាញច្រើនពេក។
+
+## 2. របៀបរៀបចំ Project Structure
+
+ខ្ញុំចូលចិត្តបែងចែក Responsibilities ឱ្យបានច្បាស់លាស់ ជាជាងដាក់ Routes, Database Queries និង Application Logic ទាំងអស់នៅក្នុង File តែមួយ។
+
+ខាងក្រោមគឺជា Structure សាមញ្ញរបស់ Project៖
+
+```text
+src/
+├── app.ts
+├── server.ts
+├── controllers/
+├── docs/
+├── lib/
+│   └── prisma.ts
+├── middleware/
+└── routes/
+    └── v1/
+
+prisma/
+├── schema.prisma
+└── migrations/
+
+test/
+docker-compose.yml
+package.json
+```
+
+Folder នីមួយៗមានតួនាទីផ្សេងៗគ្នា៖
+
+- `app.ts` — សម្រាប់រៀបចំ Express Application និង Middleware។
+- `server.ts` — សម្រាប់ចាប់ផ្តើម HTTP Server។
+- `controllers/` — សម្រាប់គ្រប់គ្រង Requests និង Responses។
+- `routes/v1/` — សម្រាប់កំណត់ API Endpoints តាម Version។
+- `middleware/` — សម្រាប់គ្រប់គ្រង Error Handling និង Middleware ផ្សេងៗ។
+- `lib/prisma.ts` — សម្រាប់គ្រប់គ្រង Prisma Client។
+- `docs/` — សម្រាប់រក្សាទុក API Documentation។
+- `prisma/` — សម្រាប់រក្សាទុក Database Schema និង Migrations។
+- `test/` — សម្រាប់រក្សាទុក API Tests។
+
+គោលបំណងរបស់ខ្ញុំមិនមែនចង់បង្កើត Folder ច្រើនៗដោយមិនចាំបាច់នោះទេ ប៉ុន្តែចង់ឱ្យ Project មានគ្រឹះល្អមុននឹងបន្ថែម Features ថ្មីៗ។
+
+## 3. ការបែងចែក Routes និង Controllers
+
+បញ្ហាមួយដែលខ្ញុំចង់ជៀសវាងគឺការសរសេរ Business Logic ច្រើនពេកនៅក្នុង Route Handler។
+
+ខ្ញុំចូលចិត្តឱ្យ Route មានតួនាទីកំណត់ Endpoint និងបញ្ជូន Request ទៅ Controller ដែលត្រូវគ្នា។
+
+ឧទាហរណ៍៖
+
+```ts
+import { Router } from "express";
+import {
+  getUsers,
+  createUser,
+} from "../controllers/user.controller";
+
+const router = Router();
+
+router.get("/users", getUsers);
+router.post("/users", createUser);
+
+export default router;
+```
+
+ចំណែក Controller មានតួនាទីគ្រប់គ្រង HTTP Request និង Response។
+
+នៅពេល Business Logic កាន់តែស្មុគស្មាញ យើងអាចបំបែកវាទៅក្នុង Service Layer ដាច់ដោយឡែក។
+
+វិធីនេះជួយឱ្យ Code ងាយស្រួលអាន ងាយស្រួលធ្វើ Testing និងងាយស្រួលថែទាំ។
+
+ឧទាហរណ៍ Users ខាងលើគឺជាគំរូសម្រាប់បង្ហាញពីរបៀបរៀបចំ Feature នាពេលអនាគត មិនមែនជា Feature ដែលបានបញ្ចប់រួចនៅក្នុង Repository នោះទេ។
+
+## 4. API Versioning
+
+ខ្ញុំចូលចិត្តរៀបចំ API Versioning តាំងពីដំបូង។
+
+ឧទាហរណ៍៖
+
+```text
+/api/v1/users
+/api/v1/products
+/api/v1/orders
+```
+
+នៅពេលអនាគត ប្រសិនបើយើងត្រូវការផ្លាស់ប្តូរ API ដែលអាចប៉ះពាល់ដល់ Clients ចាស់ យើងអាចបង្កើត Version ថ្មី៖
+
+```text
+/api/v2/users
+```
+
+វិធីនេះអាចជួយរក្សាភាពត្រូវគ្នាជាមួយ Clients ដែលនៅប្រើ API Version ចាស់។
+
+វាមិនមានន័យថារាល់ការកែប្រែ API សុទ្ធតែត្រូវបង្កើត Version ថ្មីនោះទេ។
+
+គោលបំណងគឺធ្វើឱ្យការគ្រប់គ្រង API មានភាពងាយស្រួលនៅពេល Project កាន់តែធំ។
+
+## 5. Centralized Error Handling
+
+ការគ្រប់គ្រង Error គឺជាផ្នែកសំខាន់មួយក្នុងការអភិវឌ្ឍ Backend Application។
+
+ជំនួសឱ្យការសរសេរ Error Response ដដែលៗនៅគ្រប់ Controller ខ្ញុំចូលចិត្តប្រើ Middleware មួយសម្រាប់គ្រប់គ្រង Error។
+
+ឧទាហរណ៍៖
+
+```ts
+import type {
+  ErrorRequestHandler,
+} from "express";
+
+export const errorHandler: ErrorRequestHandler = (
+  err,
+  req,
+  res,
+  next
+) => {
+  console.error(err);
+
+  res.status(500).json({
+    success: false,
+    message: "Internal server error",
+  });
+};
+```
+
+នេះគ្រាន់តែជា Basic Example ប៉ុណ្ណោះ។
+
+សម្រាប់ Production Application យើងគួរគ្រប់គ្រង Error Types ផ្សេងៗ ដូចជា Validation Errors, Authentication Errors និង Internal Server Errors ដោយប្រើ HTTP Status Codes ឱ្យបានត្រឹមត្រូវ។
+
+ការប្រើ Centralized Error Handling ជួយឱ្យ Error Responses មានទម្រង់ស្របគ្នា និងកាត់បន្ថយ Code ដែលសរសេរដដែលៗ។
+
+## 6. PostgreSQL និង Prisma ORM
+
+សម្រាប់ Database ខ្ញុំប្រើ PostgreSQL ជាមួយ Prisma ORM។
+
+Prisma ជួយឱ្យយើងងាយស្រួលក្នុងការកំណត់ Models គ្រប់គ្រង Database Migrations និងសរសេរ Queries ដែលមាន Type Safety។
+
+ឧទាហរណ៍ User Model ដែលអាចបន្ថែមនៅពេលក្រោយ៖
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+}
+```
+
+ខ្ញុំក៏ចូលចិត្តរៀបចំ Prisma Client នៅក្នុង Shared Module មួយ ជាជាងបង្កើត Client ថ្មីនៅគ្រប់ Controller។
+
+វិធីនេះជួយឱ្យការគ្រប់គ្រង Database Connection មានភាពងាយស្រួល។
+
+បច្ចុប្បន្ន Project នេះផ្តោតទៅលើការរៀបចំគ្រឹះ Backend ជាមុនសិន។ Business Models អាចត្រូវបានបន្ថែមនៅពេលមាន Requirements ច្បាស់លាស់។
+
+## 7. Docker Compose សម្រាប់ Local Development
+
+ខ្ញុំប្រើ Docker Compose ដើម្បីដំណើរការ PostgreSQL នៅក្នុង Local Development Environment។
+
+ជំនួសឱ្យការដំឡើង Database ដោយផ្ទាល់នៅលើម៉ាស៊ីនរាល់ពេល យើងអាចដំណើរការ Database Service តាមរយៈ Docker។
+
+ឧទាហរណ៍ Commands៖
+
+```bash
+npm run db:up
+npm run db:generate
+npm run dev
+```
+
+វិធីនេះជួយឱ្យការរៀបចំ Development Environment មានភាពងាយស្រួល និងស្របគ្នារវាង Developers។
+
+នៅពេល Project កាន់តែធំ យើងក៏អាចបន្ថែម Services ផ្សេងៗតាមតម្រូវការជាក់ស្តែងបានផងដែរ។
+
+## 8. Swagger / OpenAPI Documentation
+
+សម្រាប់ខ្ញុំ API Documentation មានសារៈសំខាន់ ជាពិសេសនៅពេលធ្វើការជាមួយ Frontend Developers, Mobile Developers ឬ Backend Teams ផ្សេងៗ។
+
+ខ្ញុំប្រើ Swagger / OpenAPI ដើម្បីរៀបចំព័ត៌មានអំពី៖
+
+- API Endpoints និង HTTP Methods។
+- Request Parameters និង Request Body។
+- Expected API Responses។
+- Error Responses។
+- របៀបធ្វើតេស្ត និងប្រើប្រាស់ API។
+
+ឧទាហរណ៍ Swagger UI អាចត្រូវបានបើកនៅ Local Environment តាមរយៈ៖
+
+```text
+http://localhost:3000/api-docs
+```
+
+ការមាន Documentation ច្បាស់លាស់ជួយឱ្យការធ្វើ API Integration មានភាពងាយស្រួល និងកាត់បន្ថយការយល់ច្រឡំរវាងក្រុមការងារ។
+
+## 9. API Testing
+
+ខ្ញុំក៏ចូលចិត្តរៀបចំ API Testing ជាផ្នែកមួយនៃ Project Foundation ផងដែរ។
+
+Testing ជួយផ្ទៀងផ្ទាត់ថា Endpoints ដំណើរការតាមអ្វីដែលយើងរំពឹងទុក និងជួយកាត់បន្ថយបញ្ហានៅពេលកែប្រែ Code។
+
+ឧទាហរណ៍ Health Check Test ដោយប្រើ Supertest៖
+
+```ts
+import request from "supertest";
+import app from "../src/app";
+
+describe("Health Check", () => {
+  it("should return HTTP 200", async () => {
+    const response = await request(app)
+      .get("/health");
+
+    expect(response.status).toBe(200);
+  });
+});
+```
+
+នេះគ្រាន់តែជាឧទាហរណ៍សម្រាប់បង្ហាញគំនិតនៃ Testing ប៉ុណ្ណោះ។ Endpoint និង Test Configuration ត្រូវកំណត់ឱ្យស្របតាម Project ពិតប្រាកដ។
+
+នៅពេលបន្ថែម Features ថ្មីៗ ខ្ញុំគ្រោងនឹងផ្តោតលើ Request Validation, Authentication, Business Logic និង Error Handling Tests ផងដែរ។
+
+## 10. ហេតុអ្វីខ្ញុំចាប់ផ្តើមពី Architecture សាមញ្ញ?
+
+មិនមែនគ្រប់ Application ទាំងអស់សុទ្ធតែត្រូវការប្រើ Microservices តាំងពីដំបូងនោះទេ។
+
+សម្រាប់ Project ថ្មី ខ្ញុំចូលចិត្តចាប់ផ្តើមពី **Monolith ដែលមាន Structure ល្អ**។
+
+វាងាយស្រួលក្នុងការអភិវឌ្ឍ Debug Deploy និងថែទាំ នៅពេល Application នៅមានទំហំតូច។
+
+នៅពេល System កាន់តែធំ យើងអាចពិនិត្យមើល Requirements ជាក់ស្តែង ហើយសម្រេចថាតើត្រូវកែប្រែ Architecture ឬអត់។
+
+សម្រាប់ខ្ញុំ Software Architecture ល្អមិនមែនមានន័យថាត្រូវប្រើ Technologies ឬ Design Patterns ច្រើននោះទេ។
+
+អ្វីដែលសំខាន់គឺជ្រើសរើសវិធីសាស្ត្រដែលសមស្របនឹង Project និងធ្វើឱ្យ Codebase ងាយស្រួលគ្រប់គ្រង។
+
+## 11. តើខ្ញុំនឹងធ្វើអ្វីបន្តទៀត?
+
+Project នេះនៅតែស្ថិតក្នុងដំណាក់កាលអភិវឌ្ឍ និងកែលម្អជាបន្តបន្ទាប់។
+
+Features និង Concepts ដែលខ្ញុំគ្រោងនឹងបន្ថែមមានដូចជា៖
+
+- Authentication និង Authorization។
+- Request Validation។
+- Business Logic និង Service Layers។
+- Structured Logging។
+- Redis Caching។
+- Monitoring និង Observability។
+- Performance និង Load Testing។
+- Security Improvements។
+
+ខ្ញុំចូលចិត្តបន្ថែម Features ទាំងនេះម្តងមួយៗ ជាជាងបញ្ចូលអ្វីៗទាំងអស់តាំងពីដំបូង។
+
+## សេចក្តីសន្និដ្ឋាន
+
+សម្រាប់ខ្ញុំ ការអភិវឌ្ឍ Backend Application មួយដែលល្អ មិនមែនគ្រាន់តែធ្វើឱ្យ API Endpoints អាចដំណើរការបានប៉ុណ្ណោះទេ។
+
+យើងក៏គួរយកចិត្តទុកដាក់លើ Code Organization, Error Handling, API Documentation, Testing និង Maintainability ផងដែរ។
+
+ខ្ញុំប្រើ Express.js Project នេះដើម្បីអនុវត្ត និងចែករំលែកនូវ Patterns និង Approaches មួយចំនួនដែលខ្ញុំបានរៀនពីបទពិសោធន៍ក្នុងការអភិវឌ្ឍ Backend Applications។
+
+ខ្ញុំនឹងបន្តកែលម្អ Repository នេះ និងចែករំលែកចំណេះដឹងថ្មីៗនៅពេលខ្ញុំបន្ថែម Features និងសិក្សាពី Concepts ថ្មីៗ។
+
+**GitHub Repository:** [socheatathai/express-api](https://github.com/socheatathai/express-api)
+
+អរគុណសម្រាប់ការអាន! 🚀
