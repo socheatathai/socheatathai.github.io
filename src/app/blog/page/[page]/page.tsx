@@ -1,37 +1,30 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import BlogContent from "@/components/blog/BlogContent";
 import PageTransition from "@/components/layout/PageTransition";
-import { getBlogPage, getBlogPosts } from "@/lib/blog";
-import { getBlogPageCount, getBlogPageHref } from "@/lib/blog-pagination";
-import { pageMetadata } from "@/lib/site";
-
-type Props = { params: Promise<{ page: string }> };
+import { getBlogPosts } from "@/lib/blog";
+import { getBlogPageCount } from "@/lib/blog-pagination";
+import { getBlogPageOrNotFound } from "@/lib/blog/routes";
+import { blogIndexMetadata } from "@/lib/metadata";
+import type { BlogArchivePageProps } from "@/types/routes";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return Array.from({ length: getBlogPageCount(getBlogPosts().length) }, (_, index) => ({ page: String(index + 1) }));
+  return Array.from({ length: getBlogPageCount(getBlogPosts().length) }, (_, index) => ({
+    page: String(index + 1),
+  }));
 }
 
-function readPage(value: string) {
-  if (!/^[1-9]\d*$/.test(value)) notFound();
-  const result = getBlogPage(Number(value));
-  if (!result) notFound();
-  return result;
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: BlogArchivePageProps): Promise<Metadata> {
   const { page } = await params;
-  const { currentPage } = readPage(page);
-  return pageMetadata(
-    currentPage === 1 ? "Blog" : `Blog · Page ${currentPage}`,
-    "Project notes, development examples, and tutorials from Thai Socheata.",
-    getBlogPageHref(currentPage),
+  return blogIndexMetadata(getBlogPageOrNotFound(page).currentPage);
+}
+
+export default async function PaginatedBlogPage({ params }: BlogArchivePageProps) {
+  const { page } = await params;
+  return (
+    <PageTransition>
+      <BlogContent {...getBlogPageOrNotFound(page)} allPosts={getBlogPosts()} />
+    </PageTransition>
   );
-}
-
-export default async function PaginatedBlogPage({ params }: Props) {
-  const { page } = await params;
-  return <PageTransition><BlogContent {...readPage(page)} allPosts={getBlogPosts()} /></PageTransition>;
 }

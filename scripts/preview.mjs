@@ -36,15 +36,22 @@ const server = createServer(async (request, response) => {
   }
 
   let pathname;
+  let search;
   try {
-    pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+    const url = new URL(request.url, "http://localhost");
+    pathname = decodeURIComponent(url.pathname);
+    search = url.search;
   } catch {
     response.writeHead(400).end("Bad request");
     return;
   }
 
   let target = path.resolve(root, `.${pathname}`);
-  if (path.relative(root, target).startsWith("..") || pathname.includes("\0")) {
+  if (
+    path.relative(root, target).startsWith("..") ||
+    /[\0\\]/.test(pathname) ||
+    pathname.startsWith("//")
+  ) {
     response.writeHead(403).end("Forbidden");
     return;
   }
@@ -52,13 +59,17 @@ const server = createServer(async (request, response) => {
   try {
     if ((await stat(target)).isDirectory()) {
       if (!pathname.endsWith("/")) {
-        response.writeHead(308, { Location: `${encodeURI(pathname)}/` }).end();
+        // Encode segments so decoded slashes, '?' or '#' cannot change the redirect origin/path.
+        const redirect = pathname.split("/").map(encodeURIComponent).join("/");
+        response.writeHead(308, { Location: `${redirect}/${search}` }).end();
         return;
       }
       target = path.join(target, "index.html");
     }
     const body = await readFile(target);
-    response.writeHead(200, { "Content-Type": mimeTypes[path.extname(target)] || "application/octet-stream" });
+    response.writeHead(200, {
+      "Content-Type": mimeTypes[path.extname(target)] || "application/octet-stream",
+    });
     response.end(request.method === "HEAD" ? undefined : body);
   } catch {
     const body = await readFile(path.join(root, "404.html")).catch(() => "Page not found");
@@ -67,4 +78,6 @@ const server = createServer(async (request, response) => {
   }
 });
 
-server.listen(port, "127.0.0.1", () => console.log(`Static preview: http://localhost:${port}`));
+server.listen(port, "127.0.0.1", () =>
+  console.log(`Static preview: http://localhost:${server.address().port}`),
+);

@@ -2,11 +2,11 @@
 
 import Link from "@/components/layout/PageLink";
 import { useLanguage } from "@/components/LanguageProvider";
-import type { BlogPostMetadata } from "@/lib/blog";
-import { formatBlogDate, localizedBlogText } from "./blogText";
+import { formatBlogDate, localizedBlogText } from "@/lib/blog-text";
+import type { BlogPostMetadata } from "@/types/blog";
 
 export function BlogEntry({ post }: { post: BlogPostMetadata }) {
-  const { language } = useLanguage();
+  const { language, content } = useLanguage();
   const km = language === "km";
   const text = localizedBlogText(post, language);
   const isProject = post.type === "project";
@@ -14,16 +14,29 @@ export function BlogEntry({ post }: { post: BlogPostMetadata }) {
   return (
     <article className="blog-entry" lang={km && post.km ? "km" : "en"}>
       <div className="blog-meta">
-        <span>{isProject ? (km ? "កំណត់ត្រាគម្រោង" : "Project notes") : (km ? "អត្ថបទ" : "Article")}</span>
-        {post.date && <><span aria-hidden="true">·</span><time dateTime={post.date}>{formatBlogDate(post.date, language)}</time></>}
+        <span>{isProject ? content.blog.projectType : content.blog.articleType}</span>
+        {post.date && (
+          <>
+            <span aria-hidden="true">·</span>
+            <time dateTime={post.date}>{formatBlogDate(post.date, language)}</time>
+          </>
+        )}
       </div>
-      <h2><Link href={`/blog/${post.slug}/`}>{text.title}</Link></h2>
+      <h2>
+        <Link href={`/blog/${post.slug}/`}>{text.title}</Link>
+      </h2>
       <p>{text.description}</p>
-      <ul className="tag-list" aria-label={isProject ? (km ? "បច្ចេកវិទ្យា និងប្រធានបទ" : "Technologies and topics") : (km ? "ប្រធានបទ" : "Topics")}>
-        {text.tags.map((tag) => <li key={tag}>{tag}</li>)}
+      <ul
+        className="tag-list"
+        aria-label={isProject ? content.blog.projectTopics : content.blog.topics}
+      >
+        {text.tags.map((tag) => (
+          <li key={tag}>{tag}</li>
+        ))}
       </ul>
       <Link className="text-link" href={`/blog/${post.slug}/`}>
-        {isProject ? (km ? "អានកំណត់ត្រា" : "Read notes") : (km ? "អានអត្ថបទ" : "Read article")} <span aria-hidden="true">↗</span>
+        {isProject ? content.blog.readProject : content.blog.readArticle}{" "}
+        <span aria-hidden="true">↗</span>
         <span className="sr-only">: {text.title}</span>
       </Link>
     </article>
@@ -31,14 +44,16 @@ export function BlogEntry({ post }: { post: BlogPostMetadata }) {
 }
 
 export default function BlogList({ posts }: { posts: BlogPostMetadata[] }) {
-  const { language } = useLanguage();
+  const { content } = useLanguage();
   if (posts.length === 0) {
-    return <p>{language === "km" ? "អត្ថបទថ្មីៗនឹងបង្ហាញនៅទីនេះក្នុងពេលឆាប់ៗ។" : "New articles will appear here soon."}</p>;
+    return <p>{content.blog.emptyArchive}</p>;
   }
 
   return (
     <div className="blog-list">
-      {posts.map((post) => <BlogEntry key={post.slug} post={post} />)}
+      {posts.map((post) => (
+        <BlogEntry key={post.slug} post={post} />
+      ))}
     </div>
   );
 }

@@ -1,10 +1,11 @@
-import type { BlogPostMetadata } from "@/lib/blog";
+import type { BlogPostMetadata } from "@/types/blog";
+import type { Language } from "@/types/language";
 
-export function localizedBlogText(post: BlogPostMetadata, language: "en" | "km") {
+export function localizedBlogText(post: BlogPostMetadata, language: Language) {
   return language === "km" && post.km ? post.km : post;
 }
 
-export function formatBlogDate(date: string, language: "en" | "km"): string {
+export function formatBlogDate(date: string, language: Language): string {
   return new Intl.DateTimeFormat(language === "km" ? "km-KH" : "en", {
     year: "numeric",
     month: "long",

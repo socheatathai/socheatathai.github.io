@@ -1,53 +1,32 @@
 ---
-# Copy this file to the year/month folder for your new article.
-# Use a unique slug with lowercase letters, digits, and hyphens; it sets /blog/<slug>/.
+# Copy to src/content/blog/YYYY/mon/my-article.mdx and replace these values.
 slug: "example"
 type: "article"
-# Replace the title and short summary with your own text.
 title: "A first note: writing with MDX"
 description: "An introductory example showing how an article combines Markdown, code, and reusable components."
-# Required: publication date in YYYY-MM-DD format, matching your year/month folder.
 date: "2026-01-05"
-# Optional cover: add the actual file first, then uncomment and update this path.
+# Optional: add a local cover first; set updated only for a meaningful later edit.
 # image: "/images/blog/2026/jan/my-article.png"
-tags:
-  - MDX
-  - Writing
+# updated: "2026-01-10"
+tags: ["MDX", "Writing"]
 ---
 
 {/*
-ARTICLE AUTHORING GUIDE (editor instructions; not displayed on the website)
-
-1. Copy this file to src/content/blog/YYYY/mon/my-article.mdx.
-   Use month names jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec.
-2. Change slug, title, description, date, and tags above. Keep type as article.
-   The slug must be unique across all articles and projects.
-3. Put images directly in public/images/blog/YYYY/mon/ (no per-article folder).
-   Example file: public/images/blog/2026/oct/my-article.png
-   Cover frontmatter: image: "/images/blog/2026/oct/my-article.png"
-   Article covers are optional; leave image commented out when there is no cover.
-4. Replace the example body below. Start sections with ##; the layout adds the title.
-   For an inline image, add its file and use Markdown such as:
-   ![Describe the image](/images/blog/2026/oct/my-article-flow.png)
-5. For Khmer, copy example.km.mdx beside the new file as my-article.km.mdx.
-   Translate title, description, tags, and body. Shared fields stay in English only.
-6. Run npm run build, then npm run preview. Open /blog/my-article/ to check the post.
-
-Every valid post in this collection is included when the site builds.
-The longer reference is docs/writing-posts.md.
+ARTICLE QUICKSTART (hidden on the website)
+1. Copy into src/content/blog/YYYY/mon/; use a unique lowercase-hyphen slug.
+2. Replace frontmatter and body. Start sections with ##; the layout adds the title.
+3. Put images directly in public/images/blog/YYYY/mon/; image URLs start /images/.
+   Optional cover: image above. Inline: ![Describe the image](/images/blog/YYYY/mon/my-article-flow.png)
+4. For Khmer, copy docs/example.km.mdx beside the post as my-article.km.mdx.
+5. Run npm run build and npm run check:export, then npm run preview; open /blog/<slug>/.
+Full reference: docs/writing-posts.md.
 */}
 
-This is an introductory example for this blog. Replace it with your own development notes, project walkthroughs, or tutorials when you are ready to publish.
+Explain the problem your article helps solve.
 
-## Keep content close to the code
+## Show a useful example
 
-MDX combines Markdown with React components. Articles live in `src/content/blog/YYYY/month/` as `.mdx` files, grouped by publication year and a lowercase month abbreviation. For example, this article lives in `src/content/blog/2026/jan/example.mdx`, with its Khmer translation beside it as `example.km.mdx`.
-
-The frontmatter at the top of the English file supplies a permanent `slug`, title, description, publication date, and tags. The `slug: "example"` value makes this article available at `/blog/example/`, even if its file moves to another folder. The Khmer file shares that slug and URL through the language switch.
-
-## Include a useful code example
-
-A short example gives readers something concrete to work with:
+Introduce the code and explain why it is useful:
 
 ```tsx
 type GreetingProps = {
@@ -59,13 +38,6 @@ export function Greeting({ name }: GreetingProps) {
 }
 ```
 
-The copy button above copies this snippet to your clipboard.
+## What I learned
 
-## A simple publishing checklist
-
-- Give the article a clear title and a short description.
-- Use headings to organize ideas.
-- Explain why each code example is useful.
-- Check links and read the finished article before publishing.
-
-To add another article, copy this file into the appropriate year and month folder, give it a new filename and a unique `slug`, update its frontmatter, then replace the example content. Add a matching `.km.mdx` file beside it for Khmer. The blog index discovers nested MDX files automatically when the site is built.
+Describe the result and what you would improve next.
