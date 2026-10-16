@@ -25,89 +25,7 @@
     },
     "projects": {
       "title": "My Projects",
-      "description": "A selection of projects I have built and explored throughout my development journey.",
-      "items": [
-        {
-          "icon": "apiDocs",
-          "title": "API KMRS Tech Documentation",
-          "description": "Interactive API documentation for KMRS Tech, designed to make Frontend clear, testable, and easy for developers to integrate.",
-          "tags": [
-            "REST API",
-            "Swagger"
-          ],
-          "href": "https://api.kmrs.tech/docs#/"
-        },
-        {
-          "icon": "landingPage",
-          "title": "KMRS Tech Product Landing Page",
-          "description": "A responsive product landing page for KMRS Tech with clear content hierarchy, modern visuals, and a focused user journey.",
-          "tags": [
-            "Landing Page",
-            "Responsive"
-          ],
-          "href": "https://kmrs.tech"
-        },
-        {
-          "icon": "javascriptBlog",
-          "title": "JS Coder JavaScript Blog",
-          "description": "A personal JavaScript blog sharing practical tutorials, development tips, and modern frontend best practices.",
-          "tags": [
-            "JavaScript",
-            "Blog"
-          ],
-          "href": "https://jscoderofficial.vercel.app"
-        },
-        {
-          "icon": "furniture",
-          "title": "E-Commerce Furniture Store",
-          "description": "A responsive furniture shopping experience focused on clear product discovery, clean presentation, and simple online ordering.",
-          "tags": [
-            "E-Commerce",
-            "Frontend"
-          ],
-          "href": "https://e-piccq47u4-socheatathai.vercel.app/"
-        },
-        {
-          "icon": "blockchain",
-          "title": "Blockchain Landing Page Template",
-          "description": "A modern blockchain landing page template with polished visuals, responsive sections, and clear technology-focused content.",
-          "tags": [
-            "Blockchain",
-            "Template"
-          ],
-          "href": "https://template-block-chain.vercel.app/"
-        },
-        {
-          "icon": "coffee",
-          "title": "Coffee Store Landing Page",
-          "description": "A responsive coffee store landing page created for a university project, featuring a warm visual style and clear product sections.",
-          "tags": [
-            "Landing Page",
-            "Responsive"
-          ],
-          "href": "https://preview-web-coral.vercel.app/"
-        },
-        {
-          "icon": "pizza",
-          "title": "Online Pizza Delivery Platform",
-          "description": "An online pizza delivery platform that helps customers browse products and place orders quickly and conveniently.",
-          "tags": [
-            "Full Stack",
-            "Ordering"
-          ],
-          "href": "https://pizzahouse-xi.vercel.app/"
-        },
-        {
-          "icon": "dashboard",
-          "title": "CMS Dashboard with Next.js",
-          "description": "A modern CMS dashboard built with Next.js for managing content through a clear, responsive, and efficient interface.",
-          "tags": [
-            "Next.js",
-            "TypeScript"
-          ],
-          "href": "https://next-dashboard-ten-jet.vercel.app/"
-        }
-      ]
+      "description": "A selection of projects I have built and explored throughout my development journey."
     },
     "experience": {
       "title": "Work Experience",
@@ -116,7 +34,7 @@
         {
           "company": "Everlast Information & Apps Dev Co., Ltd.",
           "role": "Frontend Developer",
-          "period": "Oct 2025 - Present | On-site",
+          "period": "Oct 2025 - Jun 2026 | On-site",
           "details": [
             "Developed and maintained enterprise web applications using Next.js, Vue.js, Nuxt.js, and TypeScript within an npm and Turborepo monorepo architecture.",
             "Built responsive and reusable user interfaces using Tailwind CSS, Bootstrap, AdminLTE, Element Plus, and modern UI development practices.",
@@ -128,7 +46,7 @@
         {
           "company": "Phillip General Insurance (Cambodia) Plc.",
           "role": "Full Stack Developer",
-          "period": "Oct 2024 - Sep 2025 | Phnom Penh, Cambodia | On-site",
+          "period": "Oct 2024 - Sep 2025 | On-site",
           "details": [
             "Developed and maintained insurance management systems and customer-facing digital services, including a mini web service integrated with mobile banking channels for insurance product sales.",
             "Built REST APIs using NestJS, Prisma, and PostgreSQL, and developed responsive web applications using Next.js, React, Vue.js, TypeScript, Tailwind CSS, Shadcn UI, PrimeVue, MobX, and Pinia.",
@@ -289,6 +207,7 @@
     "contact": {
       "title": "Contact Me",
       "description": "Let's connect on social media.",
+      "email": "socheatathai62@gmail.com",
       "fields": [
         {
           "label": "Telegram",
@@ -307,10 +226,13 @@
         }
       ]
     },
-    "footer": "© 2026 Thai Socheata. All rights reserved."
+    "footer": "© 2026 Thai Socheata. All rights reserved.",
+    "profile": {
+      "role": "Full Stack Developer"
+    }
   },
   "km": {
-    "metaDescription": "គេហទំព័រប្រវត្តិរូប និងស្នាដៃរបស់ ថៃ សុជាតិតា អ្នកអភិវឌ្ឍកម្មវិធី Full Stack មកពីកម្ពុជា។",
+    "metaDescription": "គេហទំព័រប្រវត្តិរូប និងស្នាដៃរបស់ ថៃ សុជាតិតា Full Stack Developer មកពីកម្ពុជា។",
     "logo": "ថៃ សុជាតិតា",
     "nav": {
       "home": "ទំព័រដើម",
@@ -330,94 +252,12 @@
       "title": "សួស្តី! ខ្ញុំឈ្មោះ ថៃ សុជាតិតា",
       "mobileTitle": "ថៃ សុជាតិតា",
       "intro1": "សូមស្វាគមន៍មកកាន់គេហទំព័រប្រវត្តិរូបរបស់ខ្ញុំ។ ខ្ញុំជាអ្នកអភិវឌ្ឍគេហទំព័រម្នាក់មកពីប្រទេសកម្ពុជា។ ខ្ញុំចូលចិត្តបង្កើតគេហទំព័រទំនើប និងស្វែងយល់ពីបច្ចេកវិទ្យាថ្មីៗ។",
-      "intro2": "ដំណើររបស់ខ្ញុំក្នុងការអភិវឌ្ឍគេហទំព័របានចាប់ផ្តើមពីការចង់ដឹងចង់ឃើញ ហើយឥឡូវនេះវាបានក្លាយជាចំណង់ចំណូលចិត្តរបស់ខ្ញុំ។ ខ្ញុំចូលចិត្តប្រែក្លាយគំនិតឱ្យទៅជាការពិត តាមរយៈការអភិវឌ្ឍទាំង Frontend និង Backend។",
+      "intro2": "ដំណើររបស់ខ្ញុំក្នុងការអភិវឌ្ឍគេហទំព័របានចាប់ផ្តើមពីការចង់ដឹងចង់ឃើញ ហើយឥឡូវនេះវាបានក្លាយជាចំណង់ចំណូលចិត្តរបស់ខ្ញុំ។ ខ្ញុំចូលចិត្តប្រែក្លាយគំនិតឱ្យទៅជាការពិត តាមរយៈការអភិវឌ្ឍទាំង ផ្នែកខាងមុខ និង ផ្នែកខាងក្រោយ។",
       "imageAlt": "រូបថត សុជាតិតា"
     },
     "projects": {
       "title": "គម្រោងរបស់ខ្ញុំ",
-      "description": "គម្រោងមួយចំនួនដែលខ្ញុំបានបង្កើត និងសិក្សាស្រាវជ្រាវក្នុងដំណើរអភិវឌ្ឍជំនាញរបស់ខ្ញុំ។",
-      "items": [
-        {
-          "icon": "apiDocs",
-          "title": "ឯកសារ API របស់ KMRS Tech",
-          "description": "ឯកសារ API អន្តរកម្មសម្រាប់ KMRS Tech ដែលជួយឱ្យ Frontend មានភាពច្បាស់លាស់ អាចសាកល្បងបាន និងងាយស្រួលសម្រាប់អ្នកអភិវឌ្ឍក្នុងការភ្ជាប់ប្រើប្រាស់។",
-          "tags": [
-            "REST API",
-            "Swagger"
-          ],
-          "href": "https://api.kmrs.tech/docs#/"
-        },
-        {
-          "icon": "landingPage",
-          "title": "ទំព័រផលិតផល KMRS Tech",
-          "description": "ទំព័រផលិតផលដែលអាចបត់បែនតាមទំហំអេក្រង់ មានលំដាប់មាតិកាច្បាស់លាស់ រូបរាងទំនើប និងផ្តោតលើបទពិសោធន៍អ្នកប្រើប្រាស់។",
-          "tags": [
-            "Landing Page",
-            "Responsive"
-          ],
-          "href": "https://kmrs.tech"
-        },
-        {
-          "icon": "javascriptBlog",
-          "title": "ប្លុក JavaScript របស់ JS Coder",
-          "description": "ប្លុក JavaScript ផ្ទាល់ខ្លួនសម្រាប់ចែករំលែកមេរៀនអនុវត្ត គន្លឹះអភិវឌ្ឍកម្មវិធី និងវិធីសាស្ត្រ Frontend ទំនើបៗ។",
-          "tags": [
-            "JavaScript",
-            "Blog"
-          ],
-          "href": "https://jscoderofficial.vercel.app"
-        },
-        {
-          "icon": "furniture",
-          "title": "ហាងលក់គ្រឿងសង្ហារឹម E-Commerce",
-          "description": "បទពិសោធន៍ទិញគ្រឿងសង្ហារឹមតាមអនឡាញដែលអាចបត់បែនតាមទំហំអេក្រង់ ផ្តោតលើការស្វែងរកផលិតផល ការបង្ហាញស្អាត និងការបញ្ជាទិញងាយស្រួល។",
-          "tags": [
-            "E-Commerce",
-            "Frontend"
-          ],
-          "href": "https://e-piccq47u4-socheatathai.vercel.app/"
-        },
-        {
-          "icon": "blockchain",
-          "title": "គំរូទំព័រ Blockchain",
-          "description": "គំរូទំព័រ Blockchain ទំនើបដែលមានរូបរាងស្អាត ផ្នែកមាតិកាអាចបត់បែនតាមទំហំអេក្រង់ និងព័ត៌មានបច្ចេកវិទ្យាច្បាស់លាស់។",
-          "tags": [
-            "Blockchain",
-            "Template"
-          ],
-          "href": "https://template-block-chain.vercel.app/"
-        },
-        {
-          "icon": "coffee",
-          "title": "ទំព័រហាងកាហ្វេ",
-          "description": "ទំព័រហាងកាហ្វេដែលអាចបត់បែនតាមទំហំអេក្រង់ បង្កើតឡើងសម្រាប់គម្រោងសាកលវិទ្យាល័យ ដោយមានរចនាប័ទ្មកក់ក្តៅ និងផ្នែកផលិតផលច្បាស់លាស់។",
-          "tags": [
-            "Landing Page",
-            "Responsive"
-          ],
-          "href": "https://preview-web-coral.vercel.app/"
-        },
-        {
-          "icon": "pizza",
-          "title": "ប្រព័ន្ធដឹកជញ្ជូនភីហ្សាតាមអនឡាញ",
-          "description": "ប្រព័ន្ធដឹកជញ្ជូនភីហ្សាតាមអនឡាញដែលជួយឱ្យអតិថិជនមើលផលិតផល និងបញ្ជាទិញបានយ៉ាងរហ័ស និងងាយស្រួល។",
-          "tags": [
-            "Full Stack",
-            "Ordering"
-          ],
-          "href": "https://pizzahouse-xi.vercel.app/"
-        },
-        {
-          "icon": "dashboard",
-          "title": "ផ្ទាំងគ្រប់គ្រង CMS ជាមួយ Next.js",
-          "description": "ផ្ទាំងគ្រប់គ្រង CMS ទំនើបដែលបង្កើតដោយ Next.js សម្រាប់គ្រប់គ្រងមាតិកាតាមរយៈផ្ទៃប្រើប្រាស់ច្បាស់លាស់ បត់បែន និងមានប្រសិទ្ធភាព។",
-          "tags": [
-            "Next.js",
-            "TypeScript"
-          ],
-          "href": "https://next-dashboard-ten-jet.vercel.app/"
-        }
-      ]
+      "description": "គម្រោងមួយចំនួនដែលខ្ញុំបានបង្កើត និងសិក្សាស្រាវជ្រាវក្នុងដំណើរអភិវឌ្ឍជំនាញរបស់ខ្ញុំ។"
     },
     "experience": {
       "title": "បទពិសោធន៍ការងារ",
@@ -425,37 +265,37 @@
       "items": [
         {
           "company": "Everlast Information & Apps Dev Co., Ltd.",
-          "role": "អ្នកអភិវឌ្ឍ Frontend",
-          "period": "តុលា ២០២៥ - បច្ចុប្បន្ន | ធ្វើការនៅការិយាល័យ",
+          "role": "អ្នកអភិវឌ្ឍផ្នែកខាងមុខ",
+          "period": "តុលា ២០២៥ - មិថុនា ២០២៦ | ធ្វើការនៅការិយាល័យ",
           "details": [
-            "បានអភិវឌ្ឍ និងថែទាំ enterprise web applications ដោយប្រើ Next.js, Vue.js, Nuxt.js និង TypeScript នៅក្នុងស្ថាបត្យកម្ម monorepo ដោយប្រើ npm និង Turborepo។",
+            "បានអភិវឌ្ឍ និងថែទាំ កម្មវិធីគេហទំព័រសម្រាប់សហគ្រាស ដោយប្រើ Next.js, Vue.js, Nuxt.js និង TypeScript នៅក្នុងស្ថាបត្យកម្ម monorepo ដោយប្រើ npm និង Turborepo។",
             "បានបង្កើតផ្ទៃប្រើប្រាស់ដែលបត់បែនតាមទំហំអេក្រង់ និងអាចប្រើឡើងវិញបាន ដោយប្រើ Tailwind CSS, Bootstrap, AdminLTE, Element Plus និងអនុវត្តតាមវិធីសាស្រ្តអភិវឌ្ឍ UI ទំនើប។",
             "បានគ្រប់គ្រងស្ថានភាពកម្មវិធីដោយប្រើ Redux សម្រាប់កម្មវិធី Next.js និង Vuex សម្រាប់កម្មវិធី Nuxt.js។",
-            "បានសហការជាមួយអ្នកអភិវឌ្ឍ Backend និងក្រុម QA ដើម្បីបំពេញតម្រូវការអាជីវកម្ម។",
-            "បានចូលរួមក្នុងការជួសជុលកំហុស ការធ្វើតេស្ត UAT ការពិនិត្យកូដ និងសកម្មភាពដាក់ប្រើប្រាស់ទៅ production។"
+            "បានសហការជាមួយអ្នកអភិវឌ្ឍផ្នែកខាងក្រោយ និងក្រុម QA ដើម្បីបំពេញតម្រូវការអាជីវកម្ម។",
+            "បានចូលរួមក្នុងការជួសជុលកំហុស ការធ្វើតេស្ត UAT ការពិនិត្យកូដ និងសកម្មភាពដាក់ប្រើប្រាស់ជាផ្លូវការ។"
           ]
         },
         {
           "company": "Phillip General Insurance (Cambodia) Plc.",
-          "role": "អ្នកអភិវឌ្ឍ Full Stack",
+          "role": "Full Stack Developer",
           "period": "តុលា ២០២៤ - កញ្ញា ២០២៥ | ភ្នំពេញ, កម្ពុជា | ធ្វើការនៅការិយាល័យ",
           "details": [
-            "បានអភិវឌ្ឍ និងថែទាំប្រព័ន្ធគ្រប់គ្រងធានារ៉ាប់រង និងសេវាឌីជីថលសម្រាប់អតិថិជន រួមទាំងសេវាគេហទំព័រខ្នាតតូចដែលភ្ជាប់ជាមួយបណ្តាញ mobile banking សម្រាប់លក់ផលិតផលធានារ៉ាប់រង។",
+            "បានអភិវឌ្ឍ និងថែទាំប្រព័ន្ធគ្រប់គ្រងធានារ៉ាប់រង និងសេវាឌីជីថលសម្រាប់អតិថិជន រួមទាំងសេវាគេហទំព័រខ្នាតតូចដែលភ្ជាប់ជាមួយបណ្តាញ សេវាធនាគារតាមទូរស័ព្ទ សម្រាប់លក់ផលិតផលធានារ៉ាប់រង។",
             "បានបង្កើត REST API ដោយប្រើ NestJS, Prisma និង PostgreSQL ហើយបានអភិវឌ្ឍកម្មវិធីគេហទំព័រដែលបត់បែនតាមទំហំអេក្រង់ដោយប្រើ Next.js, React, Vue.js, TypeScript, Tailwind CSS, Shadcn UI, PrimeVue, MobX និង Pinia។",
             "បានសហការជាមួយអ្នកវិភាគអាជីវកម្ម ដើម្បីវិភាគផលិតផលធានារ៉ាប់រង ដំណើរអតិថិជន ច្បាប់អាជីវកម្ម និងលំហូរការងារប្រតិបត្តិការ។",
-            "បានគាំទ្រការធ្វើតេស្ត UAT ការដាក់ប្រើប្រាស់ ការថែទាំ production ការដោះស្រាយបញ្ហា និងការកែលម្អបន្តលើសេវា Frontend និង Backend។"
+            "បានគាំទ្រការធ្វើតេស្ត UAT ការដាក់ប្រើប្រាស់ ការថែទាំប្រព័ន្ធដែលកំពុងប្រើប្រាស់ ការដោះស្រាយបញ្ហា និងការកែលម្អបន្តលើសេវាផ្នែកខាងមុខ និងផ្នែកខាងក្រោយ។"
           ]
         },
         {
           "company": "DREAMSLAB Company",
-          "role": "អ្នកអភិវឌ្ឍ Backend",
+          "role": "អ្នកអភិវឌ្ឍផ្នែកខាងក្រោយ",
           "period": "មិថុនា ២០២៣ - តុលា ២០២៤ | ធ្វើការនៅការិយាល័យ",
           "details": [
-            "បានអភិវឌ្ឍ RESTful API សម្រាប់ប្រព័ន្ធ crowdfunding ដោយប្រើ Java, Spring Boot, NestJS, Spring Data JPA, Prisma ORM និង PostgreSQL។",
-            "បានរចនាម៉ូឌែលមូលដ្ឋានទិន្នន័យ business logic ប្រព័ន្ធផ្ទៀងផ្ទាត់ JWT និង RBAC ព្រមទាំងកែលម្អប្រសិទ្ធភាព និងភាពជឿជាក់របស់ API។",
-            "បានសហការជាមួយក្រុម Mobile និង Frontend លើ API contracts និងការភ្ជាប់ប្រព័ន្ធ។",
+            "បានអភិវឌ្ឍ RESTful API សម្រាប់ប្រព័ន្ធរៃអង្គាសមូលនិធិ ដោយប្រើ Java, Spring Boot, NestJS, Spring Data JPA, Prisma ORM និង PostgreSQL។",
+            "បានរចនាម៉ូឌែលមូលដ្ឋានទិន្នន័យ តក្កវិជ្ជាអាជីវកម្ម ប្រព័ន្ធផ្ទៀងផ្ទាត់ JWT និង RBAC ព្រមទាំងកែលម្អប្រសិទ្ធភាព និងភាពជឿជាក់របស់ API។",
+            "បានសហការជាមួយក្រុមអភិវឌ្ឍកម្មវិធីទូរស័ព្ទ និងផ្នែកខាងមុខ លើ កិច្ចព្រមព្រៀងស្តីពីទម្រង់ API និងការភ្ជាប់ប្រព័ន្ធ។",
             "បានបង្កើតផ្ទាំងគ្រប់គ្រង និងឧបករណ៍រដ្ឋបាលផ្ទៃក្នុងដោយប្រើ Next.js និង TypeScript។",
-            "បានធ្វើការជាមួយម្ចាស់ផលិតផល អ្នករចនា UX/UI និងក្រុម QA ដើម្បីបញ្ជូនលំហូរអាជីវកម្ម មុខងាររបាយការណ៍ ការគាំទ្រ UAT និងការជួសជុលបញ្ហា production។"
+            "បានធ្វើការជាមួយម្ចាស់ផលិតផល អ្នករចនា UX/UI និងក្រុម QA ដើម្បីបញ្ជូនលំហូរអាជីវកម្ម មុខងាររបាយការណ៍ ការគាំទ្រ UAT និងការជួសជុលបញ្ហាក្នុងប្រព័ន្ធដែលកំពុងប្រើប្រាស់។"
           ]
         }
       ]
@@ -536,9 +376,9 @@
     "about": {
       "title": "អំពីខ្ញុំ",
       "paragraphs": [
-        "សួស្តី! ខ្ញុំឈ្មោះ ថៃ សុជាតិតា ជាអ្នកអភិវឌ្ឍ Full Stack អាយុ ២៤ ឆ្នាំ មកពីប្រទេសកម្ពុជា និងបានបញ្ចប់ថ្នាក់បរិញ្ញាបត្រវិទ្យាសាស្ត្រកុំព្យូទ័រពីសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)។",
-        "ខ្ញុំមានបទពិសោធន៍វិជ្ជាជីវៈជាងបីឆ្នាំក្នុងការអភិវឌ្ឍ Frontend, Backend និង Full Stack ដោយបានបង្កើតកម្មវិធីគេហទំព័រ និងផលិតផលឌីជីថលដែលមានភាពជឿជាក់។",
-        "បច្ចេកវិទ្យាស្នូលរបស់ខ្ញុំរួមមាន Java, Spring Boot, JavaScript, TypeScript, PostgreSQL និង RESTful API។ ខ្ញុំក៏ធ្វើការជាមួយ Framework Frontend ទំនើបៗដូចជា Vue.js, Nuxt.js និង Next.js ផងដែរ។",
+        "សួស្តី! ខ្ញុំឈ្មោះ ថៃ សុជាតិតា ជា Full Stack Developer អាយុ ២៤ ឆ្នាំ មកពីប្រទេសកម្ពុជា និងបានបញ្ចប់ថ្នាក់បរិញ្ញាបត្រវិទ្យាសាស្ត្រកុំព្យូទ័រពីសាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)។",
+        "ខ្ញុំមានបទពិសោធន៍វិជ្ជាជីវៈជាងបីឆ្នាំក្នុងការអភិវឌ្ឍ ទាំងផ្នែកខាងមុខ ផ្នែកខាងក្រោយ និងការអភិវឌ្ឍកម្មវិធីគ្រប់ផ្នែក ដោយបានបង្កើតកម្មវិធីគេហទំព័រ និងផលិតផលឌីជីថលដែលមានភាពជឿជាក់។",
+        "បច្ចេកវិទ្យាស្នូលរបស់ខ្ញុំរួមមាន Java, Spring Boot, JavaScript, TypeScript, PostgreSQL និង RESTful API។ ខ្ញុំក៏ធ្វើការជាមួយ ក្របខណ្ឌអភិវឌ្ឍផ្នែកខាងមុខ ទំនើបៗដូចជា Vue.js, Nuxt.js និង Next.js ផងដែរ។",
         "ខ្ញុំចូលចិត្តសហការជាមួយក្រុមការងារចម្រុះជំនាញ បម្លែងតម្រូវការអាជីវកម្មទៅជាដំណោះស្រាយបច្ចេកទេសដែលអាចអនុវត្តបាន និងបន្តកែលម្អគុណភាព និងភាពងាយស្រួលប្រើប្រាស់នៃផលិតផលដែលខ្ញុំបង្កើត។"
       ],
       "facts": [
@@ -556,7 +396,7 @@
         },
         {
           "label": "ជំនាញផ្តោត",
-          "value": "ការអភិវឌ្ឍ Frontend និង Backend"
+          "value": "ការអភិវឌ្ឍផ្នែកខាងមុខ និងផ្នែកខាងក្រោយ"
         },
         {
           "label": "សាកលវិទ្យាល័យ",
@@ -599,6 +439,7 @@
     "contact": {
       "title": "ទាក់ទងខ្ញុំ",
       "description": "សូមភ្ជាប់ទំនាក់ទំនងជាមួយខ្ញុំតាមបណ្តាញសង្គម។",
+      "email": "socheatathai62@gmail.com",
       "fields": [
         {
           "label": "តេឡេក្រាម",
@@ -611,12 +452,15 @@
           "icon": "https://cdn.simpleicons.org/github/4f8cff"
         },
         {
-          "label": "លីងឌីន",          
+          "label": "លីងឌីន",
           "href": "https://www.linkedin.com/in/socheata-thai-586182289",
           "icon": "https://cdn-icons-png.flaticon.com/512/174/174857.png"
         }
       ]
     },
-    "footer": "© ២០២៦ ថៃ សុជាតិតា។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+    "footer": "© ២០២៦ ថៃ សុជាតិតា។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+    "profile": {
+      "role": "Full Stack Developer"
+    }
   }
 }

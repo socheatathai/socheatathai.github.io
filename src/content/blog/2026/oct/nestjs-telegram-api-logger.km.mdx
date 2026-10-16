@@ -1,0 +1,175 @@
+
+---
+title: "NestJS Telegram API Request Logger"
+description: "Project តូចមួយដែលខ្ញុំបានបង្កើតដោយប្រើ NestJS Interceptor និង Custom Decorator ដើម្បីផ្ញើ API Request Logs ទៅកាន់ Telegram Group។"
+tags: ["NestJS", "TypeScript", "Telegram API", "PostgreSQL", "Logging"]
+---
+
+ពេលធ្វើការជាមួយ Backend API ខ្ញុំតែងតែត្រូវការតាមដានថា មាន Request អ្វីខ្លះចូលមកកាន់ API របស់ខ្ញុំ។ ជាធម្មតា យើងអាចមើល Logs តាម Terminal ប៉ុន្តែពេលខ្លះខ្ញុំចង់ដឹងពីសកម្មភាពរបស់ API ដោយមិនចាំបាច់បើក Terminal រហូត។
+
+ដោយសារតែហេតុនេះ ខ្ញុំបានសាកល្បងបង្កើត Project តូចមួយដោយប្រើ **NestJS Interceptor** ដើម្បីចាប់យកព័ត៌មានពី API Request ហើយផ្ញើជា Notification ទៅកាន់ Telegram Group តាមរយៈ Telegram Bot។
+
+គោលបំណងគឺចង់ឱ្យការតាមដាន API មានភាពងាយស្រួល និងអាចមើលព័ត៌មានបានទាំងនៅលើទូរស័ព្ទ និងកុំព្យូទ័រ។
+
+## អ្វីដែលខ្ញុំបានបង្កើត
+
+Project នេះគឺជា REST API ដែលបង្កើតដោយប្រើ NestJS, PostgreSQL, TypeORM និង Swagger។
+
+ក្រៅពីមុខងារ CRUD សម្រាប់គ្រប់គ្រង Users ខ្ញុំបានបន្ថែមមុខងារ Telegram Logging ដើម្បីផ្ញើព័ត៌មានពី API Request ទៅកាន់ Telegram Group។
+
+ព័ត៌មានដែលត្រូវបានរៀបចំសម្រាប់ Logging មានដូចជា៖
+
+- **HTTP Method:** GET, POST, PUT, PATCH ឬ DELETE
+- **Request Path:** Endpoint ដែល Client បានហៅ
+- **Response Status:** HTTP Status Code
+- **Duration:** រយៈពេលដែល API ប្រើដើម្បីដំណើរការ
+- **IP Address:** IP របស់ Client
+- **User-Agent:** ព័ត៌មានអំពី Browser ឬ Client
+
+ខ្ញុំក៏បានបង្កើត Custom Decorator ឈ្មោះ `@TelegramLog()` ដើម្បីកំណត់ថា Endpoint ណាខ្លះដែលខ្ញុំចង់តាមដាន។
+
+## ដំណើរការរបស់ Telegram Logging
+
+នៅពេល Client ហៅ API Endpoint ដែលបានកំណត់ `@TelegramLog()` ដំណើរការនឹងប្រព្រឹត្តទៅដូចខាងក្រោម៖
+
+1. Client ផ្ញើ HTTP Request ទៅកាន់ API។
+2. NestJS Interceptor ចាប់យកព័ត៌មានពី Request។
+3. Controller ដំណើរការ Request តាម Business Logic។
+4. Interceptor ប្រមូលព័ត៌មានដែលត្រូវការសម្រាប់ Logging។
+5. Telegram Service ផ្ញើសារដែលបានរៀបចំទៅកាន់ Telegram Group។
+
+ខ្ញុំបានបំបែក Telegram Service និង Interceptor ចេញពី Business Logic ដើម្បីឱ្យ Code ងាយស្រួលគ្រប់គ្រង និងអាចប្រើឡើងវិញបាន។
+
+## ការប្រើប្រាស់ Custom Decorator
+
+ខ្ញុំបានបង្កើត `@TelegramLog()` ដើម្បីអាចបើក Logging លើ Endpoint ដែលខ្ញុំចង់តាមដាន ដោយមិនចាំបាច់សរសេរ Telegram Logic នៅក្នុង Controller នីមួយៗ។
+
+ឧទាហរណ៍៖
+
+```ts
+import { TelegramLog } from '../telegram/decorators/telegram-log.decorator';
+
+@Get()
+@TelegramLog()
+findAll() {
+  return this.usersService.findAll();
+}
+```
+
+នៅក្នុង Project បច្ចុប្បន្ន ខ្ញុំបានបើក Telegram Logging សម្រាប់៖
+
+- `GET /users`
+- `GET /users/:id`
+
+ការប្រើ Decorator បែបនេះអាចឱ្យខ្ញុំជ្រើសរើស Endpoint ដែលត្រូវការ Logging ដោយមិនចាំបាច់បើកវាសម្រាប់ API ទាំងអស់។
+
+## របៀបភ្ជាប់ Telegram Bot
+
+ដើម្បីឱ្យ NestJS អាចផ្ញើ Logs ទៅកាន់ Telegram Group បាន យើងត្រូវរៀបចំ Telegram Bot ជាមុនសិន។
+
+### 1. បង្កើត Telegram Bot
+
+ចូលទៅកាន់ Telegram ហើយស្វែងរក `@BotFather`។
+
+បន្ទាប់មកប្រើ Command៖
+
+```text
+/newbot
+```
+
+ធ្វើតាមការណែនាំដើម្បីបង្កើត Bot ហើយយក Bot Token ដែលទទួលបាន។
+
+### 2. បន្ថែម Bot ទៅកាន់ Telegram Group
+
+បង្កើត Telegram Group ឬប្រើ Group ដែលមានស្រាប់ ហើយបន្ថែម Bot របស់យើងចូលទៅក្នុង Group នោះ។
+
+បន្ទាប់មកផ្ញើសារមួយនៅក្នុង Group ដើម្បីឱ្យ Telegram មាន Update សម្រាប់កំណត់ Chat ID។
+
+### 3. ទាញយក Telegram Chat ID
+
+នៅក្នុង Project របស់ខ្ញុំ មាន Endpoint សម្រាប់ជួយរក Chat ID៖
+
+```http
+GET /telegram/chats
+```
+
+យើងអាចប្រើ Endpoint នេះដើម្បីរក Chat ID របស់ Telegram Group។
+
+### 4. កំណត់ Environment Variables
+
+បន្ថែម Bot Token និង Chat ID ទៅក្នុង `.env`៖
+
+```env
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_group_chat_id_here
+```
+
+មិនគួរដាក់ Bot Token ដោយផ្ទាល់នៅក្នុង Source Code ឬ Commit ឯកសារ `.env` ទៅ GitHub ឡើយ។
+
+បន្ទាប់ពីកំណត់រួច យើងអាចសាកល្បងការផ្ញើសារតាម Endpoint៖
+
+```http
+POST /telegram/test-message
+```
+
+## របៀបដំណើរការ Project
+
+ដំបូង Clone Repository ពី GitHub៖
+
+```bash
+git clone https://github.com/socheatathai/nestjs-telegram-logger.git
+
+cd nestjs-telegram-logger
+```
+
+Install Dependencies៖
+
+```bash
+pnpm install
+```
+
+បង្កើត Environment File៖
+
+```bash
+cp .env.example .env
+```
+
+បន្ទាប់មកកំណត់ PostgreSQL និង Telegram Configuration នៅក្នុង `.env`។
+
+ដំណើរការ Development Server៖
+
+```bash
+pnpm dev
+```
+
+យើងអាចបើក Swagger Documentation នៅ៖
+
+```text
+http://localhost:3000/api
+```
+
+បន្ទាប់ពីរៀបចំរួច អាចសាកល្បងហៅ User API ដែលបានបើក `@TelegramLog()` ហើយពិនិត្យមើល Notification នៅក្នុង Telegram Group។
+
+## អ្វីដែលខ្ញុំបានរៀនពី Project នេះ
+
+ទោះបីជា Project នេះមិនធំក៏ដោយ ប៉ុន្តែវាបានជួយឱ្យខ្ញុំយល់កាន់តែច្បាស់អំពីមុខងារមួយចំនួននៅក្នុង NestJS ដូចជា៖
+
+- **Interceptor:** របៀបចាប់យក និងដំណើរការព័ត៌មានជុំវិញ HTTP Request និង Response។
+- **Custom Decorator:** របៀបបង្កើត Decorator ដើម្បីគ្រប់គ្រងមុខងារនៅលើ Endpoint។
+- **Dependency Injection:** របៀបភ្ជាប់ Service និង Component ផ្សេងៗនៅក្នុង NestJS។
+- **Third-party API Integration:** របៀបភ្ជាប់ Backend ជាមួយ Telegram Bot API។
+- **Code Reusability:** របៀបបំបែក Logging Logic ចេញពី Business Logic។
+
+ខ្ញុំក៏យល់ថា Telegram Logging អាចជួយតាមដាន API មួយចំនួនបានងាយស្រួល ប៉ុន្តែវាមិនអាចជំនួស Monitoring System ពេញលេញសម្រាប់ Production បានទេ។
+
+សម្រាប់ការកែលម្អបន្ថែម ខ្ញុំចង់ផ្តោតលើការការពារទិន្នន័យសម្ងាត់ ការកាត់បន្ថយ Notification ច្រើនពេក និងការធានាថា បញ្ហាក្នុងការផ្ញើ Telegram Message មិនប៉ះពាល់ដល់ API Response។
+
+## សរុប
+
+នេះគ្រាន់តែជា Project តូចមួយដែលខ្ញុំបានសាកល្បងបង្កើត ដើម្បីស្វែងយល់បន្ថែមពី NestJS Interceptor និង Telegram Bot API។
+
+ខ្ញុំគិតថាវាអាចមានប្រយោជន៍សម្រាប់ Developer ដែលចង់តាមដាន API Request នៅលើ Endpoint ជាក់លាក់ ដោយមិនចាំបាច់បើក Terminal ជានិច្ច។
+
+ខ្ញុំចែករំលែក Project នេះក្នុងគោលបំណងចែករំលែកចំណេះដឹងបន្តិចបន្តួចប៉ុណ្ណោះ។ ប្រសិនបើមានចំណុចណាមួយមិនត្រឹមត្រូវ ឬអាចកែលម្អបន្ថែមបាន ខ្ញុំរីករាយទទួលយកមតិយោបល់ពីអ្នកទាំងអស់គ្នា។
+
+**Source Code:** [NestJS Telegram Logger on GitHub](https://github.com/socheatathai/nestjs-telegram-logger)

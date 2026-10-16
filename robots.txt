@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://socheatathai.github.io/sitemap.xml
