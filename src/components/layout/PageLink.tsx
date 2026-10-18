@@ -1,10 +1,10 @@
 import Link from "next/link";
-import type { ComponentProps } from "react";
+import type { PageLinkProps } from "./types";
 
-type Props = ComponentProps<typeof Link> & {
-  direction?: "forward" | "back";
-};
-
-export default function PageLink({ direction = "forward", transitionTypes, ...props }: Props) {
+export default function PageLink({
+  direction = "forward",
+  transitionTypes,
+  ...props
+}: PageLinkProps) {
   return <Link {...props} transitionTypes={transitionTypes ?? [`page-${direction}`]} />;
 }

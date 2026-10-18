@@ -1,10 +1,19 @@
 "use client";
 
-import { ViewTransition, useSyncExternalStore, type ReactNode } from "react";
+import { ViewTransition, useSyncExternalStore } from "react";
+import type { LayoutChildrenProps } from "./types";
 
 const mobileMotionQuery = "(max-width: 767px) and (prefers-reduced-motion: no-preference)";
-const enter = { "page-forward": "page-enter-forward", "page-back": "page-enter-back", default: "none" };
-const exit = { "page-forward": "page-exit-forward", "page-back": "page-exit-back", default: "none" };
+const enter = {
+  "page-forward": "page-enter-forward",
+  "page-back": "page-enter-back",
+  default: "none",
+};
+const exit = {
+  "page-forward": "page-exit-forward",
+  "page-back": "page-exit-back",
+  default: "none",
+};
 
 function subscribe(onChange: () => void) {
   const media = window.matchMedia(mobileMotionQuery);
@@ -20,7 +29,7 @@ function getServerSnapshot() {
   return false;
 }
 
-export default function PageTransition({ children }: { children: ReactNode }) {
+export default function PageTransition({ children }: LayoutChildrenProps) {
   const animate = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return (

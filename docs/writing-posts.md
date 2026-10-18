@@ -1,8 +1,6 @@
 # Writing articles and projects
 
-Articles and projects share the MDX collection in `src/content/blog/`. This guide contains templates; copying one into that collection makes it a real post.
-
-For a guide directly in the MDX source, open [the article example](../src/content/blog/2026/jan/example.mdx) or [the project example](../src/content/blog/2026/oct/kmrs-tech.mdx). Each includes frontmatter comments and an editor-only guide that stays hidden on the website. Their matching `.km.mdx` files contain translation instructions.
+Articles and projects share `src/content/blog/`. Start from [the article template](example.mdx) or [the project example](../src/content/blog/2026/oct/kmrs-tech.mdx); their hidden comments provide a quickstart while you edit. This page is the full authoring reference. Templates become real posts only after you copy them into the content collection.
 
 ## 1. Choose a date, filename, and slug
 
@@ -10,10 +8,10 @@ Use year/month folders matching the publication date. Months use lowercase three
 
 For a post dated `2026-10-16`, these examples use:
 
-| Kind | English source | Public URL |
-| --- | --- | --- |
+| Kind    | English source                                  | Public URL               |
+| ------- | ----------------------------------------------- | ------------------------ |
 | Article | `src/content/blog/2026/oct/building-an-api.mdx` | `/blog/building-an-api/` |
-| Project | `src/content/blog/2026/oct/task-board.mdx` | `/blog/task-board/` |
+| Project | `src/content/blog/2026/oct/task-board.mdx`      | `/blog/task-board/`      |
 
 Choose a permanent `slug` that is unique across all projects and articles. Use lowercase letters, digits, and single hyphens between words. Use the same name for the source file to make it easy to find. A slug such as `building-an-api` is valid; spaces, uppercase letters, underscores, and leading or trailing hyphens are invalid.
 
@@ -93,7 +91,7 @@ The shared layout renders the cover below the title, description, and tags, so y
 
 First add your screenshot at `public/images/blog/2026/oct/task-board.png`. Then save this as `src/content/blog/2026/oct/task-board.mdx` and replace `projectUrl` with the actual project or repository URL:
 
-````mdx
+```mdx
 ---
 slug: "task-board"
 type: "project"
@@ -121,25 +119,28 @@ Use a layout that works on a phone and a larger screen.
 ## What I learned
 
 Keeping the data model small made the first version easier to build and maintain.
-````
+```
 
 Projects require both an existing local `image` and an absolute HTTP or HTTPS `projectUrl`. The layout renders the screenshot and external project link automatically. Put the project story and features in the body.
 
 ### Frontmatter reference
 
-| Field | What to use |
-| --- | --- |
-| `slug` | Required, permanent, unique lowercase name with hyphens. |
-| `type` | `article` or `project`; omitted values default to `article`. Set it explicitly in new posts. |
-| `title` | Required nonempty title. |
-| `description` | Required nonempty summary used on the post and in listings and search. |
-| `date` | Quoted valid `YYYY-MM-DD` date. Required for articles; include it on every new project too. |
-| `tags` | Optional array of nonempty strings; defaults to an empty array. |
-| `image` | Optional article cover; required project screenshot. Must reference an existing local `/images/` file. |
-| `projectUrl` | Required for projects; an absolute `http://` or `https://` URL. |
-| `featured` | Optional `true` or `false`. Only featured projects are eligible for the homepage. |
+| Field         | What to use                                                                                                                                                                                                    |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `slug`        | Required, permanent, unique lowercase name with hyphens.                                                                                                                                                       |
+| `type`        | `article` or `project`; omitted values default to `article`. Set it explicitly in new posts.                                                                                                                   |
+| `title`       | Required nonempty title.                                                                                                                                                                                       |
+| `description` | Required nonempty summary used on the post and in listings and search.                                                                                                                                         |
+| `date`        | Quoted valid `YYYY-MM-DD` date. Required for articles; include it on every new project too.                                                                                                                    |
+| `updated`     | Optional quoted `YYYY-MM-DD` date of a meaningful content update. Requires `date` and cannot be earlier than it. Used in article metadata, structured data, and the sitemap. Keep it in the English file only. |
+| `tags`        | Optional array of nonempty strings; defaults to an empty array.                                                                                                                                                |
+| `image`       | Optional article cover; required project screenshot. Must reference an existing local `/images/` file.                                                                                                         |
+| `projectUrl`  | Required for projects; an absolute `http://` or `https://` URL.                                                                                                                                                |
+| `featured`    | Optional `true` or `false`. Only featured projects are eligible for the homepage.                                                                                                                              |
 
 Posts sort newest first by frontmatter `date`, then alphabetically by slug when dates match. Older undated projects are accepted and sort after dated posts. The year/month folders do not override this ordering.
+
+Cover dimensions are read automatically at build time; you do not need width or height fields. The cover also becomes the post's sharing image. Posts without covers use the portfolio sharing image. Set `updated` only when the content changes, rather than on every build. Publication dates, tags, and author information also appear in the post's structured data.
 
 The homepage shows up to the first three projects with `featured: true` in that same order. An article with `featured: true` does not appear in this project section. Setting it on more than three projects makes the three newest eligible projects appear.
 
@@ -157,7 +158,7 @@ After adding `public/images/blog/2026/oct/building-an-api-flow.png`, insert an i
 
 Use readable alt text that explains what the image shows. Translate inline alt text in the Khmer body while referencing the same file. The frontmatter cover uses the localized post title as its alt text; there is no separate cover-alt metadata field.
 
-MDX is compiled from local source at build time. Review any JSX or code you add as carefully as other project source.
+MDX is compiled from local source at build time. Review any JSX or code you add as carefully as other project source. JavaScript expressions and dynamic imports are disabled in the compiler. Use fenced code blocks when demonstrating JavaScript, and accept MDX changes only from trusted, reviewed sources.
 
 ## 5. Add an optional Khmer translation
 
@@ -215,7 +216,7 @@ tags: ["Next.js", "PostgreSQL"]
 ការរក្សាគំរូទិន្នន័យឱ្យតូច ជួយឱ្យកំណែដំបូងងាយស្រួលបង្កើត និងថែទាំ។
 ```
 
-Translate `title`, `description`, `tags` where appropriate, and the complete body. Technical tags can remain unchanged. Shared fields `slug`, `type`, `image`, `projectUrl`, and `featured` belong only in the English file; putting them in the Khmer frontmatter fails validation.
+Translate `title`, `description`, `tags` where appropriate, and the complete body. Technical tags can remain unchanged. Shared fields `slug`, `type`, `image`, `projectUrl`, `featured`, and `updated` belong only in the English file; putting them in the Khmer frontmatter fails validation.
 
 The Khmer `date` is optional. If you include it, it must exactly match the English date, such as `date: "2026-10-16"`. Both languages share the same URL and images. A Khmer file requires its sibling English file; a post without a Khmer file displays its English content when Khmer is selected.
 
@@ -232,14 +233,19 @@ Open the new `/blog/<slug>/` URL at http://localhost:3000. Check the title, summ
 Stop the development server, then run:
 
 ```sh
+npm run format:check
 npm run typecheck
 npm run build
+npm run check:export
+npm run test:preview
 npm run preview
 ```
 
-The build validates metadata and cover paths, compiles MDX, and writes the static site to `out/`. It catches duplicate slugs, invalid metadata or filenames, missing project fields or cover files, orphan translations, and MDX syntax errors. Check inline image URLs and external links in the browser too; frontmatter image validation does not validate Markdown image paths.
+The build validates metadata and cover paths, compiles MDX, and writes the static site to `out/`. It catches duplicate slugs, invalid metadata or filenames, missing project fields or cover files, orphan translations, and MDX syntax errors. `check:export` checks the generated pages, local links and images, metadata, and sitemap; `test:preview` checks the static preview server. Review external links and the finished layout in the browser too.
 
 The preview serves the generated site at http://localhost:3000. `npm start` is an alias for this static preview and also requires a completed build.
+
+Use `npm run format` for source and Markdown documentation. MDX posts and templates are excluded so formatting does not rewrite article text or code examples.
 
 ## 7. Rebuild when content changes
 

@@ -7,9 +7,14 @@
     "build": "next build",
     "start": "node scripts/preview.mjs",
     "preview": "node scripts/preview.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:export": "node scripts/check-export.mjs",
+    "test:preview": "node --test scripts/preview.test.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
+    "image-size": "2.0.4",
     "next": "^16.4.1",
     "next-mdx-remote": "^6.0.0",
     "react": "^19.3.1",
@@ -22,6 +27,7 @@
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "prettier": "3.9.10",
     "typescript": "^5.9.0"
   },
   "engines": {

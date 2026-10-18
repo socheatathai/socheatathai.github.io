@@ -1,40 +1,24 @@
 ---
-# Khmer translation: use the same filename as the English post, ending in .km.mdx.
-# Translate these fields; do not add slug, type, image, projectUrl, or featured.
+# Copy beside the English post as my-article.km.mdx; translate these fields.
 title: "កំណត់ត្រាដំបូង៖ ការសរសេរជាមួយ MDX"
 description: "ឧទាហរណ៍ណែនាំអំពីការរួមបញ្ចូល Markdown កូដ និងសមាសភាគដែលអាចប្រើឡើងវិញនៅក្នុងអត្ថបទ។"
-# Optional: if included, date must exactly match the English post.
-date: "2026-01-05"
-tags:
-  - MDX
-  - ការសរសេរ
+tags: ["MDX", "ការសរសេរ"]
 ---
 
 {/*
-KHMER ARTICLE GUIDE (editor instructions; not displayed on the website)
-
-1. Copy this file beside your English article with the same base name:
-   my-article.mdx and my-article.km.mdx in the same year/month folder.
-2. Translate title, description, tags, and all body text below.
-3. Keep slug, type, image, projectUrl, and featured only in the English file.
-   Remove date here or make it match the English date exactly.
-4. Reuse the same image files from public/images/blog/YYYY/mon/.
-   Inline image example (translate the alt text):
-   ![ពិពណ៌នារូបភាព](/images/blog/2026/oct/my-article-flow.png)
-5. Run npm run build and check the language switch on /blog/my-article/.
+KHMER QUICKSTART (hidden on the website)
+1. Keep the English base filename and year/month folder; add .km.mdx.
+2. Translate title, description, tags where appropriate, body, and inline image alt text.
+3. Shared settings stay in English. Omit date here or match the English date exactly.
+4. Reuse the same image files and URLs. Build, preview, and check the language switch.
+Full reference: docs/writing-posts.md.
 */}
 
-នេះជាឧទាហរណ៍ណែនាំសម្រាប់ប្លុកនេះ។ នៅពេលអ្នកត្រៀមរួចរាល់សម្រាប់ការផ្សព្វផ្សាយ អ្នកអាចជំនួសវាដោយកំណត់ត្រាអភិវឌ្ឍន៍ ការពន្យល់អំពីគម្រោង ឬមេរៀនរបស់អ្នក។
+ពន្យល់អំពីបញ្ហាដែលអត្ថបទរបស់អ្នកជួយដោះស្រាយ។
 
-## រក្សាមាតិកានៅក្បែរកូដ
+## បង្ហាញឧទាហរណ៍ដែលមានប្រយោជន៍
 
-MDX រួមបញ្ចូល Markdown ជាមួយសមាសភាគ React។ អត្ថបទជាឯកសារ `.mdx` ស្ថិតនៅក្នុង `src/content/blog/YYYY/month/` ដោយរៀបចំតាមឆ្នាំផ្សព្វផ្សាយ និងឈ្មោះខែជាអក្សរកាត់អង់គ្លេសតូច។ ឧទាហរណ៍ អត្ថបទនេះស្ថិតនៅក្នុង `src/content/blog/2026/jan/example.mdx` ហើយការបកប្រែជាភាសាខ្មែរស្ថិតនៅក្បែរគ្នាក្នុងឯកសារ `example.km.mdx`។
-
-ទិន្នន័យនៅខាងលើឯកសារអង់គ្លេសកំណត់ `slug` អចិន្ត្រៃយ៍ ចំណងជើង សេចក្តីពិពណ៌នា កាលបរិច្ឆេទផ្សព្វផ្សាយ និងស្លាកប្រធានបទ។ តម្លៃ `slug: "example"` ធ្វើឱ្យអត្ថបទនេះអាចចូលមើលបានតាម `/blog/example/` ទោះបីជាឯកសារត្រូវបានផ្លាស់ទីទៅថតផ្សេងក៏ដោយ។ ឯកសារខ្មែរប្រើ `slug` និង URL ដូចគ្នាតាមរយៈប៊ូតុងប្តូរភាសា។
-
-## បញ្ចូលឧទាហរណ៍កូដដែលមានប្រយោជន៍
-
-ឧទាហរណ៍ខ្លីមួយជួយឱ្យអ្នកអានមានកូដជាក់ស្តែងសម្រាប់សាកល្បង៖
+ណែនាំកូដ និងពន្យល់អំពីអត្ថប្រយោជន៍របស់វា៖
 
 ```tsx
 type GreetingProps = {
@@ -46,13 +30,6 @@ export function Greeting({ name }: GreetingProps) {
 }
 ```
 
-ប៊ូតុងចម្លងនៅខាងលើអាចចម្លងកូដនេះទៅក្តារតម្បៀតខ្ទាស់របស់អ្នក។
+## អ្វីដែលខ្ញុំបានរៀន
 
-## បញ្ជីត្រួតពិនិត្យមុនពេលផ្សព្វផ្សាយ
-
-- ដាក់ចំណងជើងឱ្យច្បាស់លាស់ និងសរសេរសេចក្តីពិពណ៌នាខ្លីមួយ។
-- ប្រើចំណងជើងរងដើម្បីរៀបចំគំនិត។
-- ពន្យល់ពីអត្ថប្រយោជន៍នៃឧទាហរណ៍កូដនីមួយៗ។
-- ពិនិត្យតំណភ្ជាប់ និងអានអត្ថបទទាំងមូលមុនពេលផ្សព្វផ្សាយ។
-
-ដើម្បីបន្ថែមអត្ថបទមួយទៀត សូមចម្លងឯកសារនេះទៅក្នុងថតឆ្នាំនិងខែសមស្រប ដាក់ឈ្មោះឯកសារថ្មី និង `slug` ដែលមិនស្ទួន កែទិន្នន័យនៅខាងលើ រួចជំនួសមាតិកាឧទាហរណ៍។ បន្ថែមឯកសារ `.km.mdx` ដែលមានឈ្មោះត្រូវគ្នានៅក្បែរសម្រាប់ភាសាខ្មែរ។ បញ្ជីអត្ថបទនឹងស្វែងរកឯកសារ MDX ក្នុងថតរងដោយស្វ័យប្រវត្តិនៅពេលបង្កើតគេហទំព័រ។
+ពន្យល់អំពីលទ្ធផល និងអ្វីដែលអ្នកចង់កែលម្អបន្ទាប់។
