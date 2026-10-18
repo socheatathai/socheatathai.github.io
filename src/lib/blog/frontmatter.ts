@@ -69,16 +69,25 @@ export function readMetadata(data: Record<string, unknown>, filename: string): B
     invalid(filename, "featured must be true or false.");
 
   const image = data.image;
-  if (
-    image !== undefined &&
-    (typeof image !== "string" ||
-      !image.startsWith("/images/") ||
-      path.posix.normalize(image) !== image)
-  ) {
-    invalid(filename, "image must be a local /images/ path without traversal segments.");
+  const localImage =
+    typeof image === "string" &&
+    image.startsWith("/images/") &&
+    path.posix.normalize(image) === image;
+  const imageUrl = typeof image === "string" && URL.canParse(image) ? new URL(image) : null;
+  const remoteImage =
+    typeof image === "string" &&
+    /^https:\/\//i.test(image) &&
+    imageUrl?.protocol === "https:" &&
+    !imageUrl.username &&
+    !imageUrl.password;
+  if (image !== undefined && !localImage && !remoteImage) {
+    invalid(
+      filename,
+      "image must be a local /images/ path without traversal segments or an absolute HTTPS image URL without credentials.",
+    );
   }
   let dimensions: { width: number; height: number } | undefined;
-  if (typeof image === "string") {
+  if (localImage) {
     const imagePath = path.join(process.cwd(), "public", image);
     if (!fs.existsSync(imagePath) || !fs.statSync(imagePath).isFile())
       invalid(filename, `image must reference an existing file: ${image}.`);
@@ -114,7 +123,7 @@ export function readMetadata(data: Record<string, unknown>, filename: string): B
     type,
     date,
     ...(updated ? { updated } : {}),
-    ...(image !== undefined ? { image: image as string } : {}),
+    ...(image !== undefined ? { image: imageUrl?.href ?? (image as string) } : {}),
     ...(dimensions ? { imageWidth: dimensions.width, imageHeight: dimensions.height } : {}),
     ...(projectUrl !== undefined ? { projectUrl: projectUrl as string } : {}),
     ...(data.featured !== undefined ? { featured: data.featured as boolean } : {}),

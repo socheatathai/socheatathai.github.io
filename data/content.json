@@ -209,6 +209,19 @@
       "eyebrow": "Let’s connect"
     },
     "footer": "© 2026 Thai Socheata. All rights reserved.",
+    "pwa": {
+      "label": "App and offline access",
+      "ready": "Offline fallback ready. Search requires a connection.",
+      "offline": "You're offline. Some pages may be unavailable.",
+      "offlineAvailable": "You’re offline. Previously visited pages may be available.",
+      "install": "Install app",
+      "installing": "Opening install prompt…",
+      "iosInstall": "How to install on iPhone or iPad",
+      "iosInstructions": "Open this site in Safari, tap Share, choose Add to Home Screen, then tap Add.",
+      "updateAvailable": "A new version is ready.",
+      "update": "Update and reload",
+      "updating": "Updating…"
+    },
     "profile": {
       "role": "Full Stack Developer",
       "country": "Cambodia",
@@ -252,7 +265,7 @@
       "searchPlaceholder": "Search posts…",
       "clearSearch": "Clear search",
       "noResults": "No articles or projects found.",
-      "searchHint": "Try another title, topic, or technology.",
+      "searchHint": "Try another search or choose a different tag.",
       "emptyArchive": "New articles will appear here soon.",
       "projectType": "Project notes",
       "articleType": "Article",
@@ -273,7 +286,19 @@
       "result": "{count} result",
       "results": "{count} results",
       "searchSummary": "Search across all {count} articles and projects.",
-      "paginationSummary": "Showing {first}–{last} of {total} posts"
+      "paginationSummary": "Showing {first}–{last} of {total} posts",
+      "filterLabel": "Filter posts by tag",
+      "sortLabel": "Sort by",
+      "clearFilters": "Clear filters",
+      "allTags": "All",
+      "sortOptions": {
+        "latest": "Latest",
+        "oldest": "Oldest",
+        "title": "Title A–Z"
+      },
+      "searching": "Loading results…",
+      "searchError": "Unable to load posts. Check your connection and try again.",
+      "retry": "Try again"
     },
     "code": {
       "title": "Code",
@@ -531,6 +556,19 @@
       "eyebrow": "ភ្ជាប់ទំនាក់ទំនង"
     },
     "footer": "© ២០២៦ ថៃ សុជាតិតា។ រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+    "pwa": {
+      "label": "កម្មវិធី និងការប្រើប្រាស់ពេលគ្មានអ៊ីនធឺណិត",
+      "ready": "ទំព័រជំនួសក្រៅបណ្ដាញរួចរាល់។ ការស្វែងរកត្រូវការអ៊ីនធឺណិត។",
+      "offline": "អ្នកគ្មានអ៊ីនធឺណិត។ ទំព័រខ្លះអាចមិនអាចបើកបាន។",
+      "offlineAvailable": "អ្នកគ្មានអ៊ីនធឺណិត។ ទំព័រដែលធ្លាប់បើកអាចនៅតែអាចអានបាន។",
+      "install": "ដំឡើងកម្មវិធី",
+      "installing": "កំពុងបើកផ្ទាំងដំឡើង…",
+      "iosInstall": "របៀបដំឡើងលើ iPhone ឬ iPad",
+      "iosInstructions": "បើកគេហទំព័រនេះក្នុង Safari ចុច Share ជ្រើសរើស Add to Home Screen រួចចុច Add។",
+      "updateAvailable": "កំណែថ្មីរួចរាល់ហើយ។",
+      "update": "ធ្វើបច្ចុប្បន្នភាព និងបើកឡើងវិញ",
+      "updating": "កំពុងធ្វើបច្ចុប្បន្នភាព…"
+    },
     "profile": {
       "role": "Full Stack Developer",
       "country": "កម្ពុជា",
@@ -574,7 +612,7 @@
       "searchPlaceholder": "ស្វែងរក…",
       "clearSearch": "សម្អាតការស្វែងរក",
       "noResults": "រកមិនឃើញអត្ថបទ ឬគម្រោងទេ។",
-      "searchHint": "សាកល្បងចំណងជើង ប្រធានបទ ឬបច្ចេកវិទ្យាផ្សេងទៀត។",
+      "searchHint": "សាកល្បងស្វែងរកម្ដងទៀត ឬជ្រើសរើសស្លាកផ្សេង។",
       "emptyArchive": "អត្ថបទថ្មីៗនឹងបង្ហាញនៅទីនេះក្នុងពេលឆាប់ៗ។",
       "projectType": "កំណត់ត្រាគម្រោង",
       "articleType": "អត្ថបទ",
@@ -595,7 +633,19 @@
       "result": "រកឃើញ {count} លទ្ធផល",
       "results": "រកឃើញ {count} លទ្ធផល",
       "searchSummary": "ស្វែងរកក្នុងអត្ថបទ និងគម្រោងទាំង {count}",
-      "paginationSummary": "បង្ហាញអត្ថបទ {first}–{last} ក្នុងចំណោម {total}"
+      "paginationSummary": "បង្ហាញអត្ថបទ {first}–{last} ក្នុងចំណោម {total}",
+      "filterLabel": "ជ្រើសរើសអត្ថបទតាមស្លាក",
+      "sortLabel": "តម្រៀបតាម",
+      "clearFilters": "សម្អាតតម្រង",
+      "allTags": "ទាំងអស់",
+      "sortOptions": {
+        "latest": "ថ្មីបំផុត",
+        "oldest": "ចាស់បំផុត",
+        "title": "ចំណងជើង"
+      },
+      "searching": "កំពុងទាញយកលទ្ធផល…",
+      "searchError": "មិនអាចទាញយកអត្ថបទបានទេ។ សូមពិនិត្យអ៊ីនធឺណិត ហើយសាកល្បងម្ដងទៀត។",
+      "retry": "សាកល្បងម្ដងទៀត"
     },
     "code": {
       "title": "កូដ",

@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import PageTransition from "@/components/layout/PageTransition";
 import BlogPostContent from "@/components/blog/BlogPostContent";
-import { getBlogSlugs } from "@/lib/blog";
-import { getBlogPostOrNotFound } from "@/lib/blog/routes";
+import { getBlogPostOrNotFound, getBlogMetadataOrNotFound } from "@/lib/blog/routes";
 import { blogPostMetadata } from "@/lib/metadata";
 import type { BlogPostPageProps } from "@/types/routes";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = false;
 
 export function generateStaticParams() {
-  return getBlogSlugs().map((slug) => ({ slug }));
+  // Render and cache articles on first visit rather than compiling 50,000 at every build.
+  return [];
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  return blogPostMetadata(getBlogPostOrNotFound(slug).metadata);
+  return blogPostMetadata(getBlogMetadataOrNotFound(slug));
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {

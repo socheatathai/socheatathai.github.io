@@ -2,6 +2,7 @@
   "name": "Thai Socheata Portfolio",
   "short_name": "Socheata",
   "description": "Portfolio of Thai Socheata, a full-stack developer from Cambodia.",
+  "id": "/",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -20,6 +21,23 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Read the blog",
+      "short_name": "Blog",
+      "url": "/blog/"
+    },
+    {
+      "name": "About Socheata",
+      "short_name": "About",
+      "url": "/about/"
+    },
+    {
+      "name": "Contact Socheata",
+      "short_name": "Contact",
+      "url": "/contact/"
     }
   ]
 }

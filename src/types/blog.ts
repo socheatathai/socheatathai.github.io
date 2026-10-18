@@ -1,3 +1,5 @@
+export type BlogSort = "latest" | "oldest" | "title";
+
 export type BlogPostText = {
   title: string;
   description: string;

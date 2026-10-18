@@ -1,72 +1,103 @@
 # Thai Socheata · Portfolio
 
-A Next.js App Router portfolio built with TypeScript and React, with English and Khmer content, paper and black themes, and a static export for GitHub Pages.
+A Next.js App Router portfolio with TypeScript, React, English/Khmer content, paper/black themes, and a standalone Node.js server. GitHub Pages cannot run this deployment.
 
-## Development
+## Features
 
-Use Node.js 22 or newer and npm.
+- Home, About, Contact, and MDX articles/projects with paired Khmer translations.
+- Server-side bilingual archive search, tag filtering, latest/oldest/localized-title sorting, and six results per page.
+- Shareable search and pagination URLs; five popular English tags are ranked when the private index is generated.
+- Article covers from local files or direct HTTPS image URLs, shared with Open Graph, Twitter, and JSON-LD.
+- Up to three featured projects and related posts chosen from bounded recent tag/type candidates.
+- Responsive navigation, persistent language/theme preferences, code-copy feedback, and a desktop work/Ads carousel.
+- On-demand article rendering and caching, canonical metadata, and sitemaps split into at most 10,000 URLs each.
+- Production PWA installation/update controls, a bilingual offline fallback, and bounded caches for eligible visited pages and assets. Live search requires connectivity.
+
+## Development and checks
+
+Use Node.js 22 or newer and npm:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3000. Development reads local content; production uses a generated private catalog.
 
-| Command                | Purpose                                                                     |
-| ---------------------- | --------------------------------------------------------------------------- |
-| `npm run dev`          | Start the development server.                                               |
-| `npm run format`       | Format source and documentation; MDX posts and templates stay unchanged.    |
-| `npm run format:check` | Check formatting without changing files.                                    |
-| `npm run typecheck`    | Check TypeScript without building.                                          |
-| `npm run build`        | Validate content, compile MDX, prerender routes, and export to `out/`.      |
-| `npm run check:export` | Check built metadata, structured data, sitemap, images, and internal links. |
-| `npm run test:preview` | Check the local preview server, including unsafe redirect paths.            |
-| `npm run preview`      | Serve the existing static export at http://localhost:3000.                  |
-| `npm start`            | Alias for the static preview; run a build first.                            |
+| Command                                   | Purpose                                                                                        |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `npm run dev`                             | Run the Next.js development server.                                                            |
+| `npm run index:blog`                      | Validate metadata and generate the private catalog/search index.                               |
+| `npm run build`                           | Generate the index, build Next.js, generate the PWA shell, and package the standalone runtime. |
+| `npm start`                               | Run `.next/standalone/server.js`; defaults to port 3000.                                       |
+| `npm run preview`                         | Run the production server on port 4173.                                                        |
+| `npm run check:server`                    | Start a temporary standalone server, check runtime responses, and stop it.                     |
+| `npm run check:pwa`                       | Validate the fixed offline-shell artifacts and icons.                                          |
+| `npm run test:blog`                       | Test query parsing, filtering, sorting, pagination, and related-post selection.                |
+| `npm run test:scale`                      | Benchmark a synthetic 50,000-record metadata index and queries.                                |
+| `npm run test:pwa`                        | Test worker and client lifecycle/cache behavior.                                               |
+| `npm run typecheck`                       | Check TypeScript.                                                                              |
+| `npm run format:check` / `npm run format` | Check/format source and Markdown; MDX text stays unchanged.                                    |
 
-## Content and structure
+The former static-export and custom static-preview checks are superseded by `check:server`. A synthetic index benchmark does not build 50,000 real MDX articles or measure concurrent production traffic.
 
-To add a post, copy [the article template](docs/example.mdx) or [the project example](src/content/blog/2026/oct/kmrs-tech.mdx). Each has a short editor-only guide inside the MDX file. The [authoring reference](docs/writing-posts.md) covers all fields, images, Khmer translations, and publishing checks.
+## Content and architecture
+
+Start with [the article template](docs/example.mdx) or [the project example](src/content/blog/2026/oct/kmrs-tech.mdx), then follow [the writing guide](docs/writing-posts.md).
 
 ```text
-data/content.json                 Portfolio text, translations, and contact details
-docs/writing-posts.md              Article and project authoring guide
-src/
-├── app/                          Pages, static blog routes, robots, and sitemap
-├── components/
-│   ├── layout/                   Sidebar, site shell, mobile navigation, footer
-│   └── blog/                     Search, articles, related posts, work/Ads card
-├── content/blog/YYYY/mon/         English .mdx and paired .km.mdx posts
-├── hooks/                        Search, clipboard, preferences, and navigation behavior
-├── lib/                          Queries, formatting, navigation, metadata, structured data
-│   └── blog/                     Collection loading, frontmatter validation, MDX, route lookup
-├── types/                        Shared blog, language, theme, portfolio, and route contracts
-└── styles/                       Shared styles and page transitions
-public/
-├── images/blog/YYYY/mon/          Post images directly inside month folders
-├── images/                       Profile, shared, and interface images
-└── ...                           Static verification and site files
-scripts/                         Export checks, preview server, and server tests
-.github/workflows/nextjs.yml       GitHub Pages build and deployment
+data/content.json                  Portfolio copy and translations
+src/content/blog/YYYY/mon/         Reviewed English .mdx and optional .km.mdx files
+public/images/blog/YYYY/mon/       Local post images, without per-post folders
+.generated/blog-index.json         Private generated metadata, source lookup, tags, and MiniSearch data
+src/app/                          Server routes and framework entry points
+src/components/                   Rendering and interactive controls
+src/hooks/                        Browser interactions and URL navigation
+src/lib/blog/                     Catalog validation, server search, MDX, and sitemap logic
+src/pwa/                          Service-worker source
+scripts/                          Indexing, packaging, runtime checks, and tests
 ```
 
-Edit `data/content.json` for profile text, experience, skills, contact details, and translations. Shared page navigation lives in `src/lib/navigation.ts`. The [project structure review](docs/project-structure.md) explains which code belongs in pages, components, hooks, types, and libraries, and which small pieces should stay together.
+Local cover URLs omit `public/`, for example `/images/blog/2026/oct/express-api.jpeg`. Hosted covers use a direct, publicly accessible HTTPS image URL, rather than a social post/page link. Local dimensions are detected automatically; external images are loaded by the browser without a build-time download.
 
-Post images go directly in `public/images/blog/YYYY/mon/`, with no per-post folder. Their URLs omit `public/`, for example `/images/blog/2026/oct/express-api.jpeg`. English and Khmer reuse the same files.
+The server loads the private MiniSearch index once per production process. The browser receives the current result page and controls, not `allPosts` or the search corpus. Articles compile from their local MDX sources on demand and use Next.js route caching. Publishing changes requires rebuilding and replacing the runtime with its matching index, sources, and public assets.
 
-Blog shows six posts per page and searches the full archive in both languages. Home shows up to three featured projects; post pages include related posts and a desktop work/Ads card. Language and theme preferences are saved in browser storage.
+See [server/browser responsibilities](docs/server-client-review.md), [project structure](docs/project-structure.md), [PWA behavior](docs/pwa-readiness.md), and [SEO/security notes](docs/seo-security-review.md).
 
-The work-card illustration’s source prompt is kept in [docs/assets/work-illustration-prompt.txt](docs/assets/work-illustration-prompt.txt).
+## Build and deploy
 
-## Deployment
+Set the production origin **before building** so canonicals, social URLs, and sitemaps match the host. `.env.example` lists the settings; the default origin remains `https://socheatathai.github.io` until configured.
 
-`next.config.ts` enables static export, trailing-slash URLs, and static image serving. `npm run build` writes `out/`; the deployed site does not require a Next.js server. Rebuild after content changes to refresh routes, listings, search data, related posts, homepage selection, and sitemap.
+```sh
+SITE_URL=https://portfolio.example.com npm run build
+npm run check:server
+npm run check:pwa
+npm run test:blog
+npm run test:pwa
+npm run preview
+```
 
-The workflow in `.github/workflows/nextjs.yml` builds and deploys `out/` on pushes to `main` or `master`, or when run manually. In the repository’s **Settings → Pages**, select **GitHub Actions** as the source. Local development and preview commands do not deploy.
+Open http://localhost:4173. The separate preview origin keeps its production worker away from development on port 3000.
 
-This configuration targets https://socheatathai.github.io. Canonical URLs and sitemap URLs use `src/lib/site.ts`.
+Build on the target platform or use the Docker recipe below so platform-specific dependencies match the host.
 
-## SEO and security
+Deploy the complete `.next/standalone/` directory to a Node/container host. It includes the traced runtime, `.next/static`, `public`, the private generated index, and MDX sources. From that directory, start:
 
-See [the SEO and security review](docs/seo-security-review.md) for the checked areas, implemented fixes, hosting limits, and remaining account settings. Pull requests run type checking, the production build, export checks, and preview server tests. Only pushes and manual runs deploy. Dependabot checks npm dependencies weekly and GitHub Actions monthly.
+```sh
+HOSTNAME=0.0.0.0 PORT=3000 node server.js
+```
+
+The included Dockerfile builds and packages the same runtime with a non-root Node.js 22 runner:
+
+```sh
+docker build --build-arg SITE_URL=https://portfolio.example.com -t socheata-portfolio .
+docker run --rm -p 3000:3000 socheata-portfolio
+```
+
+Use HTTPS on the public host for PWA installation. Configure the host's port/proxy and keep the index and MDX sources outside public static serving. Build again when changing `SITE_URL` or published content.
+
+The workflow in `.github/workflows/nextjs.yml` now validates the Node build, tests and runtime checks, then uploads a standalone artifact. It does not deploy to GitHub Pages or another host. No production deployment has been performed by this migration.
+
+## Verification scope
+
+The earlier October static-export reviews describe the previous architecture. Current verification must use the commands above. Browser/device installation, production traffic capacity, live hosting headers, and real Core Web Vitals need separate checks; historical static-export results do not establish them.

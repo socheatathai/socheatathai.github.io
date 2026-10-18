@@ -1,5 +1,11 @@
 import { notFound } from "next/navigation";
-import { getBlogPage, getBlogPost } from "@/lib/blog";
+import { getBlogPage, getBlogPost, getBlogMetadata } from "@/lib/blog";
+
+export function getBlogMetadataOrNotFound(slug: string) {
+  const metadata = getBlogMetadata(slug);
+  if (!metadata) notFound();
+  return metadata;
+}
 
 export function getBlogPostOrNotFound(slug: string) {
   const post = getBlogPost(slug);

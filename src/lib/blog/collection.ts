@@ -1,21 +1,25 @@
 import fs from "node:fs";
 import path from "node:path";
-import { cache } from "react";
+import { createHash } from "node:crypto";
 import { VFile } from "vfile";
 import { matter } from "vfile-matter";
-import type { BlogPost } from "@/types/blog";
+import type { BlogPostMetadata } from "@/types/blog";
+import { getBlogTags } from "@/lib/blog-filters";
+import { createSearchData } from "./search-index";
 import { invalid, readDate, readMetadata, readText, validSlug } from "./frontmatter";
 import { comparePosts } from "./sort";
 
 const blogDirectory = path.join(process.cwd(), "src", "content", "blog");
 
-function readBlogFile(filename: string) {
+export function readBlogFile(filename: string) {
+  if (path.isAbsolute(filename) || filename.split(/[\\/]/).includes(".."))
+    invalid(filename, "content paths must stay inside the blog collection.");
   const filePath = path.join(blogDirectory, filename);
-  if (!fs.existsSync(filePath)) return null;
+  if (!fs.existsSync(/* turbopackIgnore: true */ filePath)) return null;
 
   // Editors may add a UTF-8 BOM or blank lines before the frontmatter fence.
   const source = fs
-    .readFileSync(filePath, "utf8")
+    .readFileSync(/* turbopackIgnore: true */ filePath, "utf8")
     .replace(/^\uFEFF/, "")
     .replace(/^\s*(?=---(?:\r?\n|$))/, "");
   const file = new VFile(source);
@@ -25,24 +29,30 @@ function readBlogFile(filename: string) {
     frontmatter !== null && typeof frontmatter === "object" && !Array.isArray(frontmatter)
       ? (frontmatter as Record<string, unknown>)
       : {};
-  return { data, content: String(file) };
+  return { data, content: String(file), source };
 }
 
 function discoverBlogFiles(directory = blogDirectory, prefix = ""): string[] {
+  // Development/publishing discovery is dynamic. Production content is explicitly
+  // included by outputFileTracingIncludes, rather than tracing the whole project.
   return fs
-    .readdirSync(directory, { withFileTypes: true })
+    .readdirSync(/* turbopackIgnore: true */ directory, { withFileTypes: true })
     .sort((a, b) => a.name.localeCompare(b.name))
     .flatMap((entry) => {
       const filename = path.posix.join(prefix, entry.name);
       if (entry.isSymbolicLink())
         invalid(filename, "symbolic links are not supported in the content collection.");
-      if (entry.isDirectory()) return discoverBlogFiles(path.join(directory, entry.name), filename);
+      if (entry.isDirectory())
+        return discoverBlogFiles(
+          path.join(/* turbopackIgnore: true */ directory, entry.name),
+          filename,
+        );
       return entry.isFile() && entry.name.endsWith(".mdx") ? [filename] : [];
     });
 }
 
-// Share parsing within a server render; React starts a fresh cache for each request.
-export const readBlogCollection = cache(() => {
+/** One publishing pass; bodies are validated/read but are not retained in the index. */
+export function buildBlogCatalog() {
   const filenames = discoverBlogFiles();
   const available = new Set(filenames);
   for (const filename of filenames) {
@@ -55,9 +65,10 @@ export const readBlogCollection = cache(() => {
   }
 
   const sources = new Map<string, string>();
+  const revision = createHash("sha256");
   const posts = filenames
     .filter((filename) => !filename.endsWith(".km.mdx"))
-    .map((filename): BlogPost => {
+    .map((filename): BlogPostMetadata => {
       const original = readBlogFile(filename);
       if (!original) invalid(filename, "the English MDX file could not be read.");
       const metadata = readMetadata(original.data, filename);
@@ -65,10 +76,12 @@ export const readBlogCollection = cache(() => {
       if (previousSource !== undefined)
         invalid(filename, `slug "${metadata.slug}" is already used by "${previousSource}".`);
       sources.set(metadata.slug, filename);
+      revision.update(filename).update("\0").update(original.source).update("\0");
 
       const translatedFilename = `${filename.slice(0, -4)}.km.mdx`;
       const translated = readBlogFile(translatedFilename);
-      if (!translated) return { metadata, content: original.content };
+      if (!translated) return metadata;
+      revision.update(translatedFilename).update("\0").update(translated.source).update("\0");
       for (const field of ["slug", "type", "image", "projectUrl", "featured", "updated"]) {
         if (translated.data[field] !== undefined)
           invalid(translatedFilename, `put shared field "${field}" in ${filename} instead.`);
@@ -81,12 +94,18 @@ export const readBlogCollection = cache(() => {
         invalid(translatedFilename, "a translated publication date must match the original.");
       }
       metadata.km = readText(translated.data, translatedFilename);
-      return { metadata, content: original.content, kmContent: translated.content };
+      return metadata;
     })
-    .sort((a, b) => comparePosts(a.metadata, b.metadata));
+    .sort(comparePosts);
 
   return {
-    bySlug: new Map(posts.map((post) => [post.metadata.slug, post])),
-    metadata: posts.map((post) => post.metadata),
+    schemaVersion: 1 as const,
+    revision: revision.digest("hex"),
+    posts,
+    tags: getBlogTags(posts),
+    sources: Object.fromEntries(sources),
+    search: createSearchData(posts),
   };
-});
+}
+
+export type BlogCatalog = ReturnType<typeof buildBlogCatalog>;

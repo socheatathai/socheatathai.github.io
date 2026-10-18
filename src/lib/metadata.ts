@@ -72,7 +72,7 @@ export function blogIndexMetadata(page = 1): Metadata {
 
 export function blogPostMetadata(post: BlogPostMetadata): Metadata {
   const metadata = pageMetadata(post.title, post.description, `/blog/${post.slug}/`);
-  const image = post.image ?? defaultSocialImage;
+  const image = new URL(post.image ?? defaultSocialImage, siteUrl).href;
   return {
     ...metadata,
     authors: [{ name: siteName, url: `${siteUrl}/about/` }],

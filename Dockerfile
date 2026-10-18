@@ -1,0 +1,23 @@
+FROM node:22-bookworm-slim AS dependencies
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+
+FROM dependencies AS builder
+WORKDIR /app
+COPY . .
+ARG SITE_URL=https://socheatathai.github.io
+ENV SITE_URL=${SITE_URL}
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
+FROM node:22-bookworm-slim AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+COPY --from=builder --chown=node:node /app/.next/standalone ./
+USER node
+EXPOSE 3000
+CMD ["node", "server.js"]

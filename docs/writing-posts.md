@@ -23,9 +23,9 @@ Create the folders you need:
 mkdir -p src/content/blog/2026/oct public/images/blog/2026/oct
 ```
 
-## 2. Add image files
+## 2. Choose an image source
 
-Put images directly in the matching year/month folder. Keep the actual extension and use a descriptive filename:
+For a cover, use either an existing local `/images/` file or an absolute HTTPS image URL. Store local images directly in the matching year/month folder. Keep the actual extension and use a descriptive filename:
 
 ```text
 public/images/blog/2026/oct/
@@ -38,7 +38,15 @@ There are no per-post image folders. A shorter name such as `express-api.jpeg` i
 
 The public URL omits `public/`: `public/images/blog/2026/oct/task-board.png` becomes `/images/blog/2026/oct/task-board.png`.
 
-Add each file before referencing it. Frontmatter images must exist locally under `/images/`. When moving a post to another source year/month, move its images and update their references to keep the convention consistent.
+Add each local file before referencing it. When moving a post to another source year/month, move its local images and update their references to keep the convention consistent.
+
+For a hosted cover, set `image` to a direct, publicly accessible HTTPS image URL, such as:
+
+```yaml
+image: "https://example.com/images/task-board.png"
+```
+
+Use the image URL itself, not a social post or page link. Hosted images load from their URL in the browser; the build does not download them.
 
 ## 3. Create the English post
 
@@ -79,7 +87,7 @@ export function findTask(tasks: Task[], id: number): Task | undefined {
 - Document successful responses and errors.
 ````
 
-An article cover is optional. After adding `public/images/blog/2026/oct/building-an-api.png`, add this line inside its frontmatter:
+An article cover is optional. After adding `public/images/blog/2026/oct/building-an-api.png`, add this line inside its frontmatter, or use a hosted image URL as shown above:
 
 ```yaml
 image: "/images/blog/2026/oct/building-an-api.png"
@@ -121,7 +129,7 @@ Use a layout that works on a phone and a larger screen.
 Keeping the data model small made the first version easier to build and maintain.
 ```
 
-Projects require both an existing local `image` and an absolute HTTP or HTTPS `projectUrl`. The layout renders the screenshot and external project link automatically. Put the project story and features in the body.
+Projects require both an `image` (an existing local `/images/` file or an absolute HTTPS image URL) and an absolute HTTP or HTTPS `projectUrl`. The layout renders the screenshot and external project link automatically. Put the project story and features in the body.
 
 ### Frontmatter reference
 
@@ -133,18 +141,20 @@ Projects require both an existing local `image` and an absolute HTTP or HTTPS `p
 | `description` | Required nonempty summary used on the post and in listings and search.                                                                                                                                         |
 | `date`        | Quoted valid `YYYY-MM-DD` date. Required for articles; include it on every new project too.                                                                                                                    |
 | `updated`     | Optional quoted `YYYY-MM-DD` date of a meaningful content update. Requires `date` and cannot be earlier than it. Used in article metadata, structured data, and the sitemap. Keep it in the English file only. |
-| `tags`        | Optional array of nonempty strings; defaults to an empty array.                                                                                                                                                |
-| `image`       | Optional article cover; required project screenshot. Must reference an existing local `/images/` file.                                                                                                         |
+| `tags`        | Optional array of nonempty strings; defaults to an empty array. The five most-used English tags appear as archive filters.                                                                                     |
+| `image`       | Optional article cover; required project screenshot. Use an existing local `/images/` file or a direct, publicly accessible `https://` image URL.                                                              |
 | `projectUrl`  | Required for projects; an absolute `http://` or `https://` URL.                                                                                                                                                |
 | `featured`    | Optional `true` or `false`. Only featured projects are eligible for the homepage.                                                                                                                              |
 
+The archive header shows All and up to five of the most-used English tags, ranked during index generation by the number of posts using each tag, with alphabetical ordering for ties. Other tags remain searchable. Tag labels and the selected tag stay the same when switching languages; the All label is translated. The displayed tags refresh after rebuilding. The server combines tag filters with the search query, sorts the matches, and returns six results per page in every mode. Latest, Oldest, and localized Title sorting are available. Search, tag, sort, language, and pagination are preserved in the URL; clearing the controls restores All, Latest, and page one. Use Cmd/Ctrl+K to focus search and Escape to clear its query.
+
 Posts sort newest first by frontmatter `date`, then alphabetically by slug when dates match. Older undated projects are accepted and sort after dated posts. The year/month folders do not override this ordering.
 
-Cover dimensions are read automatically at build time; you do not need width or height fields. The cover also becomes the post's sharing image. Posts without covers use the portfolio sharing image. Set `updated` only when the content changes, rather than on every build. Publication dates, tags, and author information also appear in the post's structured data.
+Local cover dimensions are read automatically at build time. Hosted covers do not require known dimensions, and neither image source needs width or height frontmatter fields. The same `image` is used for the cover, Open Graph and Twitter sharing images, and structured data (JSON-LD). Posts without covers use the portfolio sharing image. Set `updated` only when the content changes, rather than on every build. Publication dates, tags, and author information also appear in the post's structured data.
 
 The homepage shows up to the first three projects with `featured: true` in that same order. An article with `featured: true` does not appear in this project section. Setting it on more than three projects makes the three newest eligible projects appear.
 
-There is no supported `draft` or scheduled-publication setting. Every valid English post in the collection is included in the archive, search data, static routes, and sitemap. A future date affects ordering; it does not delay inclusion. Keep unfinished templates outside `src/content/blog/` until they are ready to be included.
+There is no supported `draft` or scheduled-publication setting. Every valid English post in the published catalog is included in the archive, search data, available article routes, and sitemap. A future date affects ordering; it does not delay inclusion. Keep unfinished templates outside `src/content/blog/` until they are ready to be included.
 
 ## 4. Write the body and inline images
 
@@ -158,7 +168,7 @@ After adding `public/images/blog/2026/oct/building-an-api-flow.png`, insert an i
 
 Use readable alt text that explains what the image shows. Translate inline alt text in the Khmer body while referencing the same file. The frontmatter cover uses the localized post title as its alt text; there is no separate cover-alt metadata field.
 
-MDX is compiled from local source at build time. Review any JSX or code you add as carefully as other project source. JavaScript expressions and dynamic imports are disabled in the compiler. Use fenced code blocks when demonstrating JavaScript, and accept MDX changes only from trusted, reviewed sources.
+MDX is compiled from reviewed local source when its article is first rendered, then Next.js caches the rendered route. The build validates metadata without compiling every article body. Open every new or edited article during preview to catch MDX syntax errors. Review any JSX or code you add as carefully as other project source. JavaScript expressions and dynamic imports are disabled in the compiler. Use fenced code blocks when demonstrating JavaScript, and accept MDX changes only from trusted, reviewed sources.
 
 ## 5. Add an optional Khmer translation
 
@@ -216,7 +226,7 @@ tags: ["Next.js", "PostgreSQL"]
 ការរក្សាគំរូទិន្នន័យឱ្យតូច ជួយឱ្យកំណែដំបូងងាយស្រួលបង្កើត និងថែទាំ។
 ```
 
-Translate `title`, `description`, `tags` where appropriate, and the complete body. Technical tags can remain unchanged. Shared fields `slug`, `type`, `image`, `projectUrl`, `featured`, and `updated` belong only in the English file; putting them in the Khmer frontmatter fails validation.
+Translate `title`, `description`, `tags` where appropriate, and the complete body. Technical tags can remain unchanged. Archive filter labels come from the English tags, while search includes tags from both languages. Shared fields `slug`, `type`, `image`, `projectUrl`, `featured`, and `updated` belong only in the English file; putting them in the Khmer frontmatter fails validation.
 
 The Khmer `date` is optional. If you include it, it must exactly match the English date, such as `date: "2026-10-16"`. Both languages share the same URL and images. A Khmer file requires its sibling English file; a post without a Khmer file displays its English content when Khmer is selected.
 
@@ -235,20 +245,24 @@ Stop the development server, then run:
 ```sh
 npm run format:check
 npm run typecheck
+npm run test:blog
 npm run build
-npm run check:export
-npm run test:preview
+npm run check:server
+npm run check:pwa
+npm run test:pwa
 npm run preview
 ```
 
-The build validates metadata and cover paths, compiles MDX, and writes the static site to `out/`. It catches duplicate slugs, invalid metadata or filenames, missing project fields or cover files, orphan translations, and MDX syntax errors. `check:export` checks the generated pages, local links and images, metadata, and sitemap; `test:preview` checks the static preview server. Review external links and the finished layout in the browser too.
+The build generates the private `.generated/blog-index.json`, builds Next.js, generates the small PWA shell, and packages `.next/standalone/`. Index generation catches duplicate slugs, invalid metadata or filenames, missing project fields or local cover files, and orphan translations. It does not compile all MDX bodies. `check:server` starts a temporary production server, samples runtime responses including an article, then stops it; it does not open every article. Review each changed article, external links, and the finished layout in the browser too.
 
-The preview serves the generated site at http://localhost:3000. `npm start` is an alias for this static preview and also requires a completed build.
+The preview runs the standalone Next.js server at http://localhost:4173, separately from development on port 3000 so its production PWA worker cannot control development pages. `npm start` runs the same standalone server on its configured port, normally 3000. Both require a completed build.
 
 Use `npm run format` for source and Markdown documentation. MDX posts and templates are excluded so formatting does not rewrite article text or code examples.
 
 ## 7. Rebuild when content changes
 
-A build refreshes the blog listing and pagination, search data, related-post links, featured-project homepage selection, and sitemap from the same collection. Related posts show up to three other posts, preferring shared tags, then matching post type, then the normal date/slug ordering. No navigation list or sitemap entry needs to be maintained by hand.
+A build refreshes the private catalog/search index, popular tag options, featured-project selection, and sitemap data from the same collection. Related posts show up to three posts selected from bounded recent tag/type candidates. The sitemap is split into shards of at most 10,000 URLs. No navigation list or sitemap entry needs to be maintained by hand.
 
-The deployed site uses a static export, so adding or changing a post requires a rebuild and deployment. The workflow in `.github/workflows/nextjs.yml` builds and deploys `out/` when changes are pushed to `main` or `master`, or when the workflow is run manually.
+To publish, add the reviewed English/Khmer files and local images, run the checks above, open the changed article, then rebuild and replace the complete standalone runtime on the Node/container host. Keep its private index, MDX sources, and public assets from the same build; the production process loads the catalog once and needs the new runtime to see published changes. Do not edit the generated index by hand or expose it under `public/`.
+
+Set `SITE_URL` to the production origin before building; see [deployment instructions](../README.md#build-and-deploy). The workflow in `.github/workflows/nextjs.yml` validates and uploads a Node artifact. It does not deploy to GitHub Pages or publish to another host. This repository change performs no production deployment.

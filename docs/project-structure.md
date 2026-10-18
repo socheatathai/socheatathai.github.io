@@ -1,73 +1,51 @@
-# Project structure review
+# Project structure
 
-Pages should describe the route and compose its content. Extract code when it has its own responsibility, is reused, or makes the surrounding file difficult to scan. A small props declaration or display expression in a component is also normal production code; a separate file is useful when it makes the contract easier to find and maintain.
+Pages own framework exports, validated route input, and composition. Extract a module when it has a distinct responsibility, shared use, or a contract that benefits from a clear location. Small props, private helpers, and display expressions can remain beside their components.
 
-## Types and props
+## Server, build, and browser boundaries
 
-| Location                              | Responsibility                                                                |
-| ------------------------------------- | ----------------------------------------------------------------------------- |
-| `src/types/blog.ts`                   | Blog content models and the `BlogPageData` pagination result.                 |
-| `src/components/blog/types.ts`        | Blog UI contracts, including `BlogContentProps`, derived from `BlogPageData`. |
-| `src/components/layout/types.ts`      | Layout, navigation action, icon, and link props.                              |
-| `src/types/language.ts`, `theme.ts`   | Preference values and provider contracts.                                     |
-| `src/types/portfolio.ts`, `routes.ts` | Portfolio component props and asynchronous blog route params.                 |
+| Location                       | Responsibility                                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `src/app/blog/`                | Request-time archive criteria and on-demand article routes.                                                  |
+| `src/lib/blog.ts`              | Server-only facade for catalog lookup, result pages, featured/related posts, and sources.                    |
+| `src/lib/blog/collection.ts`   | Publishing-time discovery, frontmatter validation, translation pairing, and catalog generation.              |
+| `src/lib/blog/frontmatter.ts`  | Slugs, dates, text, image references/dimensions, and project metadata.                                       |
+| `src/lib/blog/search-index.ts` | Server MiniSearch hydration, sort/tag indexes, six-result queries, bounded ID cache, and related candidates. |
+| `src/lib/blog/mdx.ts`          | Compile requested reviewed MDX in English and optional Khmer.                                                |
+| `src/lib/blog/sitemap.ts`      | Sitemap index counts and 10,000-URL shard selection.                                                         |
+| `src/lib/blog-query.ts`        | Shared criteria types, bounded URL parsing, and pagination/query links.                                      |
+| `src/hooks/useBlogSearch.ts`   | Search draft, debounced URL changes, keyboard focus, and pending state.                                      |
+| `src/components/blog/`         | Current-page rendering, search/filter controls, pagination, and article composition.                         |
+| `.generated/blog-index.json`   | Private publishing artifact; packaged for the server, never supplied as a client prop.                       |
 
-The original blog props now reuse the data contract:
+The generated catalog holds metadata, source paths, ranked tag options, and serialized search data. Production initializes it once per process. Only requested article bodies are loaded/compiled; the build does not eagerly compile the entire collection.
+
+## Types and UI contracts
+
+Domain models live in `src/types/blog.ts`; blog UI contracts stay in `src/components/blog/types.ts`. The archive contract contains one result page:
 
 ```ts
 export type BlogContentProps = BlogPageData & {
-  allPosts: BlogPostMetadata[];
+  criteria: BlogQuery;
+  tags: string[];
+  archiveTotal: number;
 };
 ```
 
-Client components import blog models with `import type` from `@/types/blog`, independently of the filesystem loader. Derive related contracts with `Pick`, `Omit`, or intersections instead of repeating fields. Keep feature-specific props near their components rather than putting every type in one global file.
+It has no `allPosts` field. Client components import models with `import type`, independently of the filesystem and MiniSearch modules. `src/lib/blog.ts` uses `server-only` to enforce that boundary.
 
-## Pages and server code
+Layout props/icons remain near layout components; shared language/theme values and provider contracts live in `src/types/`. Preference hooks own browser storage and document updates. Providers expose context; `lib/theme.ts` shares bootstrap and runtime theme settings.
 
-| Area                             | Decision                                                                                                                                      |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Home, about, contact             | Keep route metadata exports and content composition in the page. Rendering belongs to their content components.                               |
-| Blog index and paginated archive | Keep static route exports in the pages; share metadata and validated archive lookup through libraries.                                        |
-| Blog article                     | Keep params, static generation, and metadata in the route. `BlogPostContent` composes the article, related posts, promo, and structured data. |
-| Root layout                      | Keep the document and provider tree here. Import the metadata and theme bootstrap configuration.                                              |
-| Not found, robots, sitemap       | Keep these small framework entry points together. They already have one clear responsibility.                                                 |
+Keep clipboard timers, mobile-dialog focus, sidebar disclosure, carousel state, and PWA browser lifecycle in their focused hooks. Home/About reuse skills, experience, and education components. Small contact/footer/not-found components remain together.
 
-`src/lib/blog.ts` is the query API for posts, featured projects, related posts, and pagination. Its supporting modules have narrower jobs:
+## Metadata and deployment
 
-- `blog/collection.ts` discovers and reads the local MDX collection and pairs translations.
-- `blog/frontmatter.ts` validates metadata, dates, image paths and dimensions, and project links.
-- `blog/sort.ts` shares the ordering used by the archive and related posts.
-- `blog/mdx.ts` compiles both article languages with the existing MDX restrictions.
-- `blog/routes.ts` turns invalid or missing route input into a not-found response.
+Site identity and the configured origin live in `lib/site.ts`; Next.js metadata builders and JSON-LD serializers remain separate. Sitemap routes are `src/app/sitemap.xml/route.ts` and `src/app/sitemaps/[id]/route.ts`.
 
-Filesystem access and MDX compilation stay on the server. Keep `"use client"` on interactive components and hooks; shared models and pure formatting functions do not need it.
+`scripts/generate-blog-index.ts` publishes the private index. `scripts/generate-pwa.mjs` generates the fixed offline shell; `scripts/package-runtime.mjs` copies assets, index, and MDX sources into `.next/standalone/`. Runtime checks and focused tests stay in `scripts/`. CI validates/uploads the Node artifact; hosting must run Node or the included container.
 
-Site identity is in `lib/site.ts`, Next.js metadata builders are in `lib/metadata.ts`, and JSON-LD builders and serialization are in `lib/structured-data.ts`. These are separate formats with different consumers.
-
-## UI and interaction
-
-| Area                         | Extracted responsibility                                                                                                                                   |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Blog search                  | `useBlogSearch` owns query state, matching, clearing, and input focus.                                                                                     |
-| Code copy button             | `useCopyCode` owns clipboard status and timer cleanup.                                                                                                     |
-| Article promo                | `useArticlePromo` owns rotation, pause, focus, dismissal, and media preferences.                                                                           |
-| Language and theme providers | Preference hooks own browser storage and synchronization; providers expose typed context. Theme bootstrap and runtime application share `lib/theme.ts`.    |
-| Sidebar and mobile header    | Shared navigation links, language control, profile/social rendering, and icons have dedicated components; navigation hooks own focus and responsive state. |
-| Home and about               | Reuse `SkillsList` and `ExperienceTimeline`; education rendering has its own component.                                                                    |
-
-Pure search, pagination, date, and number formatting remain in `lib/`, where they can be used without mounting a component.
-
-## Code kept together
-
-- Keep short presentational components such as contact content, footer, skip link, theme toggle, and the not-found message focused in their existing files.
-- Keep one-use icon helpers, simple props such as `{ posts: BlogPostMetadata[] }`, and short label expressions beside their UI when a separate module would add navigation without a useful boundary.
-- Keep a file's private parsing helpers and normalization details local unless another module needs them.
-- Keep CSS modules beside their feature and shared styles in `styles/`; this refactor does not require a styling reorganization.
-- Keep MDX posts and translations in the existing dated content folders, and shared portfolio copy in `data/content.json`.
-- Keep the preview server, its tests, and export checks in `scripts/`, and deployment configuration in `.github/`.
-
-There is no need for a generic service/repository hierarchy, a file for every JSX section, or barrel files that hide the server/client import boundary at this project size.
+Keep MDX in dated content folders and shared portfolio copy in `data/content.json`. Keep feature styles beside their components and shared styles in `styles/`. Extra service layers, barrel files, or a file for every JSX expression do not improve these boundaries.
 
 ## Verification
 
-Run `npm run format:check`, `npm run typecheck`, `npm run build`, `npm run check:export`, and `npm run test:preview`. The build parses all content and compiles both languages; the export check inspects generated pages, metadata, structured data, links, and assets. After changing interaction hooks, also exercise search, language/theme switching, and responsive navigation in a browser.
+Run formatting, TypeScript, blog tests, the synthetic scale benchmark, production build, runtime response checks, and PWA checks/tests. `check:server` starts and stops a temporary production server. Author preview must open new articles because metadata validation does not compile every MDX body. Browser interaction and physical-device behavior require separate testing.

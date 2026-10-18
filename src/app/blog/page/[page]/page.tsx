@@ -1,30 +1,37 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import BlogContent from "@/components/blog/BlogContent";
 import PageTransition from "@/components/layout/PageTransition";
-import { getBlogPosts } from "@/lib/blog";
-import { getBlogPageCount } from "@/lib/blog-pagination";
-import { getBlogPageOrNotFound } from "@/lib/blog/routes";
+import { getBlogSearchPage, getBlogTagOptions, getBlogPosts } from "@/lib/blog";
+import { parseBlogQuery, hasBlogCriteria } from "@/lib/blog-query";
 import { blogIndexMetadata } from "@/lib/metadata";
 import type { BlogArchivePageProps } from "@/types/routes";
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return Array.from({ length: getBlogPageCount(getBlogPosts().length) }, (_, index) => ({
-    page: String(index + 1),
-  }));
+export const dynamic = "force-dynamic";
+async function query(props: BlogArchivePageProps) {
+  const { page } = await props.params;
+  if (!/^[1-9]\d{0,6}$/.test(page)) notFound();
+  return parseBlogQuery(await props.searchParams, Number(page));
 }
-
-export async function generateMetadata({ params }: BlogArchivePageProps): Promise<Metadata> {
-  const { page } = await params;
-  return blogIndexMetadata(getBlogPageOrNotFound(page).currentPage);
+export async function generateMetadata(props: BlogArchivePageProps): Promise<Metadata> {
+  const criteria = await query(props);
+  return {
+    ...blogIndexMetadata(criteria.page),
+    ...(hasBlogCriteria(criteria) ? { robots: { index: false, follow: true } } : {}),
+  };
 }
-
-export default async function PaginatedBlogPage({ params }: BlogArchivePageProps) {
-  const { page } = await params;
+export default async function PaginatedBlogPage(props: BlogArchivePageProps) {
+  const criteria = await query(props);
+  const page = getBlogSearchPage(criteria);
+  if (!page) notFound();
   return (
     <PageTransition>
-      <BlogContent {...getBlogPageOrNotFound(page)} allPosts={getBlogPosts()} />
+      <BlogContent
+        {...page}
+        criteria={criteria}
+        tags={getBlogTagOptions()}
+        archiveTotal={getBlogPosts().length}
+      />
     </PageTransition>
   );
 }

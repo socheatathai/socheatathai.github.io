@@ -6,16 +6,19 @@ import { BLOG_PAGE_SIZE, getBlogPageHref } from "@/lib/blog-pagination";
 import { getBlogPaginationItems } from "@/lib/blog-pagination-items";
 import { formatLocalizedNumber } from "@/lib/locale";
 import type { BlogPaginationProps } from "./types";
+import { blogQueryHref } from "@/lib/blog-query";
 
 export default function BlogPagination({
   currentPage,
   totalPages,
   totalPosts,
+  criteria,
 }: BlogPaginationProps) {
   const { language, content } = useLanguage();
   if (totalPages <= 1) return null;
 
   const formatNumber = (value: number) => formatLocalizedNumber(value, language);
+  const href = (page: number) => (criteria ? blogQueryHref(criteria, page) : getBlogPageHref(page));
   const firstPost = (currentPage - 1) * BLOG_PAGE_SIZE + 1;
   const lastPost = Math.min(currentPage * BLOG_PAGE_SIZE, totalPosts);
   const previousLabel = content.blog.previous;
@@ -32,7 +35,7 @@ export default function BlogPagination({
         {currentPage > 1 ? (
           <Link
             className="blog-pagination-control"
-            href={getBlogPageHref(currentPage - 1)}
+            href={href(currentPage - 1)}
             direction="back"
             scroll
             aria-label={previousLabel}
@@ -64,7 +67,7 @@ export default function BlogPagination({
               ) : (
                 <Link
                   className="blog-pagination-page"
-                  href={getBlogPageHref(page)}
+                  href={href(page)}
                   direction={page < currentPage ? "back" : "forward"}
                   scroll
                   aria-label={`${content.blog.page} ${formatNumber(page)}`}
@@ -78,7 +81,7 @@ export default function BlogPagination({
         {currentPage < totalPages ? (
           <Link
             className="blog-pagination-control"
-            href={getBlogPageHref(currentPage + 1)}
+            href={href(currentPage + 1)}
             scroll
             aria-label={nextLabel}
           >

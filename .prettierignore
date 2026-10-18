@@ -1,6 +1,7 @@
 node_modules/
 .next/
 out/
+.generated/
 public/
 package-lock.json
 next-env.d.ts

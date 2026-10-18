@@ -1,0 +1,15 @@
+.git
+.aws
+.codex
+.agents
+.vscode
+.next
+.generated
+out
+node_modules
+.env*
+!.env.example
+*.tsbuildinfo
+.DS_Store
+public/sw.js
+public/pwa-assets.json

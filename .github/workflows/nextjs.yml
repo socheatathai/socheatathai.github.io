@@ -1,4 +1,4 @@
-name: Deploy Next.js to GitHub Pages
+name: Validate Next.js server
 
 on:
   push:
@@ -11,8 +11,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages-${{ github.event.pull_request.number || 'deploy' }}
-  cancel-in-progress: false
+  group: server-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -25,30 +25,20 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
-        if: github.event_name != 'pull_request'
       - run: npm ci
       - run: npm run format:check
       - run: npm run typecheck
+      - run: npm run test:blog
+      - run: npm run test:scale
       - run: npm run build
-      - run: npm run check:export
-      - run: npm run test:preview
-      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
-        if: github.event_name != 'pull_request'
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://socheatathai.github.io' }}
+      - run: npm run check:pwa
+      - run: npm run test:pwa
+      - run: npm run check:server
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          path: out
-
-  deploy:
-    needs: build
-    if: github.event_name != 'pull_request'
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+          name: nextjs-server
+          path: .next/standalone/
+          include-hidden-files: true
+          retention-days: 7

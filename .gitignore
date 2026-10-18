@@ -1,6 +1,7 @@
 node_modules/
 .next/
 out/
+.generated/
 *.tsbuildinfo
 .env*
 !.env.example
@@ -13,3 +14,7 @@ Thumbs.db
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/tasks.json
+
+# Generated production PWA shell
+/public/sw.js
+/public/pwa-assets.json

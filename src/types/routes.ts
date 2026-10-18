@@ -4,4 +4,5 @@ export type BlogPostPageProps = {
 
 export type BlogArchivePageProps = {
   params: Promise<{ page: string }>;
+  searchParams: Promise<import("@/lib/blog-query").BlogSearchParams>;
 };
