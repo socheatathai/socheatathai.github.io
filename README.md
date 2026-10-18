@@ -2,6 +2,8 @@
 
 A Next.js App Router portfolio with TypeScript, React, English/Khmer content, paper/black themes, and a standalone Node.js server. GitHub Pages cannot run this deployment.
 
+If the existing `socheatathai.github.io` URL shows this README, follow the [GitHub Pages recovery guide](docs/github-pages-recovery.md). Its separate recovery workflow temporarily restores the last static application while the current server version awaits Node hosting.
+
 ## Features
 
 - Home, About, Contact, and MDX articles/projects with paired Khmer translations.
