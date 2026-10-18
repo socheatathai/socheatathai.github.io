@@ -9,9 +9,12 @@ export function useLanguagePreference() {
   const [language, setLanguage] = useState<Language>("en");
 
   useLayoutEffect(() => {
+    const urlLanguage = new URLSearchParams(window.location.search).get("lang");
+    if (urlLanguage === "en" || urlLanguage === "km") setLanguage(urlLanguage);
     try {
       const saved = localStorage.getItem(storageKey);
-      if (saved === "en" || saved === "km") setLanguage(saved);
+      if (urlLanguage !== "en" && urlLanguage !== "km" && (saved === "en" || saved === "km"))
+        setLanguage(saved);
     } catch {
       // The language switch also works when browser storage is unavailable.
     }
@@ -22,7 +25,15 @@ export function useLanguagePreference() {
     }
 
     window.addEventListener("storage", syncPreference);
-    return () => window.removeEventListener("storage", syncPreference);
+    function syncUrl() {
+      if (!window.location.pathname.startsWith("/blog")) return;
+      setLanguage(new URLSearchParams(window.location.search).get("lang") === "km" ? "km" : "en");
+    }
+    window.addEventListener("popstate", syncUrl);
+    return () => {
+      window.removeEventListener("storage", syncPreference);
+      window.removeEventListener("popstate", syncUrl);
+    };
   }, []);
 
   useLayoutEffect(() => {

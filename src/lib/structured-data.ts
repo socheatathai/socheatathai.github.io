@@ -34,7 +34,7 @@ export function blogPostStructuredData(post: BlogPostMetadata) {
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
         headline: post.title,
         description: post.description,
-        image: [`${siteUrl}${post.image ?? defaultSocialImage}`],
+        image: [new URL(post.image ?? defaultSocialImage, siteUrl).href],
         ...(post.date ? { datePublished: `${post.date}T00:00:00+07:00` } : {}),
         ...(post.updated ? { dateModified: `${post.updated}T00:00:00+07:00` } : {}),
         author: { "@type": "Person", name: siteName, url: `${siteUrl}/about/` },

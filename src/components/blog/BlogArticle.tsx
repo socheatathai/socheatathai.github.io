@@ -59,14 +59,18 @@ export default function BlogArticle({
       </header>
       {metadata.image && (
         <figure className="blog-article-figure">
-          <Image
-            src={metadata.image}
-            alt={text.title}
-            width={metadata.imageWidth}
-            height={metadata.imageHeight}
-            priority
-            sizes="(max-width: 767px) 100vw, 780px"
-          />
+          {metadata.image.startsWith("/images/") ? (
+            <Image
+              src={metadata.image}
+              alt={text.title}
+              width={metadata.imageWidth}
+              height={metadata.imageHeight}
+              priority
+              sizes="(max-width: 767px) 100vw, 780px"
+            />
+          ) : (
+            <img src={metadata.image} alt={text.title} decoding="async" fetchPriority="high" />
+          )}
           {isProject && <figcaption>{content.blog.coverCaption}</figcaption>}
         </figure>
       )}

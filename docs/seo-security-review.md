@@ -1,61 +1,53 @@
-# SEO and security code review
+# SEO and security review
 
-Reviewed on 2026-10-16. Scope: application routes and components, local MDX and frontmatter handling, public assets, the static preview server, locked dependencies, and the GitHub Pages workflow. The public site was also checked for HTTPS, the deployed application, and response headers. This is a source and configuration review, not a penetration test or a guarantee against future vulnerabilities. Repository account settings and Google Search Console were not accessible.
+The current source targets a standalone Next.js Node server. This supersedes the static-export/GitHub Pages deployment reviewed on 2026-10-16. That earlier live-site/header inspection and dependency audit were point-in-time observations; they do not establish the security or deployment state of the new runtime. No production deployment, penetration test, or new live-host audit is claimed here.
 
-## Result
+## Current SEO behavior
 
-The project has a sound foundation for a small static portfolio: content is prerendered into HTML, public pages have canonical URLs and descriptions, articles are linked through the archive, and robots.txt advertises the sitemap. The deployed site now serves the Next.js application, rather than the README. HTTP redirects to HTTPS and the host sends HSTS.
+- Public pages use branded titles, descriptions, canonical URLs, and Open Graph/Twitter images.
+- Article covers also supply article JSON-LD images; posts without covers use the shared portfolio image.
+- Article and breadcrumb structured data include truthful publication/modification dates, tags, and author details. The serializer escapes `<` before insertion into a script.
+- Filtered/search/sorted archive variants are `noindex, follow` and retain a clean archive canonical. Results remain server rendered, six per page.
+- `robots.txt` advertises `/sitemap.xml`, now a sitemap index. Each `/sitemaps/<id>.xml` shard contains at most 10,000 URLs. The duplicate first-page archive alias is excluded.
+- Unknown slugs/pages produce not-found responses; the offline fallback is separately marked noindex.
 
-No high-impact exploitable issue was identified in the reviewed application code. The npm advisory check reported **0 known vulnerabilities** for the final lockfile. This is a point-in-time dependency result; it does not prove all source code is vulnerability-free.
+Set `SITE_URL` to the intended public HTTP(S) origin before building. The default is still the historical GitHub URL; deploying the Node server elsewhere without configuring it would advertise the wrong canonical/social/sitemap origin. Paths, credentials, queries, and fragments are rejected in this setting.
 
-## Fixes implemented
+English/Khmer continue to share article paths. Archive `lang` controls result ordering and reader state, while article metadata remains English; this does not implement separate translated canonicals or hreflang routes.
 
-| Finding                                                                                          | Change                                                                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Every article shared the same portfolio preview image.                                           | Article Open Graph and Twitter metadata now use the post's cover, with the portfolio image as a fallback. Tags and author information are included.                                                                       |
-| Blog posts had no article or breadcrumb structured data.                                         | Added JSON-LD `BlogPosting` and `BreadcrumbList`, using the same title, description, image, URL, author, tags, and publication date as the post. JSON is escaped before insertion into HTML.                              |
-| The home title omitted the developer's name; generated error pages inherited indexable metadata. | Added an explicit branded home title and dedicated 404 title, description, and `noindex` metadata.                                                                                                                        |
-| Cover images reserved an incorrect fixed 1400×850 ratio.                                         | The build reads actual image dimensions automatically, including JPEG orientation. Authors do not need to manage width/height fields.                                                                                     |
-| The shared profile photo was 3,155,444 bytes, despite appearing at small display sizes.          | Resized and compressed it to 87,941 bytes, preserving its displayed orientation. Also reduced the two education logos.                                                                                                    |
-| The manifest advertised a square icon using a nonsquare photo.                                   | Added actual 192×192 and 512×512 icons; favicon/apple metadata and the manifest reference the square assets.                                                                                                              |
-| The local preview could redirect an encoded path such as `/%2fblog` to `//blog/`.                | Reject network-path and backslash variants, encode redirect path segments, and preserve query parameters. The server still listens only on localhost. Production GitHub Pages was unaffected by this local-preview issue. |
-| Security defaults in MDX were implicit; workflow action versions were mutable tags.              | Explicitly disabled MDX expressions and dynamic imports. Pinned actions to verified commit hashes and disabled persisted checkout credentials.                                                                            |
-| Changes were built only after a push, without export checks.                                     | Pull requests now run TypeScript, a production build, exported-page checks, and preview regression tests. Pull requests cannot enter the deployment job.                                                                  |
-| Dependency maintenance was manual.                                                               | Added weekly npm and monthly GitHub Actions Dependabot update configuration. Updates open reviewable PRs; there is no automatic merge.                                                                                    |
+## Server and content boundaries
 
-The optional English frontmatter field `updated: "YYYY-MM-DD"` now supplies truthful modification dates to article metadata, structured data, and the sitemap. It must not precede `date`. Existing posts do not receive fabricated modification timestamps on each build.
+The private `.generated/blog-index.json` and reviewed MDX files are packaged for Node, outside `public/`. The browser receives one result page, not the full collection/index. Production hydrates the catalog once per process; query caches are bounded.
 
-## Security properties checked
+Slugs map to validated catalog source paths rather than becoming arbitrary filesystem input. Publishing validates duplicate slugs, translation pairing, dates, symlinks, local image existence/dimensions, and metadata. Query text is length/term bounded; sort/page/language values are normalized. No database, visitor upload, authentication, or contact-form backend is introduced.
 
-- Public slugs are validated and looked up in a parsed collection; request text does not become a filesystem path. Duplicate slugs, content symlinks, invalid publication dates, missing images, and malformed metadata fail the build.
-- Frontmatter images must use existing normalized local `/images/` paths. Project links are restricted to absolute HTTP or HTTPS URLs. Rendered blank-target project and social links use `noopener noreferrer`.
-- MDX comes only from the repository and is compiled at build time. `next-mdx-remote` 6.0.0 contains the fix for [HCSEC-2026-01](https://discuss.hashicorp.com/t/hcsec-2026-01-arbitrary-code-execution-in-react-server-side-rendering-of-untrusted-mdx-content/77155); expressions and dynamic imports remain disabled explicitly. MDX can still contain JSX, so repository write access and review are a trust boundary. Do not compile arbitrary visitor submissions or unreviewed remote MDX.
-- JSON-LD uses a shared serializer that escapes `<`, preventing content from terminating its script element. The theme initialization script contains fixed application code, rather than user input.
-- Browser storage contains only language/theme preferences, validated against known values. No passwords or authentication tokens are stored there.
-- No API routes, authentication system, database connection, server actions, upload endpoint, or contact-form backend are deployed. The GitHub Pages artifact contains static assets, not the build-time Node.js application.
-- No tracked `.env` files or matches for the scanned private-key/common-token patterns were found. Public email addresses and Google verification IDs are intended public information. This was a tracked-file scan, not a complete Git history secret audit.
-- Workflow credentials remain read-only during the build; Pages write and OIDC permissions are scoped to the deployment job. Actions are pinned as [recommended by GitHub](https://docs.github.com/en/actions/reference/security/secure-use). Builds of pull requests have no deployment step.
+MDX compiles on first article rendering rather than compiling the entire collection during publishing. Expressions and dynamic imports remain disabled. MDX can still contain JSX, so reviewed repository content is a trust boundary; arbitrary visitor submissions or unreviewed remote MDX must not enter this compiler. Open new articles in preview to detect body syntax errors.
 
-## Remaining improvements and hosting limits
+Local covers must be normalized existing `/images/` paths. Hosted covers require direct HTTPS URLs without credentials and are not fetched during builds. Project links allow HTTP(S); external blank-target links include `noopener noreferrer`.
 
-1. **Khmer search visibility:** the initial HTML and metadata are English, while the language button switches content at the same URL. Khmer is available to readers, but it does not have independently addressable, indexable pages. If Khmer search traffic matters, a separate `/km/` route tree with translated metadata, canonicals, and reciprocal `hreflang` links is the next substantial SEO improvement. Do not point English and Khmer hreflang entries at the same URL. [Google recommends separate URLs for language versions.](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)
-2. **Security response headers:** the live GitHub Pages response included HSTS but no CSP, X-Content-Type-Options, X-Frame-Options, Permissions-Policy, or HTTP Referrer-Policy. The app now declares a referrer policy through HTML metadata. Custom Next.js response headers are [unsupported in a static export](https://nextjs.org/docs/app/guides/static-exports#unsupported-features); adding `headers()` would not secure this deployment. A strict CSP and framing policy require a hosting/proxy configuration that can send those headers, plus testing with Next.js hydration scripts. This is additional hardening for this public static site, rather than evidence of an active injection vulnerability.
-3. **Repository settings:** verify Dependabot alerts/security updates and secret scanning/push protection are enabled where available. Consider requiring the build check before merging. These settings were not changed or verified through the local repository.
-4. **Indexing and real-world performance:** submit `https://socheatathai.github.io/sitemap.xml` in Google Search Console and use URL Inspection after deployment. Test representative home/article pages in PageSpeed Insights to measure real Core Web Vitals. A passing static check cannot establish rankings, indexing status, or a Lighthouse score. [Google's article documentation](https://developers.google.com/search/docs/appearance/structured-data/article) describes the structured data fields and external validation tools.
+Browser storage retains language/theme preferences. The worker caches only eligible public responses, rejects private/no-store content, and keeps live search/RSC requests network-only; it cannot replace server results with stale pathname-only HTML. See [PWA behavior](pwa-readiness.md).
 
-## Verification and maintenance
+## Hosting and maintenance
+
+The included container uses a non-root Node.js 22 runner. The complete standalone artifact includes server dependencies, sources, private index, and public assets. Serve only its public assets through static hosting rules; do not expose private runtime directories.
+
+GitHub Actions validates the application and uploads a Node artifact. It no longer deploys to GitHub Pages, and this migration does not configure another production host. HTTPS, reverse-proxy behavior, response headers, logs, and cache persistence must be checked on the chosen host. The previous GitHub Pages HSTS/header observations do not carry over automatically. Test any CSP with Next.js hydration scripts before enforcing it.
+
+The earlier review also introduced commit-pinned workflow actions, nonpersistent checkout credentials, Dependabot configuration, accurate local cover dimensions, square icons, a smaller profile photo, and safe JSON-LD serialization. Keep those protections while updating dependencies. No fresh vulnerability count is asserted for the new lockfile; use `npm audit` for a current advisory check.
+
+## Verification
 
 ```sh
-npm ci
+npm run format:check
 npm run typecheck
+npm run test:blog
+npm run test:scale
 npm run build
-npm run check:export
-npm run test:preview
-npm audit
+npm run check:server
+npm run check:pwa
+npm run test:pwa
 ```
 
-The export check verifies titles/descriptions, one H1 per content page, canonical URLs, Open Graph/Twitter images, error-page noindex directives, article and breadcrumb JSON-LD, sitemap targets, and local navigation/assets. The sitemap deliberately excludes the duplicate first-page alias `/blog/page/1/`, which canonicals to `/blog/`.
+The runtime checker starts a temporary standalone server and samples HTML/metadata, articles, search/pagination, assets, sitemap responses, and private-path behavior. It does not compile every real MDX file, inspect external destinations, or prove production traffic capacity. The synthetic 50,000-record test benchmarks metadata indexing/querying, not 50,000 real article renders.
 
-Preview tests cover normal redirects, query preservation, HEAD requests, encoded network paths, backslashes, traversal, malformed encoding, missing pages, MIME types, and unsupported methods. They require permission to listen on a temporary localhost port. These checks inspect generated files and local behavior; they do not crawl external project destinations or run a real browser accessibility/performance audit.
-
-Rebuild and deploy after changing metadata or content. Follow [the writing guide](writing-posts.md) and [the inline MDX example](example.mdx) for publishing new content and images. Keep templates outside the content collection until ready to publish.
+The old `check:export` and custom static-preview test results belong to the retired static deployment. Current browser/device accessibility, installation, actual indexing, hosting headers, and Core Web Vitals still need checks against the deployed Node site. Publish content using [the writing guide](writing-posts.md), then rebuild and replace the matching runtime.

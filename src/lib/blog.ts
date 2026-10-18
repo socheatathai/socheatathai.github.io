@@ -1,60 +1,95 @@
-import type { BlogPageData, BlogPost, BlogPostMetadata } from "@/types/blog";
-import { BLOG_PAGE_SIZE, getBlogPageCount } from "@/lib/blog-pagination";
-import { readBlogCollection } from "./blog/collection";
+import "server-only";
+import fs from "node:fs";
+import path from "node:path";
+import { cache } from "react";
+import type { BlogPost, BlogPostMetadata } from "@/types/blog";
+import type { BlogQuery } from "@/lib/blog-query";
+import { buildBlogCatalog, readBlogFile, type BlogCatalog } from "./blog/collection";
+import { createBlogSearch } from "./blog/search-index";
 import { validSlug } from "./blog/frontmatter";
-import { comparePosts } from "./blog/sort";
 
-/** Read only trusted local MDX; public slugs never become filesystem paths. */
-export function getBlogPost(slug: string): BlogPost | null {
-  if (!validSlug.test(slug)) return null;
-  return readBlogCollection().bySlug.get(slug) ?? null;
+function readPublishedCatalog(): BlogCatalog {
+  const filename = path.join(process.cwd(), ".generated", "blog-index.json");
+  if (!fs.existsSync(/* turbopackIgnore: true */ filename))
+    throw new Error("Missing private blog index. Run npm run index:blog before building/starting.");
+  const catalog = JSON.parse(
+    fs.readFileSync(/* turbopackIgnore: true */ filename, "utf8"),
+  ) as BlogCatalog;
+  if (
+    catalog.schemaVersion !== 1 ||
+    !Array.isArray(catalog.posts) ||
+    !Array.isArray(catalog.tags) ||
+    !catalog.search ||
+    !catalog.sources
+  )
+    throw new Error("Unsupported blog index. Regenerate it with npm run index:blog.");
+  return catalog;
 }
 
-export function getBlogPosts(): BlogPostMetadata[] {
-  return [...readBlogCollection().metadata];
-}
-
-export function getFeaturedProjects(): BlogPostMetadata[] {
-  return getBlogPosts()
+function createRepository() {
+  const { search: serialized, ...catalog } =
+    process.env.NODE_ENV === "development" ? buildBlogCatalog() : readPublishedCatalog();
+  const search = createBlogSearch(catalog.posts, serialized, catalog.tags);
+  const bySlug = new Map(catalog.posts.map((post) => [post.slug, post]));
+  const slugs = catalog.posts.map((post) => post.slug);
+  const featured = catalog.posts
     .filter((post) => post.type === "project" && post.featured)
     .slice(0, 3);
+  return { catalog, search, bySlug, slugs, featured };
 }
 
-export function getRelatedBlogPosts(slug: string): BlogPostMetadata[] {
-  const current = getBlogPost(slug)?.metadata;
-  if (!current) return [];
+let published: ReturnType<typeof createRepository> | undefined;
+// Hydrate once per production process, not once per request. Dev edits are read per render.
+const repository = cache(() => {
+  if (process.env.NODE_ENV === "development") return createRepository();
+  return (published ??= createRepository());
+});
 
-  const tags = new Set(current.tags.map((tag) => tag.trim().toLowerCase()));
-  return getBlogPosts()
-    .filter((post) => post.slug !== slug)
-    .map((post) => ({
-      post,
-      sharedTags: new Set(
-        post.tags.map((tag) => tag.trim().toLowerCase()).filter((tag) => tags.has(tag)),
-      ).size,
-    }))
-    .sort(
-      (a, b) =>
-        b.sharedTags - a.sharedTags ||
-        Number(b.post.type === current.type) - Number(a.post.type === current.type) ||
-        comparePosts(a.post, b.post),
-    )
-    .slice(0, 3)
-    .map(({ post }) => post);
+export function getBlogMetadata(slug: string): BlogPostMetadata | null {
+  return validSlug.test(slug) ? (repository().bySlug.get(slug) ?? null) : null;
 }
 
-export function getBlogPage(page: number): BlogPageData | null {
-  const posts = getBlogPosts();
-  const totalPages = getBlogPageCount(posts.length);
-  if (!Number.isSafeInteger(page) || page < 1 || page > totalPages) return null;
-  return {
-    posts: posts.slice((page - 1) * BLOG_PAGE_SIZE, page * BLOG_PAGE_SIZE),
-    currentPage: page,
-    totalPages,
-    totalPosts: posts.length,
-  };
+export const getBlogPost = cache((slug: string): BlogPost | null => {
+  const metadata = getBlogMetadata(slug);
+  if (!metadata) return null;
+  const filename = repository().catalog.sources[slug];
+  if (typeof filename !== "string")
+    throw new Error(`Published blog source entry is missing: ${slug}`);
+  const original = readBlogFile(filename);
+  if (!original) throw new Error(`Published blog source is missing: ${filename}`);
+  const translated = metadata.km ? readBlogFile(`${filename.slice(0, -4)}.km.mdx`) : null;
+  if (metadata.km && !translated) throw new Error(`Published translation is missing: ${filename}`);
+  return { metadata, content: original.content, kmContent: translated?.content };
+});
+
+export function getBlogPosts(): BlogPostMetadata[] {
+  return repository().catalog.posts;
 }
 
-export function getBlogSlugs(): string[] {
-  return getBlogPosts().map((post) => post.slug);
+export function getFeaturedProjects() {
+  return repository().featured;
+}
+
+export function getRelatedBlogPosts(slug: string) {
+  return repository().search.related(slug);
+}
+
+export function getBlogSearchPage(criteria: BlogQuery) {
+  return repository().search.page(criteria);
+}
+
+export function getBlogTagOptions() {
+  return repository().search.tags;
+}
+
+export function getBlogPage(page: number) {
+  return getBlogSearchPage({ query: "", tag: null, sort: "latest", language: "en", page });
+}
+
+export function getBlogListingPage(slug: string) {
+  return repository().search.listingPages.get(slug) ?? 1;
+}
+
+export function getBlogSlugs() {
+  return repository().slugs;
 }

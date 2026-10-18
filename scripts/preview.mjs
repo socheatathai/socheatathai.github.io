@@ -1,83 +1,22 @@
-import { createServer } from "node:http";
-import { readFile, stat } from "node:fs/promises";
+import { spawn } from "node:child_process";
+import { existsSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const root = fileURLToPath(new URL("../out/", import.meta.url));
-const port = Number(process.env.PORT || 3000);
-const mimeTypes = {
-  ".html": "text/html; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".json": "application/json; charset=utf-8",
-  ".txt": "text/plain; charset=utf-8",
-  ".xml": "application/xml; charset=utf-8",
-  ".webmanifest": "application/manifest+json",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".svg": "image/svg+xml",
-  ".ico": "image/x-icon",
-  ".webp": "image/webp",
-  ".woff2": "font/woff2",
-};
-
-try {
-  await stat(path.join(root, "index.html"));
-} catch {
-  console.error("No static build found. Run npm run build first.");
-  process.exit(1);
-}
-
-const server = createServer(async (request, response) => {
-  if (request.method !== "GET" && request.method !== "HEAD") {
-    response.writeHead(405, { Allow: "GET, HEAD" }).end();
-    return;
-  }
-
-  let pathname;
-  let search;
-  try {
-    const url = new URL(request.url, "http://localhost");
-    pathname = decodeURIComponent(url.pathname);
-    search = url.search;
-  } catch {
-    response.writeHead(400).end("Bad request");
-    return;
-  }
-
-  let target = path.resolve(root, `.${pathname}`);
-  if (
-    path.relative(root, target).startsWith("..") ||
-    /[\0\\]/.test(pathname) ||
-    pathname.startsWith("//")
-  ) {
-    response.writeHead(403).end("Forbidden");
-    return;
-  }
-
-  try {
-    if ((await stat(target)).isDirectory()) {
-      if (!pathname.endsWith("/")) {
-        // Encode segments so decoded slashes, '?' or '#' cannot change the redirect origin/path.
-        const redirect = pathname.split("/").map(encodeURIComponent).join("/");
-        response.writeHead(308, { Location: `${redirect}/${search}` }).end();
-        return;
-      }
-      target = path.join(target, "index.html");
-    }
-    const body = await readFile(target);
-    response.writeHead(200, {
-      "Content-Type": mimeTypes[path.extname(target)] || "application/octet-stream",
-    });
-    response.end(request.method === "HEAD" ? undefined : body);
-  } catch {
-    const body = await readFile(path.join(root, "404.html")).catch(() => "Page not found");
-    response.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-    response.end(request.method === "HEAD" ? undefined : body);
-  }
+const filename = path.resolve(".next/standalone/server.js");
+if (!existsSync(filename)) throw new Error("Run npm run build before npm run preview.");
+const server = spawn(process.execPath, [filename], {
+  env: {
+    ...process.env,
+    PORT: process.env.PORT ?? "4173",
+    HOSTNAME: process.env.HOSTNAME ?? "127.0.0.1",
+  },
+  stdio: "inherit",
 });
-
-server.listen(port, "127.0.0.1", () =>
-  console.log(`Static preview: http://localhost:${server.address().port}`),
-);
+for (const signal of ["SIGINT", "SIGTERM"]) process.once(signal, () => server.kill(signal));
+server.once("error", (error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+server.once("exit", (code) => {
+  process.exitCode = code ?? 0;
+});

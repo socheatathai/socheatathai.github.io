@@ -5,9 +5,12 @@ type: "article"
 title: "A first note: writing with MDX"
 description: "An introductory example showing how an article combines Markdown, code, and reusable components."
 date: "2026-01-05"
-# Optional: add a local cover first; set updated only for a meaningful later edit.
+# Optional cover: an existing /images/ file or a direct, public HTTPS image URL.
 # image: "/images/blog/2026/jan/my-article.png"
+# image: "https://example.com/images/my-article.png"
+# Set updated only for a meaningful later edit.
 # updated: "2026-01-10"
+# Tags automatically appear as archive filters.
 tags: ["MDX", "Writing"]
 ---
 
@@ -15,10 +18,11 @@ tags: ["MDX", "Writing"]
 ARTICLE QUICKSTART (hidden on the website)
 1. Copy into src/content/blog/YYYY/mon/; use a unique lowercase-hyphen slug.
 2. Replace frontmatter and body. Start sections with ##; the layout adds the title.
-3. Put images directly in public/images/blog/YYYY/mon/; image URLs start /images/.
+3. Put local images directly in public/images/blog/YYYY/mon/; URLs start /images/.
+   A cover can instead use a direct, public HTTPS image URL, not a social post/page link.
    Optional cover: image above. Inline: ![Describe the image](/images/blog/YYYY/mon/my-article-flow.png)
 4. For Khmer, copy docs/example.km.mdx beside the post as my-article.km.mdx.
-5. Run npm run build and npm run check:export, then npm run preview; open /blog/<slug>/.
+5. Run npm run build and npm run check:server, then npm run preview; open /blog/<slug>/.
 Full reference: docs/writing-posts.md.
 */}
 

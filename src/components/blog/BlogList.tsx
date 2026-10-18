@@ -26,19 +26,21 @@ export function BlogEntry({ post }: { post: BlogPostMetadata }) {
         <Link href={`/blog/${post.slug}/`}>{text.title}</Link>
       </h2>
       <p>{text.description}</p>
-      <ul
-        className="tag-list"
-        aria-label={isProject ? content.blog.projectTopics : content.blog.topics}
-      >
-        {text.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
-      <Link className="text-link" href={`/blog/${post.slug}/`}>
-        {isProject ? content.blog.readProject : content.blog.readArticle}{" "}
-        <span aria-hidden="true">↗</span>
-        <span className="sr-only">: {text.title}</span>
-      </Link>
+      <div className="blog-entry-footer">
+        <ul
+          className="tag-list"
+          aria-label={isProject ? content.blog.projectTopics : content.blog.topics}
+        >
+          {text.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+        <Link className="text-link" href={`/blog/${post.slug}/`}>
+          {isProject ? content.blog.readProject : content.blog.readArticle}{" "}
+          <span aria-hidden="true">↗</span>
+          <span className="sr-only">: {text.title}</span>
+        </Link>
+      </div>
     </article>
   );
 }

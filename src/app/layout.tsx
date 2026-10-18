@@ -7,6 +7,7 @@ import MobileHeader from "@/components/layout/MobileHeader";
 import Footer from "@/components/layout/Footer";
 import PageNavigation from "@/components/layout/PageNavigation";
 import SkipLink from "@/components/layout/SkipLink";
+import PwaControls from "@/components/pwa/PwaControls";
 import { rootMetadata, siteViewport } from "@/lib/metadata";
 import { themeScript } from "@/lib/theme";
 import "@/styles/globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   {children}
                   <PageNavigation />
                 </main>
+                <PwaControls />
                 <Footer />
               </SiteShell>
             </ViewTransition>
