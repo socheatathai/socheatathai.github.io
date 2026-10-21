@@ -6,7 +6,7 @@ Pages own framework exports, validated route input, and composition. Extract a m
 
 | Location                       | Responsibility                                                                                               |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `src/app/blog/`                | Thin .static.tsx/.server.tsx entry points selected by the build target.                                                  |
+| `src/app/blog/`                | Thin .static.tsx/.server.tsx entry points selected by the build target.                                      |
 | `src/lib/blog.ts`              | Server-only facade for catalog lookup, result pages, featured/related posts, and sources.                    |
 | `src/lib/blog/collection.ts`   | Publishing-time discovery, frontmatter validation, translation pairing, and catalog generation.              |
 | `src/lib/blog/frontmatter.ts`  | Slugs, dates, text, image references/dimensions, and project metadata.                                       |
@@ -16,7 +16,7 @@ Pages own framework exports, validated route input, and composition. Extract a m
 | `src/lib/blog-query.ts`        | Shared criteria types, bounded URL parsing, and pagination/query links.                                      |
 | `src/hooks/useBlogSearch.ts`   | Search draft, debounced URL changes, keyboard focus, and pending state.                                      |
 | `src/components/blog/`         | Current-page rendering, search/filter controls, pagination, and article composition.                         |
-| `out/blog-search/<revision>/` | Public bounded metadata chunks generated only for Pages browser search. |
+| `out/blog-search/<revision>/`  | Public bounded metadata chunks generated only for Pages browser search.                                      |
 | `.generated/blog-index.json`   | Private publishing artifact; packaged for the server, never supplied as a client prop.                       |
 
 The generated catalog holds metadata, source paths, ranked tag options, and serialized search data. Production initializes it once per process. The Node target loads/compiles requested article bodies on demand. The Pages target compiles every article during export and writes public summary chunks separately; it does not publish the private catalog.

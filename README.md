@@ -29,20 +29,20 @@ Use Node.js 22 or newer. `npm run dev` opens the Next.js development server at h
 - Featured and related projects/posts, responsive navigation, language/theme preferences, and code-copy feedback.
 - Split sitemaps, canonical metadata, install/update controls, and a bounded offline PWA shell.
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Run the development server. |
-| `npm run build:pages` | Generate the index and current static application in `out/`. |
-| `npm run check:pages` | Check exported pages, search chunks, metadata, links, and PWA artifacts. |
-| `npm run preview:pages` | Serve `out/` locally on port 4173. |
-| `npm run build` | Build and package the optional standalone Node.js server. |
-| `npm start` / `npm run preview` | Start that Node build on port 3000 / 4173. |
-| `npm run check:server` | Check a temporary standalone server and stop it. |
-| `npm run check:pwa` | Check the server target's generated `public/` PWA artifacts. |
-| `npm run test:blog` / `npm run test:pwa` | Run focused search/control and PWA tests. |
-| `npm run test:scale` | Benchmark a synthetic 50,000-record server metadata index. |
-| `npm run typecheck` | Run the project's TypeScript 7 CLI. |
-| `npm run format:check` / `npm run format` | Check or format source and Markdown. |
+| Command                                   | Purpose                                                                  |
+| ----------------------------------------- | ------------------------------------------------------------------------ |
+| `npm run dev`                             | Run the development server.                                              |
+| `npm run build:pages`                     | Generate the index and current static application in `out/`.             |
+| `npm run check:pages`                     | Check exported pages, search chunks, metadata, links, and PWA artifacts. |
+| `npm run preview:pages`                   | Serve `out/` locally on port 4173.                                       |
+| `npm run build`                           | Build and package the optional standalone Node.js server.                |
+| `npm start` / `npm run preview`           | Start that Node build on port 3000 / 4173.                               |
+| `npm run check:server`                    | Check a temporary standalone server and stop it.                         |
+| `npm run check:pwa`                       | Check the server target's generated `public/` PWA artifacts.             |
+| `npm run test:blog` / `npm run test:pwa`  | Run focused search/control and PWA tests.                                |
+| `npm run test:scale`                      | Benchmark a synthetic 50,000-record server metadata index.               |
+| `npm run typecheck`                       | Run the project's TypeScript 7 CLI.                                      |
+| `npm run format:check` / `npm run format` | Check or format source and Markdown.                                     |
 
 Tests that transpile fixtures use the official TypeScript 6 compatibility API; the project CLI remains TypeScript 7. This avoids relying on the compiler API removed from the TypeScript 7 package root.
 
