@@ -6,7 +6,7 @@ Pages own framework exports, validated route input, and composition. Extract a m
 
 | Location                       | Responsibility                                                                                               |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `src/app/blog/`                | Request-time archive criteria and on-demand article routes.                                                  |
+| `src/app/blog/`                | Thin .static.tsx/.server.tsx entry points selected by the build target.                                                  |
 | `src/lib/blog.ts`              | Server-only facade for catalog lookup, result pages, featured/related posts, and sources.                    |
 | `src/lib/blog/collection.ts`   | Publishing-time discovery, frontmatter validation, translation pairing, and catalog generation.              |
 | `src/lib/blog/frontmatter.ts`  | Slugs, dates, text, image references/dimensions, and project metadata.                                       |
@@ -16,9 +16,10 @@ Pages own framework exports, validated route input, and composition. Extract a m
 | `src/lib/blog-query.ts`        | Shared criteria types, bounded URL parsing, and pagination/query links.                                      |
 | `src/hooks/useBlogSearch.ts`   | Search draft, debounced URL changes, keyboard focus, and pending state.                                      |
 | `src/components/blog/`         | Current-page rendering, search/filter controls, pagination, and article composition.                         |
+| `out/blog-search/<revision>/` | Public bounded metadata chunks generated only for Pages browser search. |
 | `.generated/blog-index.json`   | Private publishing artifact; packaged for the server, never supplied as a client prop.                       |
 
-The generated catalog holds metadata, source paths, ranked tag options, and serialized search data. Production initializes it once per process. Only requested article bodies are loaded/compiled; the build does not eagerly compile the entire collection.
+The generated catalog holds metadata, source paths, ranked tag options, and serialized search data. Production initializes it once per process. The Node target loads/compiles requested article bodies on demand. The Pages target compiles every article during export and writes public summary chunks separately; it does not publish the private catalog.
 
 ## Types and UI contracts
 
@@ -40,12 +41,12 @@ Keep clipboard timers, mobile-dialog focus, sidebar disclosure, carousel state, 
 
 ## Metadata and deployment
 
-Site identity and the configured origin live in `lib/site.ts`; Next.js metadata builders and JSON-LD serializers remain separate. Sitemap routes are `src/app/sitemap.xml/route.ts` and `src/app/sitemaps/[id]/route.ts`.
+Site identity and the configured origin live in `lib/site.ts`; Next.js metadata builders and JSON-LD serializers remain separate. Sitemap routes are `src/app/sitemap.xml/route.ts` and `src/app/sitemaps/[id]/route.ts`; all known shards are generated during publishing.
 
-`scripts/generate-blog-index.ts` publishes the private index. `scripts/generate-pwa.mjs` generates the fixed offline shell; `scripts/package-runtime.mjs` copies assets, index, and MDX sources into `.next/standalone/`. Runtime checks and focused tests stay in `scripts/`. CI validates/uploads the Node artifact; hosting must run Node or the included container.
+`scripts/generate-blog-index.ts` publishes the private index. `scripts/generate-pwa.mjs` generates the fixed offline shell; `scripts/package-runtime.mjs` copies assets, index, and MDX sources into `.next/standalone/`. `scripts/build-pages.mjs` selects the export route variants, generates versioned browser-search chunks, and writes the Pages PWA into `out/`. `.github/workflows/pages.yml` publishes that current-source artifact after checks. The separate server workflow validates/uploads the optional Node artifact. Runtime/artifact checks and focused tests stay in `scripts/`.
 
 Keep MDX in dated content folders and shared portfolio copy in `data/content.json`. Keep feature styles beside their components and shared styles in `styles/`. Extra service layers, barrel files, or a file for every JSX expression do not improve these boundaries.
 
 ## Verification
 
-Run formatting, TypeScript, blog tests, the synthetic scale benchmark, production build, runtime response checks, and PWA checks/tests. `check:server` starts and stops a temporary production server. Author preview must open new articles because metadata validation does not compile every MDX body. Browser interaction and physical-device behavior require separate testing.
+Run formatting, TypeScript, blog/PWA tests, `build:pages`, and `check:pages` for the current Pages target. Run the synthetic scale benchmark, `build`, `check:server`, and `check:pwa` for the optional Node target. `check:server` starts and stops a temporary production server. Pages export compiles all article bodies; Node author preview must open new articles because catalog validation alone does not compile their MDX. Browser interaction and physical-device behavior require separate testing.

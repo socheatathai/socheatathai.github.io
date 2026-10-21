@@ -1,9 +1,16 @@
 import { notFound } from "next/navigation";
 import { getBlogPosts } from "@/lib/blog";
-import { sitemapEntries, xmlEscape } from "@/lib/blog/sitemap";
+import { sitemapCount, sitemapEntries, xmlEscape } from "@/lib/blog/sitemap";
 import { siteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return Array.from({ length: sitemapCount(getBlogPosts().length) }, (_, id) => ({
+    id: `${id}.xml`,
+  }));
+}
+
 export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!/^(0|[1-9]\d*)\.xml$/.test(id)) notFound();

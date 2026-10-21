@@ -31,6 +31,7 @@
           "details": [
             "Developed and maintained enterprise web applications using Next.js, Vue.js, Nuxt.js, and TypeScript within an npm and Turborepo monorepo architecture.",
             "Built responsive and reusable user interfaces using Tailwind CSS, Bootstrap, AdminLTE, Element Plus, and modern UI development practices.",
+            "Created UI mockups and screen layouts in Figma for internal systems to guide frontend development.",
             "Managed application state using Redux for Next.js applications and Vuex for Nuxt.js applications.",
             "Collaborated with backend developers and QA teams to deliver business requirements.",
             "Participated in bug fixing, UAT testing, code review, and production deployment activities."
@@ -43,6 +44,7 @@
           "details": [
             "Developed and maintained insurance management systems and customer-facing digital services, including a mini web service integrated with mobile banking channels for insurance product sales.",
             "Built REST APIs using NestJS, Prisma, and PostgreSQL, and developed responsive web applications using Next.js, React, Vue.js, TypeScript, Tailwind CSS, Shadcn UI, PrimeVue, MobX, and Pinia.",
+            "Created UI mockups and screen layouts in Figma to support digital sales of selected insurance products.",
             "Collaborated with business analysts to analyze insurance products, customer journeys, business rules, and operational workflows.",
             "Supported UAT, deployment, production maintenance, troubleshooting, and continuous improvement across frontend and backend services."
           ]
@@ -378,6 +380,7 @@
           "details": [
             "បានអភិវឌ្ឍ និងថែទាំ កម្មវិធីគេហទំព័រសម្រាប់សហគ្រាស ដោយប្រើ Next.js, Vue.js, Nuxt.js និង TypeScript នៅក្នុងស្ថាបត្យកម្ម monorepo ដោយប្រើ npm និង Turborepo។",
             "បានបង្កើតផ្ទៃប្រើប្រាស់ដែលបត់បែនតាមទំហំអេក្រង់ និងអាចប្រើឡើងវិញបាន ដោយប្រើ Tailwind CSS, Bootstrap, AdminLTE, Element Plus និងអនុវត្តតាមវិធីសាស្រ្តអភិវឌ្ឍ UI ទំនើប។",
+            "បានបង្កើតគំរូ UI និងប្លង់អេក្រង់ក្នុង Figma សម្រាប់ប្រព័ន្ធផ្ទៃក្នុង ដើម្បីជួយណែនាំការអភិវឌ្ឍផ្នែកខាងមុខ។",
             "បានគ្រប់គ្រងស្ថានភាពកម្មវិធីដោយប្រើ Redux សម្រាប់កម្មវិធី Next.js និង Vuex សម្រាប់កម្មវិធី Nuxt.js។",
             "បានសហការជាមួយអ្នកអភិវឌ្ឍផ្នែកខាងក្រោយ និងក្រុម QA ដើម្បីបំពេញតម្រូវការអាជីវកម្ម។",
             "បានចូលរួមក្នុងការជួសជុលកំហុស ការធ្វើតេស្ត UAT ការពិនិត្យកូដ និងសកម្មភាពដាក់ប្រើប្រាស់ជាផ្លូវការ។"
@@ -390,6 +393,7 @@
           "details": [
             "បានអភិវឌ្ឍ និងថែទាំប្រព័ន្ធគ្រប់គ្រងធានារ៉ាប់រង និងសេវាឌីជីថលសម្រាប់អតិថិជន រួមទាំងសេវាគេហទំព័រខ្នាតតូចដែលភ្ជាប់ជាមួយបណ្តាញ សេវាធនាគារតាមទូរស័ព្ទ សម្រាប់លក់ផលិតផលធានារ៉ាប់រង។",
             "បានបង្កើត REST API ដោយប្រើ NestJS, Prisma និង PostgreSQL ហើយបានអភិវឌ្ឍកម្មវិធីគេហទំព័រដែលបត់បែនតាមទំហំអេក្រង់ដោយប្រើ Next.js, React, Vue.js, TypeScript, Tailwind CSS, Shadcn UI, PrimeVue, MobX និង Pinia។",
+            "បានបង្កើតគំរូ UI និងប្លង់អេក្រង់ក្នុង Figma ដើម្បីគាំទ្រការលក់ផលិតផលធានារ៉ាប់រងមួយចំនួនតាមប្រព័ន្ធឌីជីថល។",
             "បានសហការជាមួយអ្នកវិភាគអាជីវកម្ម ដើម្បីវិភាគផលិតផលធានារ៉ាប់រង ដំណើរអតិថិជន ច្បាប់អាជីវកម្ម និងលំហូរការងារប្រតិបត្តិការ។",
             "បានគាំទ្រការធ្វើតេស្ត UAT ការដាក់ប្រើប្រាស់ ការថែទាំប្រព័ន្ធដែលកំពុងប្រើប្រាស់ ការដោះស្រាយបញ្ហា និងការកែលម្អបន្តលើសេវាផ្នែកខាងមុខ និងផ្នែកខាងក្រោយ។"
           ]

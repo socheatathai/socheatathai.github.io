@@ -146,7 +146,7 @@ Projects require both an `image` (an existing local `/images/` file or an absolu
 | `projectUrl`  | Required for projects; an absolute `http://` or `https://` URL.                                                                                                                                                |
 | `featured`    | Optional `true` or `false`. Only featured projects are eligible for the homepage.                                                                                                                              |
 
-The archive header shows All and up to five of the most-used English tags, ranked during index generation by the number of posts using each tag, with alphabetical ordering for ties. Other tags remain searchable. Tag labels and the selected tag stay the same when switching languages; the All label is translated. The displayed tags refresh after rebuilding. The server combines tag filters with the search query, sorts the matches, and returns six results per page in every mode. Latest, Oldest, and localized Title sorting are available. Search, tag, sort, language, and pagination are preserved in the URL; clearing the controls restores All, Latest, and page one. Use Cmd/Ctrl+K to focus search and Escape to clear its query.
+The archive header shows All and up to five of the most-used English tags, ranked during index generation by the number of posts using each tag, with alphabetical ordering for ties. Other tags remain searchable. Tag labels and the selected tag stay the same when switching languages; the All label is translated. The displayed tags refresh after rebuilding. The archive combines tag filters with the search query, sorts the matches, and returns six results per page in every mode. GitHub Pages loads versioned public metadata chunks for browser search; the optional Node runtime searches its private index on the server. Latest, Oldest, and localized Title sorting are available. Search, tag, sort, language, and pagination are preserved in the URL; clearing the controls restores All, Latest, and page one. Use Cmd/Ctrl+K to focus search and Escape to clear its query.
 
 Posts sort newest first by frontmatter `date`, then alphabetically by slug when dates match. Older undated projects are accepted and sort after dated posts. The year/month folders do not override this ordering.
 
@@ -168,7 +168,7 @@ After adding `public/images/blog/2026/oct/building-an-api-flow.png`, insert an i
 
 Use readable alt text that explains what the image shows. Translate inline alt text in the Khmer body while referencing the same file. The frontmatter cover uses the localized post title as its alt text; there is no separate cover-alt metadata field.
 
-MDX is compiled from reviewed local source when its article is first rendered, then Next.js caches the rendered route. The build validates metadata without compiling every article body. Open every new or edited article during preview to catch MDX syntax errors. Review any JSX or code you add as carefully as other project source. JavaScript expressions and dynamic imports are disabled in the compiler. Use fenced code blocks when demonstrating JavaScript, and accept MDX changes only from trusted, reviewed sources.
+MDX is compiled from reviewed local source. GitHub Pages prerenders every article during the build, so an invalid body fails the build. The optional Node runtime compiles articles on demand when first rendered, then Next.js caches the route; its build validates metadata without compiling every body. Open every new or edited article during preview to check the rendered result. Review any JSX or code you add as carefully as other project source. JavaScript expressions and dynamic imports are disabled in the compiler. Use fenced code blocks when demonstrating JavaScript, and accept MDX changes only from trusted, reviewed sources.
 
 ## 5. Add an optional Khmer translation
 
@@ -246,16 +246,17 @@ Stop the development server, then run:
 npm run format:check
 npm run typecheck
 npm run test:blog
-npm run build
-npm run check:server
-npm run check:pwa
+npm run build:pages
+npm run check:pages
 npm run test:pwa
-npm run preview
+npm run preview:pages
 ```
 
-The build generates the private `.generated/blog-index.json`, builds Next.js, generates the small PWA shell, and packages `.next/standalone/`. Index generation catches duplicate slugs, invalid metadata or filenames, missing project fields or local cover files, and orphan translations. It does not compile all MDX bodies. `check:server` starts a temporary production server, samples runtime responses including an article, then stops it; it does not open every article. Review each changed article, external links, and the finished layout in the browser too.
+The Pages build generates the private `.generated/blog-index.json`, prerenders the current Next.js application and every article into `out/`, and generates public search chunks and the small PWA shell. Only the public summary fields used for browser search are exported; the private catalog, MDX sources, and server search engine stay outside `out/`. Index generation catches duplicate slugs, invalid metadata or filenames, missing project fields or local cover files, and orphan translations. `check:pages` verifies the rendered application, post metadata and images, local links and assets, archive controls, sitemap shards, public search coverage and hashes, and the PWA artifact. Review each changed article, external links, and the finished layout in the browser too.
 
-The preview runs the standalone Next.js server at http://localhost:4173, separately from development on port 3000 so its production PWA worker cannot control development pages. `npm start` runs the same standalone server on its configured port, normally 3000. Both require a completed build.
+The Pages preview serves `out/` at http://localhost:4173, separately from development on port 3000 so its production PWA worker cannot control development pages. It requires a completed Pages build and does not need a Next.js server.
+
+For the optional Node/container target, run `npm run build`, `npm run check:server`, `npm run check:pwa`, and `npm run preview`. This builds and packages `.next/standalone/`; its preview also uses port 4173. `check:server` starts a temporary production server and samples runtime responses including an article; it does not open every article. Open each changed article to catch MDX errors in this target. `npm start` runs that standalone server on its configured port, normally 3000.
 
 Use `npm run format` for source and Markdown documentation. MDX posts and templates are excluded so formatting does not rewrite article text or code examples.
 
@@ -263,6 +264,8 @@ Use `npm run format` for source and Markdown documentation. MDX posts and templa
 
 A build refreshes the private catalog/search index, popular tag options, featured-project selection, and sitemap data from the same collection. Related posts show up to three posts selected from bounded recent tag/type candidates. The sitemap is split into shards of at most 10,000 URLs. No navigation list or sitemap entry needs to be maintained by hand.
 
-To publish, add the reviewed English/Khmer files and local images, run the checks above, open the changed article, then rebuild and replace the complete standalone runtime on the Node/container host. Keep its private index, MDX sources, and public assets from the same build; the production process loads the catalog once and needs the new runtime to see published changes. Do not edit the generated index by hand or expose it under `public/`.
+To publish on GitHub Pages, add the reviewed English/Khmer files and local images, run the Pages checks above, open the changed article, and push the reviewed changes to `main`. The workflow in `.github/workflows/pages.yml` builds and publishes the latest `main` source to GitHub Pages. Its complete `out/` artifact includes all article HTML, the search metadata chunks, assets, and sitemap shards from one build. A content change becomes public after that workflow succeeds. Do not edit the generated index by hand or expose it under `public/`.
 
-Set `SITE_URL` to the production origin before building; see [deployment instructions](../README.md#build-and-deploy). The workflow in `.github/workflows/nextjs.yml` validates and uploads a Node artifact. It does not deploy to GitHub Pages or publish to another host. This repository change performs no production deployment.
+For a Node/container host, rebuild and replace the complete standalone runtime instead. Keep its private index, MDX sources, and public assets from the same build; the production process loads the catalog once and needs the new runtime to see published changes.
+
+Set `SITE_URL` to the production origin before building; see [deployment instructions](../README.md#build-and-deploy). GitHub Pages uses `https://socheatathai.github.io` by default. Keep this origin consistent with the site's configured domain so canonical URLs, social images, and sitemap links point to the published site.

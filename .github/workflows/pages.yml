@@ -1,0 +1,72 @@
+name: Publish current website to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.event.pull_request.number || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm run test:blog
+      - run: npm run test:pwa
+      - run: npm run build:pages
+        env:
+          SITE_URL: https://socheatathai.github.io
+      - run: npm run check:pages
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: out
+      - name: Show the published source revision
+        run: |
+          echo "Pages artifact built from commit $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Output: out/ (current application, static browser search).' >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Require GitHub Actions as the Pages publishing source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'NODE'
+          const response = await fetch(`${process.env.GITHUB_API_URL}/repos/${process.env.GITHUB_REPOSITORY}/pages`, {
+            headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: "application/vnd.github+json" },
+          });
+          if (!response.ok) throw new Error(`Cannot verify Pages publishing source (HTTP ${response.status}).`);
+          const settings = await response.json();
+          if (settings.build_type !== "workflow") {
+            throw new Error("Set repository Settings → Pages → Source to GitHub Actions. Branch publishing can replace the application with README.md.");
+          }
+          NODE
+      - name: Deploy the current application
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v4

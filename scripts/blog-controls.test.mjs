@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import ts from "typescript";
+import ts from "@typescript/typescript6";
 import test from "node:test";
 
 const defaults = { query: "", tag: null, sort: "latest", page: 1, language: "en" };

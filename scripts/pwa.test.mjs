@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
+import { execFile } from "node:child_process";
 import { createHash, webcrypto } from "node:crypto";
 import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
 import vm from "node:vm";
 
 const origin = "https://socheatathai.github.io";
@@ -653,6 +655,37 @@ test("generator stays constant-size for a synthetic 50,000-post index and change
   assert.equal((await generated.message("GET_STATUS"))[0].ready, true);
   await writeFile(path.join(fixture.buildDirectory, "BUILD_ID"), "different-build-id");
   assert.notEqual((await generatePwa(fixture)).version, first.version);
+});
+
+test("static-output CLI replaces a copied stale worker without changing server public artifacts", async (context) => {
+  const fixture = await shellFixture(context);
+  const output = path.join(fixture.directory, "out");
+  const serverPublic = path.join(fixture.directory, "public");
+  await mkdir(serverPublic);
+  await writeFile(path.join(serverPublic, "sw.js"), "server worker must stay untouched");
+  for (const url of shellPaths) {
+    const file = path.join(output, url.slice(1));
+    await mkdir(path.dirname(file), { recursive: true });
+    await writeFile(file, await readFile(path.join(fixture.directory, url.slice(1))));
+  }
+  await writeFile(path.join(output, "sw.js"), "stale worker copied from public");
+  await writeFile(path.join(output, "pwa-assets.json"), "{}");
+  const run = promisify(execFile);
+  const generator = fileURLToPath(new URL("./generate-pwa.mjs", import.meta.url));
+  const checker = fileURLToPath(new URL("./check-pwa.mjs", import.meta.url));
+  await assert.rejects(run(process.execPath, [checker, "out"], { cwd: fixture.directory }));
+  await run(process.execPath, [generator, "out", ".next"], { cwd: fixture.directory });
+  const checked = await run(process.execPath, [checker, "out"], { cwd: fixture.directory });
+  assert.match(checked.stdout, /PWA shell checks passed: 4 files/);
+  const generated = await readFile(path.join(output, "sw.js"), "utf8");
+  const inventory = JSON.parse(await readFile(path.join(output, "pwa-assets.json"), "utf8"));
+  assert.ok(generated.includes(inventory.version));
+  assert.ok(generated.includes(await readFile(workerSource, "utf8")));
+  assert.deepEqual(inventory.precache, shellPaths);
+  assert.equal(
+    await readFile(path.join(serverPublic, "sw.js"), "utf8"),
+    "server worker must stay untouched",
+  );
 });
 
 test("artifact checks validate fixed shell integrity, runtime limits, icon paths and offline independence", async (context) => {

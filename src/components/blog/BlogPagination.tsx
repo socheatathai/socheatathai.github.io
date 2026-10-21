@@ -13,6 +13,7 @@ export default function BlogPagination({
   totalPages,
   totalPosts,
   criteria,
+  staticNavigation = false,
 }: BlogPaginationProps) {
   const { language, content } = useLanguage();
   if (totalPages <= 1) return null;
@@ -36,6 +37,7 @@ export default function BlogPagination({
           <Link
             className="blog-pagination-control"
             href={href(currentPage - 1)}
+            prefetch={staticNavigation ? false : undefined}
             direction="back"
             scroll
             aria-label={previousLabel}
@@ -68,6 +70,7 @@ export default function BlogPagination({
                 <Link
                   className="blog-pagination-page"
                   href={href(page)}
+                  prefetch={staticNavigation ? false : undefined}
                   direction={page < currentPage ? "back" : "forward"}
                   scroll
                   aria-label={`${content.blog.page} ${formatNumber(page)}`}
@@ -82,6 +85,7 @@ export default function BlogPagination({
           <Link
             className="blog-pagination-control"
             href={href(currentPage + 1)}
+            prefetch={staticNavigation ? false : undefined}
             scroll
             aria-label={nextLabel}
           >

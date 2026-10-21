@@ -227,12 +227,17 @@ export function checkPwa(directory = path.join(root, "public")) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-  const result = checkPwa();
-  if (result.failures.length) {
-    console.error(result.failures.join("\n"));
+  if (process.argv.length > 3) {
+    console.error("Usage: node scripts/check-pwa.mjs [directory]");
     process.exitCode = 1;
-  } else
-    console.log(
-      `PWA shell checks passed: ${result.assets} files, ${result.bytes} bytes, release ${result.version}.`,
-    );
+  } else {
+    const result = checkPwa(process.argv[2] ? path.resolve(process.argv[2]) : undefined);
+    if (result.failures.length) {
+      console.error(result.failures.join("\n"));
+      process.exitCode = 1;
+    } else
+      console.log(
+        `PWA shell checks passed: ${result.assets} files, ${result.bytes} bytes, release ${result.version}.`,
+      );
+  }
 }

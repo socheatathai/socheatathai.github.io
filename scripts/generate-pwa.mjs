@@ -55,14 +55,23 @@ export async function generatePwa({
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-  generatePwa()
-    .then((result) =>
-      console.log(
-        `PWA shell: ${result.precache.length} files, ${result.bytes} bytes; visited pages use a bounded runtime cache.`,
-      ),
-    )
-    .catch((error) => {
-      console.error(`PWA generation failed: ${error.message}`);
-      process.exitCode = 1;
-    });
+  const [directory, buildDirectory, ...extra] = process.argv.slice(2);
+  if (extra.length) {
+    console.error("Usage: node scripts/generate-pwa.mjs [directory] [buildDirectory]");
+    process.exitCode = 1;
+  } else {
+    generatePwa({
+      ...(directory ? { directory: path.resolve(directory) } : {}),
+      ...(buildDirectory ? { buildDirectory: path.resolve(buildDirectory) } : {}),
+    })
+      .then((result) =>
+        console.log(
+          `PWA shell: ${result.precache.length} files, ${result.bytes} bytes; visited pages use a bounded runtime cache.`,
+        ),
+      )
+      .catch((error) => {
+        console.error(`PWA generation failed: ${error.message}`);
+        process.exitCode = 1;
+      });
+  }
 }

@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import ts from "typescript";
+import ts from "@typescript/typescript6";
 
 const sourceRoot = fileURLToPath(new URL("../src/", import.meta.url));
 const compiled = new Map();

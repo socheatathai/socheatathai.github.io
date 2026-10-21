@@ -66,6 +66,10 @@ export function getBlogPosts(): BlogPostMetadata[] {
   return repository().catalog.posts;
 }
 
+export function getBlogRevision() {
+  return repository().catalog.revision;
+}
+
 export function getFeaturedProjects() {
   return repository().featured;
 }

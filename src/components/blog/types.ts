@@ -8,7 +8,10 @@ export type BlogContentProps = BlogPageData & {
   archiveTotal: number;
 };
 
-export type BlogPaginationProps = Omit<BlogPageData, "posts"> & { criteria?: BlogQuery };
+export type BlogPaginationProps = Omit<BlogPageData, "posts"> & {
+  criteria?: BlogQuery;
+  staticNavigation?: boolean;
+};
 
 export type BlogArticleProps = {
   metadata: BlogPostMetadata;

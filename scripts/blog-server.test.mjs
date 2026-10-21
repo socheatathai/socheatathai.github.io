@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import ts from "typescript";
+import ts from "@typescript/typescript6";
 const require = createRequire(import.meta.url);
 const { createBlogSearch, createSearchData } = require("../src/lib/blog/search-index.ts");
 const { parseBlogQuery, blogQueryHref } = require("../src/lib/blog-query.ts");

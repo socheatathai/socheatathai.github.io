@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
-import ts from "typescript";
+import ts from "@typescript/typescript6";
 
 const source = fs.readFileSync(new URL("../src/hooks/usePwa.ts", import.meta.url), "utf8");
 const code = ts.transpileModule(source, {
